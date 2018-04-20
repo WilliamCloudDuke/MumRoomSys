@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Account {
@@ -25,7 +26,26 @@ public class Account {
 	
 	@ManyToOne
 	@JoinColumn(name="role_id", nullable = false)
+	
+	@OneToOne
 	private Role role;
+	
+	@OneToOne
+	@JoinColumn(name="student_id")
+	private Student student;
+	
+	public Account() {
+		super();
+	}
+
+	public Account(String username, String password, String email, boolean enabled, Role role) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.enabled = enabled;
+		this.role = role;
+	}
 
 	public int getId() {
 		return id;
@@ -73,5 +93,13 @@ public class Account {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 }

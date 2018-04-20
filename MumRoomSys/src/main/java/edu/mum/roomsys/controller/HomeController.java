@@ -21,6 +21,4 @@ public class HomeController {
 		model.addAttribute("mainPage", "student_home.jsp");
 		return "index";
 	}
-	
-
 }
