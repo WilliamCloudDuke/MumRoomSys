@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 	
-	@GetMapping({"/", "/index", "/home"})
+	@GetMapping({"/", "/index", "/admin"})
 	public String homePage(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		boolean hasAdminRole = auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ADMIN"));
+		boolean hasAdminRole = auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("DIRECTOR"));
 		if (hasAdminRole) {
 			model.addAttribute("mainPage", "admin_home.jsp");
 			return "index";
@@ -21,4 +21,6 @@ public class HomeController {
 		model.addAttribute("mainPage", "student_home.jsp");
 		return "index";
 	}
+	
+
 }
