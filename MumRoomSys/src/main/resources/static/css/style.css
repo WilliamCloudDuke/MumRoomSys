@@ -1,0 +1,10 @@
+html, body{
+    height:100%; /* important to vertically align the container */
+    width:100%;
+    margin:0;
+    padding:0;
+}
+
+.container {
+    min-width:1200px;
+}
