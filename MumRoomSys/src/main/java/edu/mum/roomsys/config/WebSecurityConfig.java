@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				//.loginPage("/login")
 				.failureUrl("/login?error=true")
 				.defaultSuccessUrl("/")
-				.usernameParameter("email").passwordParameter("password").permitAll().and()
+				.usernameParameter("username").passwordParameter("password").permitAll().and()
 			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").permitAll();
 		
 		http.csrf()
