@@ -8,3 +8,8 @@ html, body{
 .container {
     min-width:1200px;
 }
+
+#sticky-sidebar {
+	position:fixed;
+	max-width: 20%;
+}
