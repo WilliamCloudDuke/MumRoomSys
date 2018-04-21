@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -27,6 +29,7 @@ public class Booking {
 	@Temporal(TemporalType.DATE)
 	private Date moveOutDate;
 
+	@Enumerated(EnumType.STRING)
 	private BookingStatus status;
 
 	@JoinColumn(name = "room_id")

@@ -3,6 +3,8 @@ package edu.mum.roomsys.domain;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,45 +16,59 @@ public class Book_Item {
 	@Id
 	@GeneratedValue
 	private int id;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(length = 50, nullable = false)	
+	private BookingItemType itemType;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus walls;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus windows;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus screens;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus blinds;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus sink;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus counter;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus mirror;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus floor;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus closet;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus towel;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus thermostat;
 
 	@JoinColumn(name = "booking_id")
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Booking booking;
 
-	
 	public Book_Item() {
 		super();
 	}
@@ -161,4 +177,5 @@ public class Book_Item {
 		this.booking = booking;
 	}
 
+	
 }
