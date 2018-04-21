@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.mum.roomsys.domain.Student;
-import edu.mum.roomsys.dto.StudentSearchCriteria;
+import edu.mum.roomsys.dto.SearchCriteria;
 import edu.mum.roomsys.service.StudentService;
 
 @Controller
@@ -29,12 +29,12 @@ public class StudentController {
 		Page<Student> currentPage = studentService.findAll(pageNo, pageSize);
 		model.addAttribute("students", currentPage);
 		model.addAttribute("page", studentService.getPage(currentPage, pageNo));
-		model.addAttribute("searchCriteria", new StudentSearchCriteria());
+		model.addAttribute("searchCriteria", new SearchCriteria());
 		return "index";
 	}
 	
 	@RequestMapping(path = "/students/search/{page}", method = RequestMethod.POST)
-	public String search(@PathVariable("page") int pageNo, StudentSearchCriteria searchCriteria, Model model) {
+	public String search(@PathVariable("page") int pageNo, SearchCriteria searchCriteria, Model model) {
 		model.addAttribute("mainPage", "studentList.jsp");
 		Page<Student> currentPage = studentService.search(searchCriteria, pageNo, pageSize);
 		model.addAttribute("students", currentPage);

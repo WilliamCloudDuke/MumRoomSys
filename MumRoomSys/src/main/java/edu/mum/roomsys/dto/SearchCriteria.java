@@ -1,6 +1,6 @@
 package edu.mum.roomsys.dto;
 
-public class StudentSearchCriteria {
+public class SearchCriteria {
 	private String searchBy;
 	private String criteria;
 	
