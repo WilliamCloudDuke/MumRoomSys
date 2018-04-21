@@ -11,7 +11,7 @@ import edu.mum.roomsys.dao.AccountDao;
 import edu.mum.roomsys.dao.StudentDao;
 import edu.mum.roomsys.domain.Student;
 import edu.mum.roomsys.dto.PageDto;
-import edu.mum.roomsys.dto.StudentSearchCriteria;
+import edu.mum.roomsys.dto.SearchCriteria;
 import edu.mum.roomsys.util.PagingHelper;
 
 @Service
@@ -33,7 +33,7 @@ public class StudentService {
 		return new PageDto(paging.getCurrentPage(), paging.getNextPage(), paging.getPreviousPage(), paging.getTotalPage());
 	}
 
-	public Page<Student> search(StudentSearchCriteria searchCriteria, int pageNo, int pageSize) {
+	public Page<Student> search(SearchCriteria searchCriteria, int pageNo, int pageSize) {
 		PageRequest pReqest = new PageRequest(pageNo, pageSize, new Sort(Direction.ASC, "name"));
 		switch (searchCriteria.getSearchBy()) {
 			case "name":
