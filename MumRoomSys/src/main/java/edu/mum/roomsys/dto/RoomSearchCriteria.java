@@ -3,10 +3,10 @@ package edu.mum.roomsys.dto;
 import javax.validation.constraints.NotNull;
 
 public class RoomSearchCriteria {
-	@NotNull(message="Input 0 or a positive number")
+	@NotNull
 	private int roomNo;
 	
-	@NotNull(message="Input 0 or a positive number")
+	@NotNull
 	private int buildingNo;
 	
 	public int getRoomNo() {
