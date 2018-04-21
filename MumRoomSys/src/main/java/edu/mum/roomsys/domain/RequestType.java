@@ -1,4 +1,4 @@
-package edu.mum.request.domain;
+package edu.mum.roomsys.domain;
 
 public enum RequestType {
 

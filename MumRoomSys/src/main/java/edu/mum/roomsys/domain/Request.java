@@ -1,4 +1,4 @@
-package edu.mum.request.domain;
+package edu.mum.roomsys.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import edu.mum.roomsys.domain.ItemStatus;
-import edu.mum.roomsys.domain.Student;
+
 
 @Entity 
 public class Request {
