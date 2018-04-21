@@ -31,6 +31,8 @@
 			<th scope="col" class="col">Student</th>
 			<th scope="col" class="col">Email</th>
 			<th scope="col" class="col">Phone</th>
+			<th scope="col" class="col">Building</th>	
+			<th scope="col" class="col">Room</th>								
 			<th scope="col" class="col-4">Moved in Date</th>
 			<th scope="col" class="col-4">Moved out Date</th>	
 			<th scope="col" class="col">Status</th>		
@@ -40,7 +42,7 @@
 	</thead>
 	<tbody>		
 		<c:if test="${!bookings.hasContent()}">
-			<tr><td colspan="7">No records found<td></tr>
+			<tr><td colspan="9">No records found<td></tr>
 		</c:if>			
 		<c:if test="${bookings.hasContent()}">
 			<c:forEach var="booking" items="${bookings.getContent()}">
@@ -48,6 +50,8 @@
 					<td>${booking.student.name}</td>
 					<td>${booking.student.email}</td>	
 					<td>${booking.student.phone}</td>
+					<td>${booking.room.buildNumber}</td>			
+					<td>${booking.room.number}</td>									
 					<td>${booking.moveInDate}</td>
 					<td>${booking.moveOutDate}</td>		
 					<td>${booking.status}</td>								

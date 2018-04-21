@@ -32,13 +32,27 @@ public class BookingController {
 		return "index";
 	}
 	
+	@RequestMapping(path = "/bookings/search/{page}", method = RequestMethod.GET)
+	public String searchByDefault(@PathVariable("page") int pageNo, SearchCriteria searchCriteria, Model model) {
+		if (searchCriteria.getCriteria() == null) {
+			searchCriteria.setCriteria("");
+			searchCriteria.setSearchBy("name");
+		}
+		model.addAttribute("mainPage", "bookingList.jsp");
+		Page<Booking> currentPage = bookingService.search(searchCriteria, pageNo, pageSize);
+		model.addAttribute("bookings", currentPage);
+		model.addAttribute("page", bookingService.getPage(currentPage, pageNo));
+		model.addAttribute("searchCriteria", new SearchCriteria());
+		return "index";
+	}			
+
 	@RequestMapping(path = "/bookings/search/{page}", method = RequestMethod.POST)
 	public String search(@PathVariable("page") int pageNo, SearchCriteria searchCriteria, Model model) {
 		model.addAttribute("mainPage", "bookingList.jsp");
 		Page<Booking> currentPage = bookingService.search(searchCriteria, pageNo, pageSize);
 		model.addAttribute("bookings", currentPage);
 		model.addAttribute("page", bookingService.getPage(currentPage, pageNo));
-		model.addAttribute("searchCriteria", new SearchCriteria());
+		model.addAttribute("searchCriteria", searchCriteria);
 		return "index";
 	}			
 

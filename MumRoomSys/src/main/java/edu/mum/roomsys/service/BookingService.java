@@ -29,7 +29,7 @@ public class BookingService {
 		return new PageDto(paging.getCurrentPage(), paging.getNextPage(), paging.getPreviousPage(), paging.getTotalPage());
 	}
 	
-	public Page<Booking> search(SearchCriteria searchCriteria, int pageNo, int pageSize) {
+	public Page<Booking> search(SearchCriteria searchCriteria, int pageNo, int pageSize) {		
 		PageRequest pReqest = new PageRequest(pageNo, pageSize, new Sort(Direction.ASC, "moveInDate"));
 		switch (searchCriteria.getSearchBy()) {
 			case "name":
@@ -38,6 +38,6 @@ public class BookingService {
 				return bookingDao.findByStudentEmailLike(searchCriteria.getCriteria(), pReqest);
 		}
 		return null;
-	}		
+	}
 
 }
