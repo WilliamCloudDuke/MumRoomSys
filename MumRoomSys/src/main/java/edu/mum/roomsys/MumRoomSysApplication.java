@@ -9,4 +9,5 @@ public class MumRoomSysApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MumRoomSysApplication.class, args);
 	}
+	
 }

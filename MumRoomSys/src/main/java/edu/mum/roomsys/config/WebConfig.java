@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+
 @Configuration
 @ComponentScan(basePackages = "edu.mum.roomsys")
 public class WebConfig extends WebMvcConfigurerAdapter {
