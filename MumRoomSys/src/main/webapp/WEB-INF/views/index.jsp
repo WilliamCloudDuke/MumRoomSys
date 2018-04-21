@@ -23,11 +23,11 @@
 			</div>
 		</div>	
 	    <div class="row d-flex d-md-block flex-nowrap wrapper">
-	        <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
+	        <div class="col-md-2 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
 	        	<div class="list-group border-0 card text-center text-md-left">
 	 				<a href="#student" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Student </span></a>
 	                <div class="collapse" id="student" data-parent="#sidebar">
-	                    <a href="#" class="list-group-item" data-parent="#student">List</a>
+	                    <a href="/students/0" class="list-group-item" data-parent="#student">List</a>
 	                    <a href="#" class="list-group-item" data-parent="#student">Create</a>
 	                </div>	                
 	                
@@ -44,7 +44,7 @@
 	                </div>	 	                
 	            </div>
 	        </div>
-	        <main class="col-md-9 float-left col px-5 pl-md-2 pt-2 main">
+	        <main class="col-md-10 float-left col px-5 pl-md-2 pt-2 main">
 	            <div class="row">
 	                <div class="col-lg-6">
 	                   <c:import url="${mainPage}" />

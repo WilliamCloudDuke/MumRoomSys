@@ -3,56 +3,73 @@ package edu.mum.roomsys.domain;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Room_Item {
+public class Book_Item {
 
 	@Id
 	@GeneratedValue
 	private int id;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(length = 50, nullable = false)	
+	private BookingItemType itemType;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus walls;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus windows;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus screens;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus blinds;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus sink;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus counter;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus mirror;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus floor;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus closet;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus towel;
 
 	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ItemStatus thermostat;
 
-	@JoinColumn(name = "room_id", nullable = false)
-	@OneToOne(cascade = CascadeType.ALL)
-	private Room room;
+	@JoinColumn(name = "booking_id")
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Booking booking;
 
-	public Room_Item() {
+	public Book_Item() {
 		super();
 	}
 
@@ -152,12 +169,13 @@ public class Room_Item {
 		this.thermostat = thermostat;
 	}
 
-	public Room getRoom() {
-		return room;
+	public Booking getBooking() {
+		return booking;
 	}
 
-	public void setRoom(Room room) {
-		this.room = room;
+	public void setBooking(Booking booking) {
+		this.booking = booking;
 	}
 
+	
 }
