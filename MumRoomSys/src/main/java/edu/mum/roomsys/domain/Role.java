@@ -1,5 +1,6 @@
 package edu.mum.roomsys.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ public class Role {
 	private String name;
 	
 	@OneToMany(mappedBy="role")
-	private List<Account> accounts;
+	private List<Account> accounts = new ArrayList<>();
 
 	public int getId() {
 		return id;

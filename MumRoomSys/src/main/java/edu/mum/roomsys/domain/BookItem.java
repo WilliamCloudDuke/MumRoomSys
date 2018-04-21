@@ -179,5 +179,11 @@ public class BookItem {
 		this.booking = booking;
 	}
 
-	
+	public BookingItemType getItemType() {
+		return itemType;
+	}
+
+	public void setItemType(BookingItemType itemType) {
+		this.itemType = itemType;
+	}
 }

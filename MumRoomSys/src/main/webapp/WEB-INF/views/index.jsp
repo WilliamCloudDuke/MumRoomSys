@@ -33,8 +33,8 @@
 	                
 	 				<a href="#bookRoom" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Assign Room </span></a>
  					<div class="collapse" id="bookRoom" data-parent="#sidebar">
-	                    <a href="/room/bookings/0" class="list-group-item" data-parent="#bookRoom">List Bookings</a>
-	                    <a href="/room/assign" class="list-group-item" data-parent="#bookRoom">Assign Room</a>
+	                    <a href="/bookings/0" class="list-group-item" data-parent="#bookRoom">List Bookings</a>
+	                    <a href="/bookings/assign" class="list-group-item" data-parent="#bookRoom">Assign Room</a>
 	                </div>	  
 	                <a href="#checkout" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Check Out</span></a>
 	                
