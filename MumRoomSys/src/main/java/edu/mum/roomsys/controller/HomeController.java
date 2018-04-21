@@ -19,6 +19,6 @@ public class HomeController {
 		}
 		
 		model.addAttribute("mainPage", "student_home.jsp");
-		return "index";
+		return "student_index";
 	}
 }
