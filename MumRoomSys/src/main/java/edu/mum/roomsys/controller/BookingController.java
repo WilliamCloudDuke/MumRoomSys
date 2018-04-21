@@ -55,5 +55,15 @@ public class BookingController {
 		model.addAttribute("searchCriteria", searchCriteria);
 		return "index";
 	}			
+	
+	@RequestMapping(path = "/bookings/search/status/{page}", method = {RequestMethod.POST, RequestMethod.GET})
+	public String searchByStatus(@PathVariable("page") int pageNo, SearchCriteria searchCriteria, Model model) {
+		model.addAttribute("mainPage", "bookingList.jsp");
+		Page<Booking> currentPage = bookingService.searchbyStatus(searchCriteria, pageNo, pageSize);
+		model.addAttribute("bookings", currentPage);
+		model.addAttribute("page", bookingService.getPage(currentPage, pageNo));
+		model.addAttribute("searchCriteria", searchCriteria);
+		return "index";
+	}			
 
 }

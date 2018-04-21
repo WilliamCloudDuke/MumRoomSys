@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import edu.mum.roomsys.dao.BookingDao;
 import edu.mum.roomsys.domain.Booking;
+import edu.mum.roomsys.domain.BookingStatus;
 import edu.mum.roomsys.dto.PageDto;
 import edu.mum.roomsys.dto.SearchCriteria;
 import edu.mum.roomsys.util.PagingHelper;
@@ -30,14 +31,26 @@ public class BookingService {
 	}
 	
 	public Page<Booking> search(SearchCriteria searchCriteria, int pageNo, int pageSize) {		
+		if (searchCriteria.getCriteria() == null) {
+			searchCriteria.setCriteria("");
+			searchCriteria.setSearchBy("name");
+		}		
 		PageRequest pReqest = new PageRequest(pageNo, pageSize, new Sort(Direction.ASC, "moveInDate"));
 		switch (searchCriteria.getSearchBy()) {
 			case "name":
 				return bookingDao.findByStudentNameLike(searchCriteria.getCriteria(), pReqest);
 			case "email":
-				return bookingDao.findByStudentEmailLike(searchCriteria.getCriteria(), pReqest);
+				return bookingDao.findByStudentEmailLike(searchCriteria.getCriteria(), pReqest);				
 		}
 		return null;
 	}
-
+	
+	public Page<Booking> searchbyStatus(SearchCriteria searchCriteria, int pageNo, int pageSize) {		
+		if (searchCriteria.getBookingStatus() == null) {
+			searchCriteria.setBookingStatus("NEW");
+		}				
+		BookingStatus searchStatus = BookingStatus.valueOf(searchCriteria.getBookingStatus());
+		PageRequest pReqest = new PageRequest(pageNo, pageSize, new Sort(Direction.ASC, "moveInDate"));
+		return bookingDao.findByStatus(searchStatus, pReqest);
+	}	
 }

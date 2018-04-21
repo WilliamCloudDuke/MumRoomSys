@@ -4,6 +4,26 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <table class="table table-hover table-striped">
 	<thead class="thead-dark">
+		<c:url var="post_url" value="/bookings/search/status/0" />
+		<form:form class="form-inline my-2 my-lg-0" 
+			modelAttribute="searchCriteria" action="${post_url}" method="post">
+			<div class="form-row">
+			 	<div class="form-group col-md-4">
+				 	<form:select path="bookingStatus" class="form-control">
+						<form:option value="NEW">New</form:option>				 	
+						<form:option value="CHECKED_IN">Checked in</form:option>
+						<form:option value="CHECKED_OUT">Checked out</form:option>
+					</form:select>
+			 	</div>
+			 	<div class="form-group col-md-2">
+					<button class="btn btn-outline-success" type="submit">Filter By Status</button>			 	
+			 	</div>
+			</div>
+		</form:form>	
+	</thead>
+</table>
+<table class="table table-hover table-striped">
+	<thead class="thead-dark">
 		<c:url var="post_url" value="/bookings/search/0" />
 		<form:form class="form-inline my-2 my-lg-0" 
 			modelAttribute="searchCriteria" action="${post_url}" method="post">

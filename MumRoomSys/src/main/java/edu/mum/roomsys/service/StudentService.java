@@ -34,6 +34,10 @@ public class StudentService {
 	}
 
 	public Page<Student> search(SearchCriteria searchCriteria, int pageNo, int pageSize) {
+		if (searchCriteria.getCriteria() == null) {
+			searchCriteria.setCriteria("");
+			searchCriteria.setSearchBy("name");
+		}				
 		PageRequest pReqest = new PageRequest(pageNo, pageSize, new Sort(Direction.ASC, "name"));
 		switch (searchCriteria.getSearchBy()) {
 			case "name":
