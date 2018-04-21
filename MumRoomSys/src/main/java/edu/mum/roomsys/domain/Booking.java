@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Booking {
@@ -23,6 +24,7 @@ public class Booking {
 	@GeneratedValue
 	private int id;
 
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date moveInDate;
 
