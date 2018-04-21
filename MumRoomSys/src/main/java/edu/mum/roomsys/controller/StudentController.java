@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import edu.mum.roomsys.domain.Student;
+import edu.mum.roomsys.dto.StudentSearchCriteria;
 import edu.mum.roomsys.service.StudentService;
 
 @Controller
@@ -26,6 +27,7 @@ public class StudentController {
 		Page<Student> currentPage = studentService.findAll(pageNo, pageSize);
 		model.addAttribute("students", currentPage);
 		model.addAttribute("page", studentService.getPage(currentPage, pageNo));
+		model.addAttribute("searchCriteria", new StudentSearchCriteria());
 		return "index";
 	}
 	

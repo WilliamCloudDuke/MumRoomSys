@@ -4,6 +4,29 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <table class="table table-hover table-striped">
 	<thead class="thead-dark">
+		<c:url var="post_url" value="/students/search" />
+		<form:form class="form-inline my-2 my-lg-0" 
+			modelAttribute="searchCriteria" action="${post_url}" method="post">
+			<div class="form-row">
+			 	<div class="form-group col-md-6">
+				 	<form:input path="criteria" class="form-control"
+					type="search" placeholder="Search" aria-label="Search" />
+			 	</div>
+			 	<div class="form-group col-md-4">
+				 	<form:select path="searchBy" class="form-control">
+						<form:option value="name">By Student Name</form:option>
+						<form:option value="email">By Student Email</form:option>
+					</form:select>
+			 	</div>
+			 	<div class="form-group col-md-2">
+					<button class="btn btn-outline-success" type="submit">Search</button>			 	
+			 	</div>
+			</div>
+		</form:form>	
+	</thead>
+</table>
+<table class="table table-hover table-striped">
+	<thead class="thead-dark">
 		<tr>
 			<th scope="col">Name</th>
 			<th scope="col">Email</th>
