@@ -36,7 +36,7 @@ public class Booking {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Room room;
 
-	@OneToMany(mappedBy = "booking")
+	@OneToMany(mappedBy = "booking", cascade = {CascadeType.REMOVE})
 	private List<BookItem> bookItems;
 
 	@JoinColumn(name = "student_id")

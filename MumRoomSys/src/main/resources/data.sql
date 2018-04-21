@@ -17,3 +17,21 @@ insert into account(id, role_id, student_id, username, email, password, enabled)
 insert into account(id, role_id, student_id, username, email, password, enabled) values(6, 2, 12, 'student1', 'student1@mum.edu', '$2a$10$R1kmVEHTHJ90GcejrpmTdOirALp9ZJ7ugMkPSDRKlOhTc1j92WClW', 1);
 insert into account(id, role_id, student_id, username, email, password, enabled) values(7, 2, 13, 'student2', 'student2@mum.edu', '$2a$10$R1kmVEHTHJ90GcejrpmTdOirALp9ZJ7ugMkPSDRKlOhTc1j92WClW', 1);
 insert into account(id, role_id, student_id, username, email, password, enabled) values(8, 2, 14, 'student3', 'student3@mum.edu', '$2a$10$R1kmVEHTHJ90GcejrpmTdOirALp9ZJ7ugMkPSDRKlOhTc1j92WClW', 1);
+
+insert into room(id, build_number, number, status) values(15, 140, 1, 'READY');
+insert into room(id, build_number, number, status) values(16, 140, 2, 'READY');
+insert into room(id, build_number, number, status) values(17, 140, 3, 'READY');
+insert into room(id, build_number, number, status) values(24, 140, 4, 'READY');
+insert into room(id, build_number, number, status) values(25, 140, 5, 'READY');
+insert into room(id, build_number, number, status) values(26, 140, 6, 'READY');
+insert into room(id, build_number, number, status) values(27, 140, 7, 'MAINTENANCE');
+insert into room(id, build_number, number, status) values(18, 141, 1, 'READY');
+insert into room(id, build_number, number, status) values(19, 141, 2, 'READY');
+insert into room(id, build_number, number, status) values(20, 141, 3, 'READY');
+insert into room(id, build_number, number, status) values(21, 142, 1, 'READY');
+insert into room(id, build_number, number, status) values(22, 142, 2, 'READY');
+insert into room(id, build_number, number, status) values(23, 142, 3, 'MAINTENANCE');
+
+insert into booking(id,room_id,student_id,move_in_date,status) values(30,15,12,'2018-04-25','NEW');
+insert into booking(id,room_id,student_id,move_in_date,status) values(31,16,13,'2018-04-27','NEW');
+insert into booking(id,room_id,student_id,move_in_date,status) values(32,17,14,'2018-04-28','NEW');
