@@ -30,7 +30,7 @@ public class Room {
 	private RoomStatus status;
 
 	@OneToOne(mappedBy = "room", fetch = FetchType.EAGER)
-	private Room_Item item;
+	private RoomItem item;
 
 	@OneToMany(mappedBy = "room")
 	private List<Booking> bookings;
@@ -65,11 +65,11 @@ public class Room {
 		this.status = status;
 	}
 
-	public Room_Item getItem() {
+	public RoomItem getItem() {
 		return item;
 	}
 
-	public void setItem(Room_Item item) {
+	public void setItem(RoomItem item) {
 		this.item = item;
 	}
 

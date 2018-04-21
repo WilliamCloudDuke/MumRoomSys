@@ -9,9 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Book_Item {
+@Table(name="book_item")
+public class BookItem {
 
 	@Id
 	@GeneratedValue
@@ -69,7 +71,7 @@ public class Book_Item {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Booking booking;
 
-	public Book_Item() {
+	public BookItem() {
 		super();
 	}
 

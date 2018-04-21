@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.mum.roomsys.domain.Student;
 import edu.mum.roomsys.dto.StudentSearchCriteria;
@@ -31,6 +33,14 @@ public class StudentController {
 		return "index";
 	}
 	
-	
+	@RequestMapping(path = "/students/search/{page}", method = RequestMethod.POST)
+	public String search(@PathVariable("page") int pageNo, StudentSearchCriteria searchCriteria, Model model) {
+		model.addAttribute("mainPage", "studentList.jsp");
+		Page<Student> currentPage = studentService.search(searchCriteria, pageNo, pageSize);
+		model.addAttribute("students", currentPage);
+		model.addAttribute("page", studentService.getPage(currentPage, pageNo));
+		model.addAttribute("searchCriteria", searchCriteria);
+		return "index";
+	}		
 	
 }

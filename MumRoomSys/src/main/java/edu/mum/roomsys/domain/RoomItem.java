@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Room_Item {
+public class RoomItem {
 
 	@Id
 	@GeneratedValue
@@ -65,7 +65,7 @@ public class Room_Item {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Room room;
 
-	public Room_Item() {
+	public RoomItem() {
 		super();
 	}
 
