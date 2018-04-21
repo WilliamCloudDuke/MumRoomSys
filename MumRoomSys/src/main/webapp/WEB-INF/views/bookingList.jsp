@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <table class="table table-hover table-striped">
 	<thead class="thead-dark">
-		<c:url var="post_url" value="/booking/search/0" />
+		<c:url var="post_url" value="/bookings/search/0" />
 		<form:form class="form-inline my-2 my-lg-0" 
 			modelAttribute="searchCriteria" action="${post_url}" method="post">
 			<div class="form-row">
@@ -40,7 +40,7 @@
 	</thead>
 	<tbody>		
 		<c:if test="${!bookings.hasContent()}">
-			<tr><td colspan="5">No records found<td></tr>
+			<tr><td colspan="7">No records found<td></tr>
 		</c:if>			
 		<c:if test="${bookings.hasContent()}">
 			<c:forEach var="booking" items="${bookings.getContent()}">
