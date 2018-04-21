@@ -3,6 +3,8 @@ package edu.mum.roomsys.domain;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -15,36 +17,47 @@ public class Room_Item {
 	@GeneratedValue
 	private int id;
 
+	@Enumerated(EnumType.STRING)
 	@Column(length = 50, nullable = false)
 	private ItemStatus walls;
 
+	@Enumerated(EnumType.STRING)
 	@Column(length = 50, nullable = false)
 	private ItemStatus windows;
 
+	@Enumerated(EnumType.STRING)
 	@Column(length = 50, nullable = false)
 	private ItemStatus screens;
 
+	@Enumerated(EnumType.STRING)
 	@Column(length = 50, nullable = false)
 	private ItemStatus blinds;
 
+	@Enumerated(EnumType.STRING)
 	@Column(length = 50, nullable = false)
 	private ItemStatus sink;
 
+	@Enumerated(EnumType.STRING)
 	@Column(length = 50, nullable = false)
 	private ItemStatus counter;
 
+	@Enumerated(EnumType.STRING)
 	@Column(length = 50, nullable = false)
 	private ItemStatus mirror;
 
+	@Enumerated(EnumType.STRING)
 	@Column(length = 50, nullable = false)
 	private ItemStatus floor;
 
+	@Enumerated(EnumType.STRING)
 	@Column(length = 50, nullable = false)
 	private ItemStatus closet;
 
+	@Enumerated(EnumType.STRING)
 	@Column(length = 50, nullable = false)
 	private ItemStatus towel;
 
+	@Enumerated(EnumType.STRING)
 	@Column(length = 50, nullable = false)
 	private ItemStatus thermostat;
 

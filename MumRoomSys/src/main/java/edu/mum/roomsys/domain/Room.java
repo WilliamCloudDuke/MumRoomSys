@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -22,6 +24,7 @@ public class Room {
 	@Column(length = 4, nullable = false)
 	private int number;
 
+	@Enumerated(EnumType.STRING)
 	@Column(length = 100, nullable = false)
 	private RoomStatus roomStatus;
 
