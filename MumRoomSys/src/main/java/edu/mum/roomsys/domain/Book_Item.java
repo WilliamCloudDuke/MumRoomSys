@@ -6,10 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Room_Item {
+public class Book_Item {
 
 	@Id
 	@GeneratedValue
@@ -48,11 +48,12 @@ public class Room_Item {
 	@Column(length = 50, nullable = false)
 	private ItemStatus thermostat;
 
-	@JoinColumn(name = "room_id", nullable = false)
-	@OneToOne(cascade = CascadeType.ALL)
-	private Room room;
+	@JoinColumn(name = "booking_id")
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Booking booking;
 
-	public Room_Item() {
+	
+	public Book_Item() {
 		super();
 	}
 
@@ -152,12 +153,12 @@ public class Room_Item {
 		this.thermostat = thermostat;
 	}
 
-	public Room getRoom() {
-		return room;
+	public Booking getBooking() {
+		return booking;
 	}
 
-	public void setRoom(Room room) {
-		this.room = room;
+	public void setBooking(Booking booking) {
+		this.booking = booking;
 	}
 
 }
