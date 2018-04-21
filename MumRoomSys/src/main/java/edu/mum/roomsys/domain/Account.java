@@ -2,6 +2,7 @@ package edu.mum.roomsys.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -27,7 +28,7 @@ public class Account {
 	@ManyToOne
 	@JoinColumn(name="role_id", nullable = false)
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	private Role role;
 	
 	@OneToOne

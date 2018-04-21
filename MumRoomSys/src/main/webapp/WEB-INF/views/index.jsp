@@ -27,7 +27,7 @@
 	        	<div class="list-group border-0 card text-center text-md-left">
 	 				<a href="#student" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Student </span></a>
 	                <div class="collapse" id="student" data-parent="#sidebar">
-	                    <a href="#" class="list-group-item" data-parent="#student">List</a>
+	                    <a href="/students/0" class="list-group-item" data-parent="#student">List</a>
 	                    <a href="#" class="list-group-item" data-parent="#student">Create</a>
 	                </div>	                
 	                
