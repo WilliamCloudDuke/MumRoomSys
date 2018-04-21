@@ -23,6 +23,4 @@ public class SearchCriteria {
 	public void setBookingStatus(String bookingStatus) {
 		this.bookingStatus = bookingStatus;
 	}
-	
-	
 }

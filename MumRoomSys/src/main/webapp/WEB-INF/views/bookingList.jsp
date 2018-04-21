@@ -24,6 +24,29 @@
 </table>
 <table class="table table-hover table-striped">
 	<thead class="thead-dark">
+		<c:url var="post_url" value="/bookings/search/building/0" />
+		<form:form class="form-inline my-2 my-lg-0" 
+			modelAttribute="roomSearchCriteria" action="${post_url}" method="post">
+			<div class="form-row">
+			 	<div class="form-group col-md-3">
+				 	<form:input path="buildingNo" class="form-control"
+					type="search" placeholder="Search" aria-label="Search" />
+					<form:errors path="buildingNo"/>
+			 	</div>
+			 	<div class="form-group col-md-3">
+				 	<form:input path="roomNo" class="form-control"
+					type="search" placeholder="Search" aria-label="Search" />
+					<form:errors path="roomNo"/>
+			 	</div>			 	
+			 	<div class="form-group col-md-2">
+					<button class="btn btn-outline-success" type="submit">Filter Building and Room</button>			 	
+			 	</div>
+			</div>
+		</form:form>	
+	</thead>
+</table>
+<table class="table table-hover table-striped">
+	<thead class="thead-dark">
 		<c:url var="post_url" value="/bookings/search/0" />
 		<form:form class="form-inline my-2 my-lg-0" 
 			modelAttribute="searchCriteria" action="${post_url}" method="post">

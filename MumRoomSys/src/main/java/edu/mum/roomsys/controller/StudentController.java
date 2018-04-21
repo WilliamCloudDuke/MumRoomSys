@@ -31,24 +31,14 @@ public class StudentController {
 		model.addAttribute("page", studentService.getPage(currentPage, pageNo));
 		model.addAttribute("searchCriteria", new SearchCriteria());
 		return "index";
-	}
+	}	
 	
-	@RequestMapping(path = "/students/search/{page}", method = RequestMethod.GET)
-	public String searchByDefault(@PathVariable("page") int pageNo, SearchCriteria searchCriteria, Model model) {
+	@RequestMapping(path = "/students/search/{page}", method = {RequestMethod.POST,  RequestMethod.GET})
+	public String search(@PathVariable("page") int pageNo, SearchCriteria searchCriteria, Model model) {
 		if (searchCriteria.getCriteria() == null) {
 			searchCriteria.setCriteria("");
 			searchCriteria.setSearchBy("name");
-		}		
-		model.addAttribute("mainPage", "studentList.jsp");
-		Page<Student> currentPage = studentService.search(searchCriteria, pageNo, pageSize);
-		model.addAttribute("students", currentPage);
-		model.addAttribute("page", studentService.getPage(currentPage, pageNo));
-		model.addAttribute("searchCriteria", searchCriteria);
-		return "index";
-	}			
-	
-	@RequestMapping(path = "/students/search/{page}", method = RequestMethod.POST)
-	public String search(@PathVariable("page") int pageNo, SearchCriteria searchCriteria, Model model) {
+		}				
 		model.addAttribute("mainPage", "studentList.jsp");
 		Page<Student> currentPage = studentService.search(searchCriteria, pageNo, pageSize);
 		model.addAttribute("students", currentPage);

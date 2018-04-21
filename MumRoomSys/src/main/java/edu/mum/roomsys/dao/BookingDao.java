@@ -18,4 +18,8 @@ public interface BookingDao extends PagingAndSortingRepository<Booking, Integer>
 	public Page<Booking> findByStudentEmailLike(@Param("email") String email, Pageable pageable);
 	
 	public Page<Booking> findByStatus(BookingStatus status, Pageable pageable);
+	
+	public Page<Booking> findByRoomBuildNumber(int buildNumber, Pageable pageable); 
+	public Page<Booking> findByRoomNumber(int number, Pageable pageable); 
+	public Page<Booking> findByRoomBuildNumberAndRoomNumber(int buildNumber, int number, Pageable pageable); 
 }
