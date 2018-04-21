@@ -20,6 +20,7 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
+	
 	@Value("${page.size}")
 	private int pageSize;
 	

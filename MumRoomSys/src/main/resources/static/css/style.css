@@ -4,7 +4,12 @@ html, body{
     margin:0;
     padding:0;
 }
-
+body{
+	background-image: url("/images/backGround.jpg");
+	background-repeat: repeat-y;
+	background-repeat: repeat-x;
+	    
+}
 .container {
     min-width:1200px;
 }
@@ -12,4 +17,9 @@ html, body{
 #sticky-sidebar {
 	position:fixed;
 	max-width: 20%;
+}
+.btn-outline-success{
+	 position:fixed;
+   right:10px;
+   top:5px;
 }

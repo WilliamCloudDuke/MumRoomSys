@@ -38,7 +38,7 @@
 	                </div>	  
 	                <a href="#checkout" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Check Out</span></a>
 	                
-	                <a href="#request" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Facility Request</span></a>
+	                <a href='<c:url value="/requests/0"/>' class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Facility Request</span></a>
 	                
 	 				<a href="#report" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Report </span></a>       
 	                <div class="collapse" id="report" data-parent="#sidebar">

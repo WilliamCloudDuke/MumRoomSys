@@ -2,6 +2,8 @@ package edu.mum.roomsys.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -20,6 +22,7 @@ public class Request {
 	private String description;
 	
 	@Column(length = 100, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private RequestType type;
 
 	@ManyToOne

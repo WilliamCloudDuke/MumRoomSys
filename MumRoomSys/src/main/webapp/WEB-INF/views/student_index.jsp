@@ -27,7 +27,7 @@
 	        	<div class="list-group border-0 card text-center text-md-left">
 	                <a href="/checking/${student.id}" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Check In</span></a>
 	                
-	                <a href="#request" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Facility Request</span></a>                	                
+	                <a href="Request.jsp" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Facility Request</span></a>                	                
 	            </div>
 	        </div>
 	        <main class="col-md-10 float-left col px-5 pl-md-2 pt-2 main">
