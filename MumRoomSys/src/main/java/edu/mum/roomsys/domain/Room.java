@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Room {
@@ -18,15 +19,22 @@ public class Room {
 	@Column(length = 4, nullable = false)
 	private int buildNumber;
 
+	@Column(length = 4, nullable = false)
+	private int number;
+
 	@Column(length = 100, nullable = false)
 	private RoomStatus roomStatus;
 
-	@OneToMany(mappedBy = "room")
-	private List<Room_Item> items;
+	@OneToOne(mappedBy = "room")
+	private Room_Item item;
 
+	@OneToMany(mappedBy = "room")
+	private List<Booking> bookings;
+
+	
 	public Room() {
 		super();
-		items = new ArrayList<>();
+		bookings = new ArrayList<>();
 	}
 
 	public int getId() {
@@ -53,4 +61,29 @@ public class Room {
 		this.roomStatus = roomStatus;
 	}
 
+	public Room_Item getItem() {
+		return item;
+	}
+
+	public void setItem(Room_Item item) {
+		this.item = item;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
+	}
+
+	
 }

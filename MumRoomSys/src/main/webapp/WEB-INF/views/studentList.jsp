@@ -24,3 +24,14 @@
 		</c:forEach>
 	</tbody>
 </table>
+<table class="table table-hover table-striped">
+	<thead class="thead-dark">
+		<tr>
+			<td>Pages: 	<c:forEach var="no" begin="0" end="${page.getTotalPage() - 1}">
+				<a href="/students/${no}">${no + 1} </a>
+			</c:forEach>
+			</td>
+		
+		</tr>
+	</thead>
+</table>
