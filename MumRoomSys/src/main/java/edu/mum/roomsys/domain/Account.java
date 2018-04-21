@@ -25,10 +25,8 @@ public class Account {
 	
 	private boolean enabled;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="role_id", nullable = false)
-	
-	@OneToOne(fetch = FetchType.EAGER)
 	private Role role;
 	
 	@OneToOne

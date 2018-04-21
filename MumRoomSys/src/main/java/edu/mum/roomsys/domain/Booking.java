@@ -3,6 +3,7 @@ package edu.mum.roomsys.domain;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -39,7 +40,7 @@ public class Booking {
 	private Room room;
 
 	@OneToMany(mappedBy = "booking", cascade = {CascadeType.REMOVE})
-	private List<BookItem> bookItems;
+	private List<BookItem> bookItems = new ArrayList<>();
 
 	@JoinColumn(name = "student_id")
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -50,6 +51,22 @@ public class Booking {
 		bookItems = new ArrayList<>();
 	}
 
+	public BookItem getCheckinRecord() {
+		Optional<BookItem> item = bookItems.stream().filter(i -> i.getItemType() == BookingItemType.MOVED_IN).findFirst();
+		if (item.isPresent()) {
+			return item.get();
+		}
+		return null;
+	}
+	
+	public BookItem getCheckoutRecord() {
+		Optional<BookItem> item = bookItems.stream().filter(i -> i.getItemType() == BookingItemType.MOVED_OUT).findFirst();
+		if (item.isPresent()) {
+			return item.get();
+		}
+		return null;
+	}	
+	
 	public int getId() {
 		return id;
 	}
