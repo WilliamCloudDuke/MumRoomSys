@@ -36,8 +36,8 @@ public class Booking {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Room room;
 
-	@OneToMany(mappedBy = "booking")
-	private List<Book_Item> bookItems;
+	@OneToMany(mappedBy = "booking", cascade = {CascadeType.REMOVE})
+	private List<BookItem> bookItems;
 
 	@JoinColumn(name = "student_id")
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -88,11 +88,11 @@ public class Booking {
 		this.room = room;
 	}
 
-	public List<Book_Item> getBookItems() {
+	public List<BookItem> getBookItems() {
 		return bookItems;
 	}
 
-	public void setBookItems(List<Book_Item> bookItems) {
+	public void setBookItems(List<BookItem> bookItems) {
 		this.bookItems = bookItems;
 	}
 

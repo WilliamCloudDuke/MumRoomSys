@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -26,10 +27,10 @@ public class Room {
 
 	@Enumerated(EnumType.STRING)
 	@Column(length = 100, nullable = false)
-	private RoomStatus roomStatus;
+	private RoomStatus status;
 
-	@OneToOne(mappedBy = "room")
-	private Room_Item item;
+	@OneToOne(mappedBy = "room", fetch = FetchType.EAGER)
+	private RoomItem item;
 
 	@OneToMany(mappedBy = "room")
 	private List<Booking> bookings;
@@ -56,19 +57,19 @@ public class Room {
 		this.buildNumber = buildNumber;
 	}
 
-	public RoomStatus getRoomStatus() {
-		return roomStatus;
+	public RoomStatus getStatus() {
+		return status;
 	}
 
-	public void setRoomStatus(RoomStatus roomStatus) {
-		this.roomStatus = roomStatus;
+	public void setStatus(RoomStatus status) {
+		this.status = status;
 	}
 
-	public Room_Item getItem() {
+	public RoomItem getItem() {
 		return item;
 	}
 
-	public void setItem(Room_Item item) {
+	public void setItem(RoomItem item) {
 		this.item = item;
 	}
 
