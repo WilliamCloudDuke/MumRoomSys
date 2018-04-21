@@ -33,9 +33,12 @@
 			<th scope="col">Phone</th>
 			<th scope="col">Role</th>
 			<th scope="col">Edit</th>			
-		</tr>
+		</tr>	
 	</thead>
-	<tbody>
+	<tbody>		
+		<c:if test="${!students.hasContent()}">
+			<tr><td colspan="4">No records found<td></tr>
+		</c:if>			
 		<c:if test="${students.hasContent()}">
 			<c:forEach var="student" items="${students.getContent()}">
 				<tr>

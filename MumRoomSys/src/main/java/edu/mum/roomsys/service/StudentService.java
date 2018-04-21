@@ -37,9 +37,9 @@ public class StudentService {
 		PageRequest pReqest = new PageRequest(pageNo, pageSize, new Sort(Direction.ASC, "name"));
 		switch (searchCriteria.getSearchBy()) {
 			case "name":
-				return studentDao.findByName(searchCriteria.getCriteria(), pReqest);
+				return studentDao.findByNameLike(searchCriteria.getCriteria(), pReqest);
 			case "email":
-				break;			
+				return studentDao.findByEmailLike(searchCriteria.getCriteria(), pReqest);
 		}
 		return null;
 	}
