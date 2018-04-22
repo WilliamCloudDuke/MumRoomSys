@@ -34,7 +34,6 @@
 		</div>						
 	</fieldset>
 	<fieldset>
-		<form:button type="submit" class="btn btn-primary" value="submit">Submit</form:button>
-		<form:button type="submit" class="btn btn-primary" value="cancel">Cancel</form:button>
+		<form:button type="submit" class="btn btn-primary" value="submit">    Submit   </form:button>
 	</fieldset>
 </form:form>

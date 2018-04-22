@@ -51,18 +51,15 @@
 				</tr>								
 			</c:forEach>		
 		</c:if>
-	</tbody>
-</table>
-<table class="table table-hover table-striped">
-	<thead class="thead-dark">
-		<tr>
-			<c:if test="${students.hasContent()}">
-				<td>Pages: 	
+		<c:if test="${students.hasContent()}">
+			<tr>
+				<td colspan="4">Pages: 	
 					<c:forEach var="no" begin="0" end="${page.getTotalPage() - 1}">
 						<a href="/bookings/students/${no}?criteria=${searchCriteria.criteria}&searchBy=${searchCriteria.searchBy}">${no + 1} </a>
 					</c:forEach>
-				</td>			
-			</c:if>
-		</tr>
-	</thead>
+				</td>	
+			</tr>		
+		</c:if>		
+		
+	</tbody>
 </table>

@@ -73,23 +73,23 @@
 				</tr>								
 			</c:forEach>		
 		</c:if>
-	</tbody>
-</table>
-<table class="table table-hover table-striped">
-	<thead class="thead-dark">
-		<tr>
-			<c:if test="${rooms.hasContent()}">
-				<td>Pages: 	
-					<c:forEach var="no" begin="0" end="${page.getTotalPage() - 1}">
+		<c:if test="${rooms.hasContent()}">
+			<tr>
+				<td colspan="3">Pages: <c:forEach var="no" begin="0"
+						end="${page.getTotalPage() - 1}">
 						<c:if test="${searchType == 'building'}">
-							<a href="/bookings/rooms/number/${no}?buildingNo=${roomSearchCriteria.buildingNo}&roomNo=${roomSearchCriteria.roomNo}">${no + 1} </a>
-						</c:if>		
+							<a
+								href="/bookings/rooms/number/${no}?buildingNo=${roomSearchCriteria.buildingNo}&roomNo=${roomSearchCriteria.roomNo}">${no + 1}
+							</a>
+						</c:if>
 						<c:if test="${searchType == 'status'}">
-							<a href="/bookings/rooms/status/${no}?roomStatus=${roomSearchCriteria.roomStatus}">${no + 1} </a>
-						</c:if>										
+							<a
+								href="/bookings/rooms/status/${no}?roomStatus=${roomSearchCriteria.roomStatus}">${no + 1}
+							</a>
+						</c:if>
 					</c:forEach>
-				</td>			
-			</c:if>
-		</tr>
-	</thead>
+				</td>
+			</tr>
+		</c:if>
+	</tbody>
 </table>
