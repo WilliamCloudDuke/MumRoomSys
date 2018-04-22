@@ -25,7 +25,8 @@
 	    <div class="row d-flex d-md-block flex-nowrap wrapper">
 	        <div class="col-md-2 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
 	        	<div class="list-group border-0 card text-center text-md-left">
-	                <a href="/checking/${student.id}" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Check In</span></a>
+	                
+	                <a href="/checking" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Check In</span></a>
 	                
 	                <a href="Request.jsp" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Facility Request</span></a>                	                
 	            </div>
