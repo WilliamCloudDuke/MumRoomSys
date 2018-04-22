@@ -12,8 +12,8 @@ public class AccountService {
 	@Autowired
 	private AccountDao accountDao;
 
-	public Account findByName(String name) {
-		return accountDao.findByName(name);
+	public Account findByUsername(String userName) {
+		return accountDao.findByUsername(userName);
 	}
 
 }

@@ -4,10 +4,9 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import edu.mum.roomsys.domain.Account;
-import edu.mum.roomsys.domain.Student;
 
-public interface AccountDao extends PagingAndSortingRepository<Student, Integer> {
+public interface AccountDao extends PagingAndSortingRepository<Account, Integer> {
 
-	public Account findByName(@Param("name") String name);
+	public Account findByUsername(@Param("userName") String userName);
 
 }

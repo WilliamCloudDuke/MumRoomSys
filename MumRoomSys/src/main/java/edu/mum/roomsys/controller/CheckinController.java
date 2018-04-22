@@ -3,14 +3,17 @@ package edu.mum.roomsys.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import edu.mum.roomsys.domain.Account;
+import edu.mum.roomsys.domain.Booking;
 import edu.mum.roomsys.dto.SearchCriteria;
 import edu.mum.roomsys.service.AccountService;
 import edu.mum.roomsys.service.CheckinService;
 
+@Controller
 public class CheckinController {
 
 	@Autowired
@@ -19,11 +22,13 @@ public class CheckinController {
 	@Autowired
 	private AccountService accountService;
 
-	@GetMapping({ "/checking" })
+	@GetMapping({ "/student/checkin" })
 	public String getBookingNew(Model model) {
+		System.out.println("--*****************getBookingNew****************************---");
 		model.addAttribute("mainPage", "studentCheckin.jsp");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Account account = accountService.findByName(auth.getName());
+		Account account = accountService.findByUsername(auth.getName());
+		Booking first = checkinService.findByStatusNewLike(account.getStudent().getId());
 		model.addAttribute("bookingNew", checkinService.findByStatusNewLike(account.getStudent().getId()));
 		model.addAttribute("searchCriteria", new SearchCriteria());
 		return "student_index";

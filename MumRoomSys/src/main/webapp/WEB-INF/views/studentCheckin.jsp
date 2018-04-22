@@ -4,43 +4,35 @@
 		<div class="row">
 			<form>
 				<div class="col-sm-12">
-
 					<div class="row">
 						<div class="col-sm-6 form-group">
 							<label>User name</label> <input type="text"
 								placeholder="Enter First Name Here.." class="form-control"
-								value="${student.name}" readonly="readonly">
+								value="${bookingNew.student.name}" readonly="readonly">
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-sm-4 form-group">
 							<label>Building</label> <input type="text"
-								placeholder="Building.." class="form-control">
+								value="${bookingNew.room.buildNumber}" placeholder="Building.." class="form-control" readonly="readonly">
 						</div>
 						<div class="col-sm-4 form-group">
 							<label>Room Number</label> <input type="text"
-								placeholder="Room Number.." class="form-control">
+								value="${bookingNew.room.number}" placeholder="Room Number.." class="form-control" readonly="readonly">
 						</div>
 
-					</div>
-					<div class="row">
-
-						<div class="col-sm-6 form-group">
-							<label>Department</label> <input type="text"
-								placeholder="Department.." class="form-control">
-						</div>
 					</div>
 					<div class="form-group">
 						<label>Phone Number</label> <input type="text"
-							placeholder="Phone Number.." class="form-control">
+							value="${bookingNew.student.phone}" placeholder="Phone Number.." class="form-control" readonly="readonly">
 					</div>
 					<div class="form-group">
 						<label>Email Address</label> <input type="text"
-							placeholder="Email.." class="form-control">
+							value="${bookingNew.student.email}"  placeholder="Email.." class="form-control" readonly="readonly">
 					</div>
 					<div class="row items">
-						<h3 class="items">FURTURE ITEMS</h3>
+						<h3 class="items">FURNITURE ITEMS</h3>
 						<div class="col-sm-4 form-group">
 							<label>Bed Frames</label>
 							<div class="form-check">
