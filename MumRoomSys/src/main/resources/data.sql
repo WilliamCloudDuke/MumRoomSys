@@ -35,6 +35,9 @@ insert into room(id, build_number, number, status) values(23, 142, 3, 'MAINTENAN
 insert into booking(id,room_id,student_id,move_in_date,status) values(30,15,12,'2018-04-25','NEW');
 insert into booking(id,room_id,student_id,move_in_date,status) values(31,16,13,'2018-04-27','NEW');
 insert into booking(id,room_id,student_id,move_in_date,status) values(32,17,14,'2018-04-28','NEW');
+insert into booking(id,room_id,student_id,move_in_date,status) values(33,24,9,'2018-03-28','NEW');
+insert into booking(id,room_id,student_id,move_in_date,status) values(34,25,10,'2018-03-29','NEW');
+insert into booking(id,room_id,student_id,move_in_date,status) values(35,26,11,'2018-03-30','NEW');
 
 insert into request(id,student_id,type,description) values(40,12,'MAINTENANCE','Test Request 1');
 insert into request(id,student_id,type,description) values(41,13,'CHANGING_ROOM','Test Request 2');

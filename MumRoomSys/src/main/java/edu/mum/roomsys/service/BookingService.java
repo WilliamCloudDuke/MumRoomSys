@@ -8,8 +8,10 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import edu.mum.roomsys.dao.BookingDao;
+import edu.mum.roomsys.dao.RoomDao;
 import edu.mum.roomsys.domain.Booking;
 import edu.mum.roomsys.domain.BookingStatus;
+import edu.mum.roomsys.domain.Room;
 import edu.mum.roomsys.dto.PageDto;
 import edu.mum.roomsys.dto.RoomSearchCriteria;
 import edu.mum.roomsys.dto.SearchCriteria;
@@ -20,6 +22,9 @@ public class BookingService {
 
 	@Autowired
 	private BookingDao bookingDao;
+	
+	@Autowired
+	private RoomDao roomDao;
 
 	public Page<Booking> findAll(int page, int size) {
 		PageRequest pReqest = new PageRequest(page, size, new Sort(Direction.ASC, "moveInDate"));
@@ -67,6 +72,20 @@ public class BookingService {
 			return bookingDao.findByRoomNumber(searchCriteria.getRoomNo(), pReqest);
 		} else {
 			return bookingDao.findByRoomNumber(searchCriteria.getRoomNo(), pReqest);
+		}
+	}	
+	
+	public Page<Room> searchByRoom(RoomSearchCriteria searchCriteria, int pageNo, int pageSize) {			
+		PageRequest pReqest = new PageRequest(pageNo, pageSize, new Sort(Direction.ASC, "moveInDate"));
+		if (searchCriteria.getBuildingNo() != 0 && searchCriteria.getRoomNo() != 0) {
+			return roomDao.findByBuildNumberAndNumber(searchCriteria.getBuildingNo(), 
+					searchCriteria.getRoomNo(), pReqest);
+		} else if (searchCriteria.getBuildingNo() != 0) {
+			return roomDao.findByBuildNumber(searchCriteria.getBuildingNo(), pReqest);
+		} else if (searchCriteria.getRoomNo() != 0) {
+			return roomDao.findByNumber(searchCriteria.getRoomNo(), pReqest);
+		} else {
+			return roomDao.findByNumber(searchCriteria.getRoomNo(), pReqest);
 		}
 	}	
 }

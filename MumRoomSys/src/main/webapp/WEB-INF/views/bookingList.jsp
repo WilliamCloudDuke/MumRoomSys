@@ -39,7 +39,7 @@
 					<form:errors path="roomNo"/>
 			 	</div>			 	
 			 	<div class="form-group col-md-2">
-					<button class="btn btn-outline-success" type="submit">Filter Building and Room</button>			 	
+					<button class="btn btn-outline-success" type="submit">Filter By Building and Room</button>			 	
 			 	</div>
 			</div>
 		</form:form>	
@@ -100,13 +100,13 @@
 					<td>${booking.status}</td>								
 					<td>
 						<c:set var="checkinRecord" value="${booking.getCheckinRecord()}"/>
-						<c:if test="${checkinRecord  != null}">
+						<c:if test="${checkinRecord != null}">
 							<a href='<c:url value="/booking/checkin/${checkinRecord.id} }"/>'>Details</a>
 						</c:if>						
 					</td>
 					<td>
 						<c:set var="checkoutRecord" value="${booking.getCheckoutRecord()}"/>
-						<c:if test="${checkoutRecord  != null}">
+						<c:if test="${checkoutRecord != null}">
 							<a href='<c:url value="/booking/checkin/${checkoutRecord.id} }"/>'>Details</a>
 						</c:if>						
 					</td>										
@@ -121,7 +121,15 @@
 			<c:if test="${bookings.hasContent()}">
 				<td>Pages: 	
 					<c:forEach var="no" begin="0" end="${page.getTotalPage() - 1}">
-						<a href="/bookings/${no}">${no + 1} </a>
+						<c:if test="${searchType == 'student'}">
+							<a href="/bookings/search/${no}?searchBy=${searchCriteria.searchBy}&criteria=${searchCriteria.criteria}">${no + 1} </a>
+						</c:if>
+						<c:if test="${searchType == 'building'}">
+							<a href="/bookings/search/building/${no}?buildingNo=${roomSearchCriteria.buildingNo}&roomNo=${roomSearchCriteria.roomNo}">${no + 1} </a>
+						</c:if>		
+						<c:if test="${searchType == 'status'}">
+							<a href="/bookings/search/status/${no}?bookingStatus=${searchCriteria.bookingStatus}">${no + 1} </a>
+						</c:if>										
 					</c:forEach>
 				</td>			
 			</c:if>
