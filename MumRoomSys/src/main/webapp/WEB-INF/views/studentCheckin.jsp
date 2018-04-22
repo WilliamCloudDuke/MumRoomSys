@@ -34,49 +34,61 @@
 					<div class="row items">
 						<h3 class="items">FURNITURE ITEMS</h3>
 						<div class="col-sm-4 form-group">
-							<label>Bed Frames</label>
+							<label>Blinds</label>
 							<div class="form-check">
 								<div>
 									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios1" value="option1"
-										checked> <label class="form-check-label"
-										for="exampleRadios1"> Good </label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios2" value="option2">
-									<label class="form-check-label" for="exampleRadios2">
-										Bad </label>
-								</div>
-								<div class="form-check disabled">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios3" value="option3">
-									<label class="form-check-label" for="exampleRadios3">
-										Absent </label>
-								</div>
-							</div>
-
-						</div>
-						<div class="col-sm-4 form-group">
-							<label>Mattress</label>
-							<div class="form-check">
-								<div>
-									<input class="form-check-input" type="radio"
-										name="exampleRadios1" id="exampleRadios1" value="option1"
+										name="exampleRadios" id="exampleRadios1" value="good"
 										checked> <label class="form-check-label"
 										for="exampleRadios"> Good </label>
 								</div>
 								<div class="form-check">
 									<input class="form-check-input" type="radio"
-										name="exampleRadios1" id="exampleRadios2" value="option2">
-									<label class="form-check-label" for="exampleRadios">
-										Bad </label>
+										name="exampleRadios" id="exampleRadios2" value="fixit">
+									<label class="form-check-label" for="exampleRadios2">
+										Fix it </label>
 								</div>
 								<div class="form-check disabled">
 									<input class="form-check-input" type="radio"
-										name="exampleRadios1" id="exampleRadios3" value="option3">
-									<label class="form-check-label" for="exampleRadios">
-										Absent </label>
+										name="exampleRadios" id="exampleRadios3" value="missing">
+									<label class="form-check-label" for="exampleRadios3">
+										Missing </label>
+								</div>
+								<div class="form-check disabled">
+									<input class="form-check-input" type="radio"
+										name="exampleRadios" id="exampleRadios4" value="replace">
+									<label class="form-check-label" for="exampleRadios4">
+										Replace </label>
+								</div>
+							</div>
+
+						</div>
+						<div class="col-sm-4 form-group">
+							<label>Closet</label>
+							<div class="form-check">
+								<div>
+									<input class="form-check-input" type="radio"
+										name="exampleRadios" id="exampleRadios1" value="good"
+										checked> <label class="form-check-label"
+										for="exampleRadios"> Good </label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio"
+										name="exampleRadios" id="exampleRadios2" value="fixit">
+									<label class="form-check-label" for="exampleRadios2">
+										Fix it </label>
+								</div>
+								<div class="form-check disabled">
+									<input class="form-check-input" type="radio"
+										name="exampleRadios" id="exampleRadios3" value="missing">
+									<label class="form-check-label" for="exampleRadios3">
+										Missing </label>
+								</div>
+								<div class="form-check disabled">
+									<input class="form-check-input" type="radio"
+										name="exampleRadios" id="exampleRadios4" value="replace">
+									<label class="form-check-label" for="exampleRadios4">
+										Replace </label>
 								</div>
 							</div>
 
