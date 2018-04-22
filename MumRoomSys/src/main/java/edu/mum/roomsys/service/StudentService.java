@@ -45,7 +45,8 @@ public class StudentService {
 				return studentDao.findByNameLike(searchCriteria.getCriteria(), pReqest);
 			case "email":
 				return studentDao.findByEmailLike(searchCriteria.getCriteria(), pReqest);
+			default:
+				return studentDao.findByNameLike(searchCriteria.getCriteria(), pReqest);
 		}
-		return null;
 	}
 }

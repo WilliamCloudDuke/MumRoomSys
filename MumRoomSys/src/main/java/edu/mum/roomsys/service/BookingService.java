@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 
 import edu.mum.roomsys.dao.BookingDao;
 import edu.mum.roomsys.dao.RoomDao;
+import edu.mum.roomsys.dao.StudentDao;
 import edu.mum.roomsys.domain.Booking;
 import edu.mum.roomsys.domain.BookingStatus;
 import edu.mum.roomsys.domain.Room;
+import edu.mum.roomsys.domain.Student;
 import edu.mum.roomsys.dto.PageDto;
 import edu.mum.roomsys.dto.RoomSearchCriteria;
 import edu.mum.roomsys.dto.SearchCriteria;
@@ -25,6 +27,9 @@ public class BookingService {
 	
 	@Autowired
 	private RoomDao roomDao;
+	
+	@Autowired
+	private StudentDao studentDao; 
 
 	public Page<Booking> findAll(int page, int size) {
 		PageRequest pReqest = new PageRequest(page, size, new Sort(Direction.ASC, "moveInDate"));
@@ -34,7 +39,17 @@ public class BookingService {
 	public PageDto getPage(Page<Booking> currentPage, int pageNo) {
 		PagingHelper<Booking> paging = new PagingHelper<>(currentPage, pageNo);
 		return new PageDto(paging.getCurrentPage(), paging.getNextPage(), paging.getPreviousPage(), paging.getTotalPage());
-	}
+	}	
+	
+	public PageDto getPageStudent(Page<Student> currentPage, int pageNo) {
+		PagingHelper<Student> paging = new PagingHelper<>(currentPage, pageNo);
+		return new PageDto(paging.getCurrentPage(), paging.getNextPage(), paging.getPreviousPage(), paging.getTotalPage());
+	}		
+	
+	public PageDto getPageRoom(Page<Room> currentPage, int pageNo) {
+		PagingHelper<Room> paging = new PagingHelper<>(currentPage, pageNo);
+		return new PageDto(paging.getCurrentPage(), paging.getNextPage(), paging.getPreviousPage(), paging.getTotalPage());
+	}		
 	
 	public Page<Booking> search(SearchCriteria searchCriteria, int pageNo, int pageSize) {		
 		if (searchCriteria.getCriteria() == null) {
@@ -86,6 +101,22 @@ public class BookingService {
 			return roomDao.findByNumber(searchCriteria.getRoomNo(), pReqest);
 		} else {
 			return roomDao.findByNumber(searchCriteria.getRoomNo(), pReqest);
+		}
+	}
+	
+	public Page<Student> searchByStudent(SearchCriteria searchCriteria, int pageNo, int pageSize) {
+		if (searchCriteria.getCriteria() == null) {
+			searchCriteria.setCriteria("");
+			searchCriteria.setSearchBy("name");
+		}				
+		PageRequest pReqest = new PageRequest(pageNo, pageSize, new Sort(Direction.ASC, "name"));
+		switch (searchCriteria.getSearchBy()) {
+			case "name":
+				return studentDao.findAvailableStudentByNameLike(searchCriteria.getCriteria(), pReqest);
+			case "email":
+				return studentDao.findAvailableStudentByEmailLike(searchCriteria.getCriteria(), pReqest);
+			default:
+				return studentDao.findAvailableStudentByNameLike(searchCriteria.getCriteria(), pReqest);
 		}
 	}	
 }

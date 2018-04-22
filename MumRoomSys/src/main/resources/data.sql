@@ -9,6 +9,13 @@ insert into student(id, name, email) values(11, 'admin142', 'admin142@mum.edu');
 insert into student(id, name, email) values(12, 'student1', 'student1@mum.edu');
 insert into student(id, name, email) values(13, 'student2', 'student2@mum.edu');
 insert into student(id, name, email) values(14, 'student3', 'student3@mum.edu');
+insert into student(id, name, email) values(50, 'student4', 'student4@mum.edu');
+insert into student(id, name, email) values(51, 'student5', 'student5@mum.edu');
+insert into student(id, name, email) values(52, 'student6', 'student6@mum.edu');
+insert into student(id, name, email) values(53, 'student7', 'student7@mum.edu');
+insert into student(id, name, email) values(54, 'student8', 'student8@mum.edu');
+insert into student(id, name, email) values(55, 'student9', 'student9@mum.edu');
+insert into student(id, name, email) values(56, 'student10', 'student10@mum.edu');
 
 insert into account(id, role_id, student_id, username, email, password, enabled) values(3, 1, 9, 'admin140', 'admin140@mum.edu', '$2a$10$R1kmVEHTHJ90GcejrpmTdOirALp9ZJ7ugMkPSDRKlOhTc1j92WClW', 1);
 insert into account(id, role_id, student_id, username, email, password, enabled) values(4, 1, 10, 'admin141', 'admin141@mum.edu', '$2a$10$R1kmVEHTHJ90GcejrpmTdOirALp9ZJ7ugMkPSDRKlOhTc1j92WClW', 1);

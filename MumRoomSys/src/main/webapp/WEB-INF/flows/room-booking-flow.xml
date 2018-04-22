@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+        start-state="selectStudent">
+        
+	<on-start>
+		<evaluate expression="bookingFlowController.createBooking()"
+			result="flowScope.booking" />
+	</on-start>        
+
+	<view-state id="selectStudent" model="booking" >
+		<transition on="select" to="selectRoom">
+		</transition>
+		<transition on="cancel" to="cancelBooking" />
+	</view-state>
+
+	<view-state id="selectPizza" model="booking">
+		<transition on="previous" to="selectStudent" />
+		<transition on="cancel" to="cancelBooking" />
+	</view-state>
+
+	<view-state id="cancel" view="cancelBooking" >
+		<transition on="exit" to="goHome" />
+	</view-state>
+
+	<end-state id="goHome" view="externalRedirect:servletRelative:/bookings" />
+
+</flow>
