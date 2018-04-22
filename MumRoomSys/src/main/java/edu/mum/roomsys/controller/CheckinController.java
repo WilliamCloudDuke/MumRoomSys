@@ -24,11 +24,9 @@ public class CheckinController {
 
 	@GetMapping({ "/student/checkin" })
 	public String getBookingNew(Model model) {
-		System.out.println("--*****************getBookingNew****************************---");
 		model.addAttribute("mainPage", "studentCheckin.jsp");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Account account = accountService.findByUsername(auth.getName());
-		Booking first = checkinService.findByStatusNewLike(account.getStudent().getId());
 		model.addAttribute("bookingNew", checkinService.findByStatusNewLike(account.getStudent().getId()));
 		model.addAttribute("searchCriteria", new SearchCriteria());
 		return "student_index";
