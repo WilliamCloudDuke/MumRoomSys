@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<h5>Select a Student:</h5>
 <table class="table table-hover table-striped">
 	<thead class="thead-dark">
 		<c:url var="post_url" value="/bookings/students/0" />
@@ -46,7 +47,7 @@
 					<td>${student.email}</td>	
 					<td>${student.phone}</td>
 					<td>${student.account.role.name}</td>
-					<td><a href='<c:url value="/bookings/students/select/${student.id} }"/>'>Select</a></td>				
+					<td><a href='<c:url value="/bookings/students/select/${student.id}"/>'>Select</a></td>				
 				</tr>								
 			</c:forEach>		
 		</c:if>

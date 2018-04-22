@@ -7,14 +7,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import edu.mum.roomsys.domain.Booking;
-import edu.mum.roomsys.domain.BookingStatus;
 import edu.mum.roomsys.domain.Room;
 import edu.mum.roomsys.domain.Student;
 import edu.mum.roomsys.dto.RoomSearchCriteria;
@@ -22,19 +23,14 @@ import edu.mum.roomsys.dto.SearchCriteria;
 import edu.mum.roomsys.service.BookingService;
 
 @Controller
+@SessionAttributes(value = {"selectedStudent", "selectedRoom", "currentBooking"})
 public class BookingFlowController {
 	
 	@Autowired
-	private BookingService bookingService;
+	private BookingService bookingService;	
 	
 	@Value("${page.size}")
 	private int pageSize;	
-	
-	public Booking createBooking() {
-		Booking booking = new Booking();
-		booking.setStatus(BookingStatus.NEW);
-		return booking;
-	}
 	
 	@ModelAttribute
 	public void addCommonAttributes(Model model) {
@@ -103,4 +99,52 @@ public class BookingFlowController {
 		model.addAttribute("page", bookingService.getPageRoom(currentPage, pageNo));	
 		return "index";
 	}			
+	
+	@RequestMapping(path = "/bookings/students/select/{id}", method = {RequestMethod.GET})
+	public String selectStudent(@PathVariable("id") int id, ModelMap model) {
+		if (!model.containsAttribute("selectedStudent")) {
+			model.addAttribute("selectedStudent", bookingService.findStudentById(id));
+		}
+		return "redirect:/bookings/rooms/status/0?roomStatus=READY";
+	}	
+	
+	@RequestMapping(path = "/bookings/rooms/select/{id}", method = {RequestMethod.GET})
+	public String selectRoom(@PathVariable("id") int id, ModelMap map) {
+		if (!map.containsAttribute("selectedRoom")) {
+			map.addAttribute("selectedRoom", bookingService.findRoomById(id));
+		} 	
+		
+		Booking booking = bookingService.createBooking((Student)map.get("selectedStudent"), (Room)map.get("selectedRoom"));		
+
+		if (!map.containsAttribute("currentBooking")) {
+			map.addAttribute("currentBooking", booking);
+		}		
+		
+		booking = (Booking)map.get("currentBooking");	
+		map.addAttribute("booking", booking);
+		map.addAttribute("mainPage", "bookingConfirmation.jsp");
+		return "index";
+	}	
+	
+	@RequestMapping(path = "/bookings/confirm", method = {RequestMethod.POST})
+	public String selectRoom(@Valid Booking booking, BindingResult bindingResult, ModelMap map) {
+		if (bindingResult.hasErrors()) {	
+			map.addAttribute("booking", booking);
+			map.addAttribute("mainPage", "bookingConfirmation.jsp");
+			return "index";
+		}
+	
+		Booking currentBooking = (Booking)map.get("currentBooking");	
+		currentBooking.setMoveInDate(booking.getMoveInDate());
+		currentBooking.setMoveOutDate(booking.getMoveOutDate());
+		
+		bookingService.save(currentBooking);
+		
+		map.remove("selectedStudent");
+		map.remove("selectedRoom");		
+		map.remove("currentBooking");		
+		
+		return "redirect:/bookings/search/status/0?bookingStatus=NEW";
+	}					
+	
 }

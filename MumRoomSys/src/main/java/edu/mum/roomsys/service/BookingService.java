@@ -1,5 +1,8 @@
 package edu.mum.roomsys.service;
 
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +24,7 @@ import edu.mum.roomsys.dto.SearchCriteria;
 import edu.mum.roomsys.util.PagingHelper;
 
 @Service
+@Transactional
 public class BookingService {
 
 	@Autowired
@@ -129,4 +133,25 @@ public class BookingService {
 				return studentDao.findAvailableStudentByNameLike(searchCriteria.getCriteria(), pReqest);
 		}
 	}	
+	
+	public Student findStudentById(int id) {
+		return studentDao.findOne(id);
+	}
+
+	public Room findRoomById(int id) {
+		return roomDao.findOne(id);
+	}
+	
+	public Booking createBooking(Student student, Room room) {
+		Booking booking = new Booking();
+		booking.setStatus(BookingStatus.NEW);
+		booking.setStudent(student);
+		booking.setRoom(room);
+		return booking;
+	}
+	
+	@Transactional(value=TxType.REQUIRED)
+	public void save(Booking booking) {
+		bookingDao.save(booking);
+	}
 }

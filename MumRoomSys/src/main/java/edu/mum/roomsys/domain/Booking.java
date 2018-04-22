@@ -9,6 +9,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -17,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Booking {
@@ -27,23 +30,25 @@ public class Booking {
 
 	@NotNull
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")	
 	private Date moveInDate;
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")	
 	private Date moveOutDate;
 
 	@Enumerated(EnumType.STRING)
 	private BookingStatus status;
 
 	@JoinColumn(name = "room_id")
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Room room;
 
 	@OneToMany(mappedBy = "booking", cascade = {CascadeType.REMOVE})
 	private List<BookItem> bookItems = new ArrayList<>();
 
 	@JoinColumn(name = "student_id")
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Student student;
 
 	public Booking() {
