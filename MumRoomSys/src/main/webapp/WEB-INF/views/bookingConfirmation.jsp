@@ -6,7 +6,7 @@
 <hr/>
 <c:url var="post_url" value="/bookings/confirm" />
 <form:form modelAttribute="booking" action="${post_url}" method="post">
-	<fieldset">
+	<fieldset>
 		<div class="form-group">
 			<label for="moveInDate">Move in Date</label> 
 			<form:input type="date" path="moveInDate" id="moveInDate" class="form-control" placeholder="Move In Date"/>

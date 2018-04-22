@@ -28,7 +28,7 @@
 	 				<a href="#student" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Student </span></a>
 	                <div class="collapse" id="student" data-parent="#sidebar">
 	                    <a href="/students/0" class="list-group-item" data-parent="#student">List Students</a>
-	                    <a href="#" class="list-group-item" data-parent="#student">Create Student</a>
+	                    <a href="/student/detail" class="list-group-item" data-parent="#student">Create Student</a>
 	                </div>	                
 	                
 	 				<a href="#bookRoom" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Assign Room </span></a>
