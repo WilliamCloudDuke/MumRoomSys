@@ -152,6 +152,19 @@ public class BookingService {
 	
 	@Transactional(value=TxType.REQUIRED)
 	public void save(Booking booking) {
+		Room room = roomDao.findOne(booking.getRoom().getId());
+		room.setStatus(RoomStatus.RESERVED);
+		roomDao.save(room);
 		bookingDao.save(booking);
+	}
+	
+	@Transactional(value=TxType.REQUIRED)
+	public void delete(int id) throws Exception {
+		Booking b = bookingDao.findOne(id);
+		if (b != null && b.getStatus() != BookingStatus.NEW) {
+			throw new Exception("Cannot delete booking");
+		}
+		
+		bookingDao.delete(b);
 	}
 }

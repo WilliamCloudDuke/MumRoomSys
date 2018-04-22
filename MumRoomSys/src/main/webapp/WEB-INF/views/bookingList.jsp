@@ -81,12 +81,13 @@
 			<th scope="col" class="col-4">Moved out Date</th>	
 			<th scope="col" class="col">Status</th>		
 			<th scope="col" class="col-4">Check in Details</th>	
-			<th scope="col" class="col-4">Check out Details</th>									
+			<th scope="col" class="col-4">Check out Details</th>			
+			<th scope="col" class="col-4">Remove</th>										
 		</tr>	
 	</thead>
 	<tbody>		
 		<c:if test="${!bookings.hasContent()}">
-			<tr><td colspan="9">No records found<td></tr>
+			<tr><td colspan="10">No records found<td></tr>
 		</c:if>			
 		<c:if test="${bookings.hasContent()}">
 			<c:forEach var="booking" items="${bookings.getContent()}">
@@ -102,21 +103,27 @@
 					<td>
 						<c:set var="checkinRecord" value="${booking.getCheckinRecord()}"/>
 						<c:if test="${checkinRecord != null}">
-							<a href='<c:url value="/booking/checkin/${checkinRecord.id} }"/>'>Details</a>
+							<a href='<c:url value="/booking/checkin/${checkinRecord.id}"/>'>Details</a>
 						</c:if>						
 					</td>
 					<td>
 						<c:set var="checkoutRecord" value="${booking.getCheckoutRecord()}"/>
 						<c:if test="${checkoutRecord != null}">
-							<a href='<c:url value="/booking/checkin/${checkoutRecord.id} }"/>'>Details</a>
+							<a href='<c:url value="/booking/checkout/${checkoutRecord.id}"/>'>Details</a>
 						</c:if>						
-					</td>										
+					</td>	
+					<td>
+						<c:set var="canDelete" value="${booking.status == 'NEW'}"/>
+						<c:if test="${canDelete}">
+							<a href='<c:url value="/booking/delete/${booking.id}"/>'>Delete</a>
+						</c:if>						
+					</td>																		
 				</tr>								
 			</c:forEach>		
 		</c:if>
 		<c:if test="${bookings.hasContent()}">
 			<tr>
-				<td colspan="10">Pages: 	
+				<td colspan="11">Pages: 	
 					<c:forEach var="no" begin="0" end="${page.getTotalPage() - 1}">
 						<c:if test="${searchType == 'student'}">
 							<a href="/bookings/search/${no}?searchBy=${searchCriteria.searchBy}&criteria=${searchCriteria.criteria}">${no + 1} </a>

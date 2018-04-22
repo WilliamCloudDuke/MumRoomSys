@@ -47,7 +47,7 @@
 					<td>${student.email}</td>	
 					<td>${student.phone}</td>
 					<td>${student.account.role.name}</td>
-					<td><a href='<c:url value="/student/${student.id} }"/>'>Edit</a></td>				
+					<td><a href='<c:url value="/student/${student.id}"/>'>Edit</a></td>				
 				</tr>								
 			</c:forEach>		
 		</c:if>

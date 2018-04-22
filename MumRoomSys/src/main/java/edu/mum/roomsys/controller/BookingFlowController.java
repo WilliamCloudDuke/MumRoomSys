@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import edu.mum.roomsys.domain.Booking;
 import edu.mum.roomsys.domain.Room;
@@ -127,7 +128,7 @@ public class BookingFlowController {
 	}	
 	
 	@RequestMapping(path = "/bookings/confirm", method = {RequestMethod.POST})
-	public String selectRoom(@Valid Booking booking, BindingResult bindingResult, ModelMap map) {
+	public String selectRoom(@Valid Booking booking, BindingResult bindingResult, ModelMap map, SessionStatus sessionStatus) {
 		if (bindingResult.hasErrors()) {	
 			map.addAttribute("booking", booking);
 			map.addAttribute("mainPage", "bookingConfirmation.jsp");
@@ -140,11 +141,19 @@ public class BookingFlowController {
 		
 		bookingService.save(currentBooking);
 		
-		map.remove("selectedStudent");
-		map.remove("selectedRoom");		
-		map.remove("currentBooking");		
+		sessionStatus.setComplete();
 		
 		return "redirect:/bookings/search/status/0?bookingStatus=NEW";
 	}					
+	
+	@RequestMapping(path = "/booking/delete/{id}", method = {RequestMethod.GET})
+	public String deleteBooking(@PathVariable("id") int id) {
+		try {
+			bookingService.delete(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/bookings/search/status/0?bookingStatus=NEW";
+	}		
 	
 }
