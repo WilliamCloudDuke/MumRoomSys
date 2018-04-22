@@ -6,10 +6,10 @@
 	<thead class="thead-dark">
 		<c:url var="post_url" value="/bookings/rooms/status/0" />
 		<form:form class="form-inline my-2 my-lg-0" 
-			modelAttribute="searchCriteria" action="${post_url}" method="post">
+			modelAttribute="roomSearchCriteria" action="${post_url}" method="post">
 			<div class="form-row">
 			 	<div class="form-group col-md-4">
-				 	<form:select path="bookingStatus" class="form-control">
+				 	<form:select path="roomStatus" class="form-control">
 						<form:option value="OCCUPIED">OCCUPIED</form:option>				 	
 						<form:option value="MAINTENANCE">MAINTENANCE</form:option>
 						<form:option value="NEEDS_CLEANING">NEEDS_CLEANING</form:option>
@@ -53,7 +53,7 @@
 			<th scope="col" class="col">Building</th>	
 			<th scope="col" class="col">Room</th>								
 			<th scope="col" class="col">Status</th>		
-			<th scope="col" class="col">select</th>									
+			<th scope="col" class="col">Select</th>									
 		</tr>	
 	</thead>
 	<tbody>		
@@ -65,9 +65,9 @@
 				<tr>
 					<td>${room.buildNumber}</td>			
 					<td>${room.number}</td>									
-					<td>${status.status}</td>								
+					<td>${room.status}</td>								
 					<td>
-						<a href='<c:url value="/booking/checkin/${checkinRecord.id} }"/>'>Details</a>
+						<a href='<c:url value="/booking/checkin/${checkinRecord.id}"/>'>Select</a>
 					</td>									
 				</tr>								
 			</c:forEach>		
@@ -80,7 +80,12 @@
 			<c:if test="${rooms.hasContent()}">
 				<td>Pages: 	
 					<c:forEach var="no" begin="0" end="${page.getTotalPage() - 1}">
-						<a href="/bookings/${no}">${no + 1} </a>
+						<c:if test="${searchType == 'building'}">
+							<a href="/bookings/rooms/number/${no}?buildingNo=${roomSearchCriteria.buildingNo}&roomNo=${roomSearchCriteria.roomNo}">${no + 1} </a>
+						</c:if>		
+						<c:if test="${searchType == 'status'}">
+							<a href="/bookings/rooms/status/${no}?roomStatus=${roomSearchCriteria.roomStatus}">${no + 1} </a>
+						</c:if>										
 					</c:forEach>
 				</td>			
 			</c:if>

@@ -60,24 +60,47 @@ public class BookingFlowController {
 		return "index";
 	}				
 	
-	@RequestMapping(path = "/bookings/buildings/{page}", method = {RequestMethod.POST})
+	@RequestMapping(path = "/bookings/rooms/number/{page}", method = {RequestMethod.POST})
 	public String searchByBuilding(@PathVariable("page") int pageNo, @Valid RoomSearchCriteria searchCriteria, 
 			BindingResult bindingResult, Model model) {
 		model.addAttribute("mainPage", "bookingRoomList.jsp");
-		Page<Room> currentPage = bookingService.searchByRoom(searchCriteria, pageNo, pageSize);
+		Page<Room> currentPage = bookingService.searchByRoomNumber(searchCriteria, pageNo, pageSize);
 		model.addAttribute("rooms", currentPage);
+		model.addAttribute("searchType", "building");	
 		model.addAttribute("page", bookingService.getPageRoom(currentPage, pageNo));	
 		return "index";
 	}		
 	
-	@RequestMapping(path = "/bookings/buildings/{page}", method = {RequestMethod.GET})
+	@RequestMapping(path = "/bookings/rooms/number/{page}", method = {RequestMethod.GET})
 	public String searchByBuildingGet(@PathVariable("page") int pageNo, @Valid RoomSearchCriteria searchCriteria, 
 			BindingResult bindingResult, Model model) {
 		model.addAttribute("mainPage", "bookingRoomList.jsp");
-		Page<Room> currentPage = bookingService.searchByRoom(searchCriteria, pageNo, pageSize);
+		Page<Room> currentPage = bookingService.searchByRoomNumber(searchCriteria, pageNo, pageSize);
 		model.addAttribute("rooms", currentPage);
+		model.addAttribute("searchType", "building");	
 		model.addAttribute("page", bookingService.getPageRoom(currentPage, pageNo));
 		return "index";
 	}			
+	
+	@RequestMapping(path = "/bookings/rooms/status/{page}", method = {RequestMethod.POST})
+	public String searchByStatus(@PathVariable("page") int pageNo, @Valid RoomSearchCriteria searchCriteria, 
+			BindingResult bindingResult, Model model) {
+		model.addAttribute("mainPage", "bookingRoomList.jsp");
+		Page<Room> currentPage = bookingService.searchByRoomStatus(searchCriteria, pageNo, pageSize);
+		model.addAttribute("rooms", currentPage);
+		model.addAttribute("searchType", "status");			
+		model.addAttribute("page", bookingService.getPageRoom(currentPage, pageNo));	
+		return "index";
+	}			
 
+	@RequestMapping(path = "/bookings/rooms/status/{page}", method = {RequestMethod.GET})
+	public String searchByStatusGet(@PathVariable("page") int pageNo, @Valid RoomSearchCriteria searchCriteria, 
+			BindingResult bindingResult, Model model) {
+		model.addAttribute("mainPage", "bookingRoomList.jsp");
+		Page<Room> currentPage = bookingService.searchByRoomStatus(searchCriteria, pageNo, pageSize);
+		model.addAttribute("rooms", currentPage);
+		model.addAttribute("searchType", "status");			
+		model.addAttribute("page", bookingService.getPageRoom(currentPage, pageNo));	
+		return "index";
+	}			
 }

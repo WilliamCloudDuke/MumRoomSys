@@ -13,6 +13,7 @@ import edu.mum.roomsys.dao.StudentDao;
 import edu.mum.roomsys.domain.Booking;
 import edu.mum.roomsys.domain.BookingStatus;
 import edu.mum.roomsys.domain.Room;
+import edu.mum.roomsys.domain.RoomStatus;
 import edu.mum.roomsys.domain.Student;
 import edu.mum.roomsys.dto.PageDto;
 import edu.mum.roomsys.dto.RoomSearchCriteria;
@@ -90,8 +91,8 @@ public class BookingService {
 		}
 	}	
 	
-	public Page<Room> searchByRoom(RoomSearchCriteria searchCriteria, int pageNo, int pageSize) {			
-		PageRequest pReqest = new PageRequest(pageNo, pageSize, new Sort(Direction.ASC, "moveInDate"));
+	public Page<Room> searchByRoomNumber(RoomSearchCriteria searchCriteria, int pageNo, int pageSize) {			
+		PageRequest pReqest = new PageRequest(pageNo, pageSize, new Sort(Direction.ASC, "buildNumber", "number"));
 		if (searchCriteria.getBuildingNo() != 0 && searchCriteria.getRoomNo() != 0) {
 			return roomDao.findByBuildNumberAndNumber(searchCriteria.getBuildingNo(), 
 					searchCriteria.getRoomNo(), pReqest);
@@ -102,6 +103,15 @@ public class BookingService {
 		} else {
 			return roomDao.findByNumber(searchCriteria.getRoomNo(), pReqest);
 		}
+	}
+	
+	public Page<Room> searchByRoomStatus(RoomSearchCriteria searchCriteria, int pageNo, int pageSize) {			
+		PageRequest pReqest = new PageRequest(pageNo, pageSize, new Sort(Direction.ASC, "buildNumber", "number"));
+		if (searchCriteria.getRoomStatus() == null) {
+			searchCriteria.setRoomStatus("READY");
+		}	
+		RoomStatus status = RoomStatus.valueOf(searchCriteria.getRoomStatus());
+		return roomDao.findByStatus(status, pReqest);
 	}
 	
 	public Page<Student> searchByStudent(SearchCriteria searchCriteria, int pageNo, int pageSize) {
