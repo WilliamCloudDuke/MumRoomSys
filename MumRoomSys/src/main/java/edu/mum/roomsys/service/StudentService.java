@@ -117,14 +117,28 @@ public class StudentService {
 
 	public Student findById(int id) {
 		Student student = studentDao.findOne(id);
-		student.setUsername(student.getAccount().getUsername());
-		student.setRole(student.getAccount().getRole().getName());
-		student.setEnabled(student.getAccount().isEnabled());
+		if (student.getAccount() != null) {
+			student.setUsername(student.getAccount().getUsername());
+			student.setRole(student.getAccount().getRole().getName());
+			student.setEnabled(student.getAccount().isEnabled());
+		}	
 		if (student.getBookings().size() == 0) {
 			student.setCanDelete(true);
 		} else {
 			student.setCanDelete(false);
 		}
 		return student;
+	}
+
+	public Student createStudentProfile(Student student) {
+		return studentDao.save(student);
+	}
+	
+	public Student createStudentLogin(Student student) {
+		return studentDao.save(student);
+	}	
+	
+	public Student findByEmail(String email) {
+		return studentDao.findByEmail(email);
 	}
 }

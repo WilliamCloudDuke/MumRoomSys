@@ -26,50 +26,52 @@
 		<form:button type="submit" class="btn btn-primary" value="submit">Edit</form:button>
 	</fieldset>
 </form:form>
-<h5>Reset Password</h5>
-<hr/>
-<form:form modelAttribute="student" action="/student/resetpass/${student.id}" method="post">
-	<fieldset>
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="username">Login</label> 
-				<form:input disabled="true" type="text" path="username" id="username" class="form-control" />
-			</div>		
-			<div class="form-group col-md-6">
-				<label for="password">Password</label> 
-				<form:password path="password" id="password" class="form-control"/>
-				<form:errors path="password" cssClass="error"/>				
-			</div>				
-		</div>
-	</fieldset>
-	<fieldset>
-		<form:button type="submit" class="btn btn-primary" value="submit">Reset Password</form:button>
-	</fieldset>
-</form:form>
-<h5>Enable/Disable Student</h5>
-<hr/>
-<form:form modelAttribute="student" action="/student/enable/${student.id}" method="post">
-	<fieldset>
-		<div class="form-group">
-			<label for="role">Role</label> 
-			<form:input disabled = "true" path="role"/>	
-	 	</div>		
-		<div class="form-check">
-			<form:checkbox class="form-check-input" path="enabled" id="enabled" />
-			<label class="form-check-label" for="enabled">Enabled</label> 
-			<form:errors path="enabled" cssClass="error"/>			
-		</div>										
-	</fieldset>
-	<fieldset>
-		<form:button type="submit" class="btn btn-primary" value="submit">Enable/disable Login</form:button>
-	</fieldset>
-</form:form>
-<c:if var="canDelete" test="${student.isCanDelete()}">
-	<h5>Enable/Disable Student</h5>
+<c:if  test="${student.account != null}">
+	<h5>Reset Password</h5>
 	<hr/>
-	<form:form modelAttribute="student" action="/student/delete/${student.id}" method="post">
+	<form:form modelAttribute="student" action="/student/resetpass/${student.id}" method="post">
 		<fieldset>
-			<form:button type="submit" class="btn btn-primary" value="submit">Delete Student</form:button>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="username">Login</label> 
+					<form:input disabled="true" type="text" path="username" id="username" class="form-control" />
+				</div>		
+				<div class="form-group col-md-6">
+					<label for="password">Password</label> 
+					<form:password path="password" id="password" class="form-control"/>
+					<form:errors path="password" cssClass="error"/>				
+				</div>				
+			</div>
+		</fieldset>
+		<fieldset>
+			<form:button type="submit" class="btn btn-primary" value="submit">Reset Password</form:button>
 		</fieldset>
 	</form:form>
+	<h5>Enable/Disable Student</h5>
+	<hr/>
+	<form:form modelAttribute="student" action="/student/enable/${student.id}" method="post">
+		<fieldset>
+			<div class="form-group">
+				<label for="role">Role</label> 
+				<form:input disabled = "true" path="role"/>	
+		 	</div>		
+			<div class="form-check">
+				<form:checkbox class="form-check-input" path="enabled" id="enabled" />
+				<label class="form-check-label" for="enabled">Enabled</label> 
+				<form:errors path="enabled" cssClass="error"/>			
+			</div>										
+		</fieldset>
+		<fieldset>
+			<form:button type="submit" class="btn btn-primary" value="submit">Enable/disable Login</form:button>
+		</fieldset>
+	</form:form>
+	<c:if var="canDelete" test="${student.isCanDelete()}">
+		<h5>Enable/Disable Student</h5>
+		<hr/>
+		<form:form modelAttribute="student" action="/student/delete/${student.id}" method="post">
+			<fieldset>
+				<form:button type="submit" class="btn btn-primary" value="submit">Delete Student</form:button>
+			</fieldset>
+		</form:form>
+	</c:if>
 </c:if>

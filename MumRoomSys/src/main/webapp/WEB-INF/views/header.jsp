@@ -21,6 +21,7 @@
 				<form:form class="form-inline my-2 my-lg-0"
 					modelAttribute="searchCriteria" action="${post_url}" method="post">
 					<button class="btn btn-outline-success" type="submit">Logout</button>
+					<sec:csrfInput />
 				</form:form>
 			</sec:authorize>
 			<sec:authorize access="!isAuthenticated()">
