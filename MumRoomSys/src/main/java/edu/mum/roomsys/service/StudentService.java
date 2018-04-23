@@ -1,5 +1,7 @@
 package edu.mum.roomsys.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
@@ -37,6 +39,10 @@ public class StudentService {
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	
+	public Iterable<Student> findAll() {
+		return studentDao.findAll();
+	}
 
 	public Page<Student> findAll(int page, int size) {
 		PageRequest pReqest = new PageRequest(page, size, new Sort(Direction.ASC, "name"));

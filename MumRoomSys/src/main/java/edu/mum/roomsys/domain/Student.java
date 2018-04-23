@@ -16,6 +16,9 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Student {
 	@Id
@@ -30,24 +33,31 @@ public class Student {
 
 	private String phone;
 
+	@JsonIgnore
 	@Transient
 	private String password;
 	
+	@JsonIgnore
 	@Transient
 	private String username;
 	
+	@JsonIgnore
 	@Transient
 	private String role;
 	
+	@JsonIgnore
 	@Transient
 	private boolean enabled;	
 	
+	@JsonIgnore
 	@Transient
 	private boolean canDelete;		
 
+	@JsonManagedReference
 	@OneToOne(mappedBy="student", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
 	private Account account;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "student")
 	private List<Booking> bookings = new ArrayList<>();
 

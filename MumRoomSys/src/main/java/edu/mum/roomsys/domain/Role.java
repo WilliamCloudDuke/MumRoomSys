@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Role {
 	@Id @GeneratedValue
@@ -15,6 +17,7 @@ public class Role {
 	
 	private String name;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="role")
 	private List<Account> accounts = new ArrayList<>();
 
