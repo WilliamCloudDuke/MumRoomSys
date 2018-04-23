@@ -13,6 +13,6 @@ public abstract interface CheckinDao extends PagingAndSortingRepository<Booking,
 	@Query("select b from Booking b join b.student s where s.id = :studentId and b.status like 'NEW' ")
 	public Page<Booking> findByStatusNewLike(@Param("studentId") int studentId, Pageable pageable);
 
-	public Booking save(Booking booking);
+	public Booking findById(@Param("id") int id);
 
 }
