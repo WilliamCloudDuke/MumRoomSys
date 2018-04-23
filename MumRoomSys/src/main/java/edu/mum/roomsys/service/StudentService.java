@@ -17,6 +17,7 @@ import edu.mum.roomsys.dao.RoleDao;
 import edu.mum.roomsys.dao.StudentDao;
 import edu.mum.roomsys.domain.Account;
 import edu.mum.roomsys.domain.Role;
+import edu.mum.roomsys.domain.RoleType;
 import edu.mum.roomsys.domain.Student;
 import edu.mum.roomsys.dto.PageDto;
 import edu.mum.roomsys.dto.SearchCriteria;
@@ -71,8 +72,9 @@ public class StudentService {
 
 	@Transactional(value = TxType.REQUIRED)
 	public void createStudent(Student student) {
-		Role role = student.getRole().toUpperCase() == "DIRECTOR" ? roleDao.findByName("DIRECTOR")
-				: roleDao.findByName("STUDENT");
+		Role role = student.getRole().equals(RoleType.DIRECTOR.toString())
+				? roleDao.findByName(RoleType.DIRECTOR.toString())
+				: roleDao.findByName(RoleType.STUDENT.toString());
 		Account account = new Account(student.getUsername(), student.getPassword(), student.getEmail(),
 				student.isEnabled(), role);
 		student.setAccount(account);

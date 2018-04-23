@@ -8,7 +8,7 @@
 <form:form modelAttribute="booking" action="${post_url}" method="post">
 	<fieldset>
 		<div class="form-group">
-			<label for="moveInDate">Move in Date</label> 
+			<label for="moveInDate">Move in Date (*)</label> 
 			<form:input type="date" path="moveInDate" id="moveInDate" class="form-control" placeholder="Move In Date"/>
 			<form:errors path="moveInDate" cssClass="error"/>
 		</div>	

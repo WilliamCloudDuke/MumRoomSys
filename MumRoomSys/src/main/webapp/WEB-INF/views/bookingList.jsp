@@ -103,13 +103,13 @@
 					<td>
 						<c:set var="checkinRecord" value="${booking.getCheckinRecord()}"/>
 						<c:if test="${checkinRecord != null}">
-							<a href='<c:url value="/booking/checkin/${checkinRecord.id}"/>'>Details</a>
+							<a href='<c:url value="/student/checkin/${checkinRecord.id}"/>'>Details</a>
 						</c:if>						
 					</td>
 					<td>
 						<c:set var="checkoutRecord" value="${booking.getCheckoutRecord()}"/>
 						<c:if test="${checkoutRecord != null}">
-							<a href='<c:url value="/booking/checkout/${checkoutRecord.id}"/>'>Details</a>
+							<a href='<c:url value="/student/checkout/${checkoutRecord.id}"/>'>Details</a>
 						</c:if>						
 					</td>	
 					<td>
