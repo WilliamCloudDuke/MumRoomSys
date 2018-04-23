@@ -60,6 +60,5 @@ insert into booking(id,room_id,student_id,move_in_date,status) values(35,26,11,'
 insert into request(id,student_id,type,description) values(40,12,'MAINTENANCE','Test Request 1');
 insert into request(id,student_id,type,description) values(41,13,'CHANGING_ROOM','Test Request 2');
 
-INSERT INTO book_item (id, blinds, closet, counter, floor, item_type, mirror, screens, sink, shower, thermostat, towel, walls, windows, booking_id) VALUES ('1', 'GOOD', 'MISSING', 'REPLACE', 'GOOD', 'MOVED_IN', 'MISSING', 'REPLACE', 'GOOD', 'REPLACE', 'MISSING', 'GOOD', 'REPLACE', 'REPLACE', '30');
 
 

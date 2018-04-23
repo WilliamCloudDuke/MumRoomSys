@@ -8,7 +8,7 @@
 	<thead class="thead-dark">
 		<h1 class="well">Check in Form</h1>
 		<form:form class="form-inline my-2 my-lg-0"
-			modelAttribute="bookingNew" action="${post_url}" method="post">
+			modelAttribute="booking" action="${post_url}" method="post">
 
 
 			<div class="form-row">
@@ -54,7 +54,7 @@
 	<thead class="thead-dark">
 		<h3 class="items">FURNITURE ITEMS</h3>
 		<!-- ROOM ITEMS -->
-		<form:form modelAttribute="bookingItemNew" action="/student/checkin/add" method="post" class="form-inline my-2 my-lg-0">
+		<form:form modelAttribute="bookingItem" action="/student/checkin/add" method="post" class="form-inline my-2 my-lg-0">
 			<div class="form-row">
 				<div class="form-group col-md-4">
 					<strong>Walls</strong>

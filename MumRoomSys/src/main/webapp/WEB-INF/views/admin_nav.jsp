@@ -13,12 +13,11 @@
 	                <a href="/student/detail" class="list-group-item" data-parent="#student">Create Student</a>
 	            </div>	                
 	            
-		<a href="#bookRoom" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Assign Room </span></a>
+		<a href="#bookRoom" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Room Management</span></a>
 		<div class="collapse" id="bookRoom" data-parent="#sidebar">
 	                <a href="/bookings/search/status/0?bookingStatus=NEW" class="list-group-item" data-parent="#bookRoom">List Bookings</a>
-	                <a href="/bookings/students/0" class="list-group-item" data-parent="#bookRoom">Assign Room</a>
+	                <a href="/bookings/students/0" class="list-group-item" data-parent="#bookRoom">Book Room</a>
 	            </div>	  
-	            <a href="#checkout" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Check Out</span></a>
 	            
 	            <a href='<c:url value="/requests/0"/>' class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Facility Request</span></a>
 	           
