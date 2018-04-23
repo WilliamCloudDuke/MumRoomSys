@@ -11,9 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Pattern;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Student {
@@ -21,19 +25,41 @@ public class Student {
 	@GeneratedValue
 	private int id;
 
+	@NotNull
 	private String name;
 
 	@Email
 	private String email;
 
-	@Pattern(regexp = "\\d{3}-\\d{3}-\\d{4}")
 	private String phone;
 
+	@JsonIgnore
+	@Transient
+	private String password;
+	
+	@JsonIgnore
+	@Transient
+	private String username;
+	
+	@JsonIgnore
+	@Transient
+	private String role;
+	
+	@JsonIgnore
+	@Transient
+	private boolean enabled;	
+	
+	@JsonIgnore
+	@Transient
+	private boolean canDelete;		
+
+	@JsonManagedReference
 	@OneToOne(mappedBy="student", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
 	private Account account;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "student")
-	private List<Booking> bookings;
+	private List<Booking> bookings = new ArrayList<>();
 
 	public Student() {
 		super();
@@ -85,5 +111,55 @@ public class Student {
 
 	public void setAccount(Account account) {
 		this.account = account;
+		account.setStudent(this);
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public boolean isCanDelete() {
+		return canDelete;
+	}
+
+	public void setCanDelete(boolean canDelete) {
+		this.canDelete = canDelete;
+	}
+	
 }

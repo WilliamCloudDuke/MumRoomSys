@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<h5>Search Bookings</h5>
 <table class="table table-hover table-striped">
 	<thead class="thead-dark">
 		<c:url var="post_url" value="/bookings/search/status/0" />
@@ -39,7 +40,7 @@
 					<form:errors path="roomNo"/>
 			 	</div>			 	
 			 	<div class="form-group col-md-2">
-					<button class="btn btn-outline-success" type="submit">Filter Building and Room</button>			 	
+					<button class="btn btn-outline-success" type="submit">Filter By Building and Room</button>			 	
 			 	</div>
 			</div>
 		</form:form>	
@@ -80,12 +81,13 @@
 			<th scope="col" class="col-4">Moved out Date</th>	
 			<th scope="col" class="col">Status</th>		
 			<th scope="col" class="col-4">Check in Details</th>	
-			<th scope="col" class="col-4">Check out Details</th>									
+			<th scope="col" class="col-4">Check out Details</th>			
+			<th scope="col" class="col-4">Remove</th>										
 		</tr>	
 	</thead>
 	<tbody>		
 		<c:if test="${!bookings.hasContent()}">
-			<tr><td colspan="9">No records found<td></tr>
+			<tr><td colspan="10">No records found<td></tr>
 		</c:if>			
 		<c:if test="${bookings.hasContent()}">
 			<c:forEach var="booking" items="${bookings.getContent()}">
@@ -100,31 +102,42 @@
 					<td>${booking.status}</td>								
 					<td>
 						<c:set var="checkinRecord" value="${booking.getCheckinRecord()}"/>
-						<c:if test="${checkinRecord  != null}">
-							<a href='<c:url value="/booking/checkin/${checkinRecord.id} }"/>'>Details</a>
+						<c:if test="${checkinRecord != null}">
+							<a href='<c:url value="/booking/checkin/${checkinRecord.id}"/>'>Details</a>
 						</c:if>						
 					</td>
 					<td>
 						<c:set var="checkoutRecord" value="${booking.getCheckoutRecord()}"/>
-						<c:if test="${checkoutRecord  != null}">
-							<a href='<c:url value="/booking/checkin/${checkoutRecord.id} }"/>'>Details</a>
+						<c:if test="${checkoutRecord != null}">
+							<a href='<c:url value="/booking/checkout/${checkoutRecord.id}"/>'>Details</a>
 						</c:if>						
-					</td>										
+					</td>	
+					<td>
+						<c:set var="canDelete" value="${booking.status == 'NEW'}"/>
+						<c:if test="${canDelete}">
+							<a href='<c:url value="/booking/delete/${booking.id}"/>'>Delete</a>
+						</c:if>						
+					</td>																		
 				</tr>								
 			</c:forEach>		
 		</c:if>
-	</tbody>
-</table>
-<table class="table table-hover table-striped">
-	<thead class="thead-dark">
-		<tr>
-			<c:if test="${bookings.hasContent()}">
-				<td>Pages: 	
+		<c:if test="${bookings.hasContent()}">
+			<tr>
+				<td colspan="11">Pages: 	
 					<c:forEach var="no" begin="0" end="${page.getTotalPage() - 1}">
-						<a href="/bookings/${no}">${no + 1} </a>
+						<c:if test="${searchType == 'student'}">
+							<a href="/bookings/search/${no}?searchBy=${searchCriteria.searchBy}&criteria=${searchCriteria.criteria}">${no + 1} </a>
+						</c:if>
+						<c:if test="${searchType == 'building'}">
+							<a href="/bookings/search/building/${no}?buildingNo=${roomSearchCriteria.buildingNo}&roomNo=${roomSearchCriteria.roomNo}">${no + 1} </a>
+						</c:if>		
+						<c:if test="${searchType == 'status'}">
+							<a href="/bookings/search/status/${no}?bookingStatus=${searchCriteria.bookingStatus}">${no + 1} </a>
+						</c:if>										
 					</c:forEach>
-				</td>			
-			</c:if>
-		</tr>
-	</thead>
+				</td>		
+			<tr>		
+		</c:if>
+	
+	</tbody>
 </table>

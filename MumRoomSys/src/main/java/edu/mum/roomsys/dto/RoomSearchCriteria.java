@@ -9,6 +9,8 @@ public class RoomSearchCriteria {
 	@NotNull
 	private int buildingNo;
 	
+	private String roomStatus;
+	
 	public int getRoomNo() {
 		return roomNo;
 	}
@@ -21,4 +23,11 @@ public class RoomSearchCriteria {
 	public void setBuildingNo(int buildingNo) {
 		this.buildingNo = buildingNo;
 	}
+	public String getRoomStatus() {
+		return roomStatus;
+	}
+	public void setRoomStatus(String roomStatus) {
+		this.roomStatus = roomStatus;
+	}
+	
 }

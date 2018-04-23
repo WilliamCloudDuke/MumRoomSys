@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,14 +24,16 @@
 			</div>
 		</div>	
 	    <div class="row d-flex d-md-block flex-nowrap wrapper">
-	        <div class="col-md-2 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
-	        	<div class="list-group border-0 card text-center text-md-left">
-	                
-	                <a href="/student/checkin" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Check In</span></a>
-	                
-	                <a href="Request.jsp" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Facility Request</span></a>                	                
-	            </div>
-	        </div>
+	    	<sec:authorize access="hasAuthority('STUDENT')">
+	   			<div class="col-md-2 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
+		        	<div class="list-group border-0 card text-center text-md-left">
+		                
+		                <a href="/student/checkin" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Check In</span></a>
+		                
+		                <a href="Request.jsp" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Facility Request</span></a>                	                
+		            </div>
+		        </div>	    	
+	    	</sec:authorize>   
 	        <main class="col-md-10 float-left col px-5 pl-md-2 pt-2 main">
 	            <div class="row">
 	                <div class="col-lg-6">

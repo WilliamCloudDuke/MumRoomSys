@@ -9,6 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Account {
 	@Id @GeneratedValue
@@ -17,6 +21,7 @@ public class Account {
 	@Column(length=50, nullable = false, unique = true)
 	private String username;
 	
+	@JsonIgnore
 	@Column(length=255, nullable = false)
 	private String password;
 	
@@ -25,10 +30,12 @@ public class Account {
 	
 	private boolean enabled;
 	
+	@JsonManagedReference
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="role_id", nullable = false)
 	private Role role;
 	
+	@JsonBackReference
 	@OneToOne
 	@JoinColumn(name="student_id")
 	private Student student;

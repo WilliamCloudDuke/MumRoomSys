@@ -10,7 +10,7 @@ public class PagingHelper<T> {
 		page = p;
 		setCurrentPage(current);
 	}
-	
+
 	public int getNextPage() {
 		if (page.hasNext()) {
 			return page.nextPageable().getPageNumber();			
