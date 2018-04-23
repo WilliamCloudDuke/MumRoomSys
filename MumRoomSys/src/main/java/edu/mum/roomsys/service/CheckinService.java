@@ -19,10 +19,14 @@ public class CheckinService {
 	public Booking findByStatusNewLike(int studentId) {
 		PageRequest pr = new PageRequest(0, 1, new Sort(Direction.DESC, "moveInDate"));
 		Page<Booking> pageBooking = checkinDao.findByStatusNewLike(studentId, pr);
-		if(pageBooking.hasContent()) {
-			return pageBooking.getContent().get(0);  
+		if (pageBooking.hasContent()) {
+			return pageBooking.getContent().get(0);
 		}
 		return null;
+	}
+
+	public Booking findById(int id) {
+		return checkinDao.findById(id);
 	}
 
 }

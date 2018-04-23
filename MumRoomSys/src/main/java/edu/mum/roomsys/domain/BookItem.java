@@ -1,26 +1,34 @@
 package edu.mum.roomsys.domain;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="book_item")
+@Table(name = "book_item")
 public class BookItem {
 
 	@Id
 	@GeneratedValue
 	private int id;
-	
+
 	@Enumerated(EnumType.STRING)
-	@Column(length = 50, nullable = false)	
+	@Column(length = 50, nullable = false)
 	private BookingItemType itemType;
 
 	@Column(length = 50, nullable = false)
@@ -70,10 +78,14 @@ public class BookItem {
 	@Column(length = 50, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private ItemStatus thermostat;
-	
-	
-	@JoinColumn(name = "booking_id")
-	@ManyToOne(cascade = CascadeType.ALL)
+
+	@Transient
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date checkInDate;
+
+	@JoinColumn(name = "booking_id", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Booking booking;
 
 	public BookItem() {
@@ -199,6 +211,13 @@ public class BookItem {
 	public void setShower(ItemStatus shower) {
 		this.shower = shower;
 	}
-	
-	
+
+	public Date getCheckInDate() {
+		return checkInDate;
+	}
+
+	public void setCheckInDate(Date checkInDate) {
+		this.checkInDate = checkInDate;
+	}
+
 }

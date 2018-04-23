@@ -7,7 +7,6 @@
 <table class="table table-hover table-striped">
 	<thead class="thead-dark">
 		<h1 class="well">Check in Form</h1>
-		<c:url var="post_url" value="/student/checkin/0" />
 		<form:form class="form-inline my-2 my-lg-0"
 			modelAttribute="bookingNew" action="${post_url}" method="post">
 
@@ -35,7 +34,7 @@
 				<div class="form-group col-md-4">
 					<strong>Phone number</strong>
 					<form:input path="student.phone" class="form-control" type="text"
-						placeholder="Phone number" readonly="true" />
+						placeholder="123-456-7890" readonly="true" />
 				</div>
 			</div>
 
@@ -55,8 +54,7 @@
 	<thead class="thead-dark">
 		<h3 class="items">FURNITURE ITEMS</h3>
 		<!-- ROOM ITEMS -->
-		<form:form modelAttribute="bookingItemNew" action="${post_url}"
-			method="post" class="form-inline my-2 my-lg-0">
+		<form:form modelAttribute="bookingItemNew" action="/student/checkin/add" method="post" class="form-inline my-2 my-lg-0">
 			<div class="form-row">
 				<div class="form-group col-md-4">
 					<strong>Walls</strong>
@@ -71,7 +69,7 @@
 				</div>
 
 				<div class="form-group col-md-4">
-					<strong>Windows</strong>abel>
+					<strong>Windows</strong>
 					<div class="form-check">
 						<form:select path="windows" class="form-control">
 							<form:option value="GOOD">GOOD</form:option>
@@ -99,7 +97,7 @@
 				<div class="form-group col-md-4">
 					<strong>Blinds</strong>
 					<div class="form-check">
-					
+
 						<form:select path="blinds" class="form-control">
 							<form:option value="GOOD">GOOD</form:option>
 							<form:option value="FIX_IT">FIX IT</form:option>
@@ -113,7 +111,7 @@
 				<div class="form-group col-md-4">
 					<strong>Sink</strong>
 					<div class="form-check">
-					
+
 						<form:select path="sink" class="form-control">
 							<form:option value="GOOD">GOOD</form:option>
 							<form:option value="FIX_IT">FIX IT</form:option>
@@ -126,7 +124,7 @@
 				<div class="form-group col-md-4">
 					<strong>Counter</strong>
 					<div class="form-check">
-					
+
 						<form:select path="counter" class="form-control">
 							<form:option value="GOOD">GOOD</form:option>
 							<form:option value="FIX_IT">FIX IT</form:option>
@@ -139,7 +137,7 @@
 				<div class="form-group col-md-4">
 					<strong>Mirror</strong>
 					<div class="form-check">
-					
+
 						<form:select path="mirror" class="form-control">
 							<form:option value="GOOD">GOOD</form:option>
 							<form:option value="FIX_IT">FIX IT</form:option>
@@ -152,7 +150,7 @@
 				<div class="form-group col-md-4">
 					<strong>Floor</strong>
 					<div class="form-check">
-					
+
 						<form:select path="floor" class="form-control">
 							<form:option value="GOOD">GOOD</form:option>
 							<form:option value="FIX_IT">FIX IT</form:option>
@@ -166,7 +164,7 @@
 				<div class="form-group col-md-4">
 					<strong>Closet</strong>
 					<div class="form-check">
-					
+
 						<form:select path="closet" class="form-control">
 							<form:option value="GOOD">GOOD</form:option>
 							<form:option value="FIX_IT">FIX IT</form:option>
@@ -175,8 +173,8 @@
 						</form:select>
 					</div>
 				</div>
-				
-				
+
+
 				<div class="form-group col-md-4">
 					<strong>Towel</strong>
 					<div class="form-check">
@@ -215,13 +213,58 @@
 
 			</div>
 
+			<div class="form-group">
+				<strong><label class="col-xs-3 control-label">Terms of use</label></strong>
+				<div class="col-xs-9">
+					<div
+						style="border: 1px solid #e5e5e5; height: 200px; overflow: auto; padding: 10px;">
+						<p>Lorem ipsum dolor sit amet, veniam numquam has te. No suas
+							nonumes recusabo mea, est ut graeci definitiones. His ne melius
+							vituperata scriptorem, cum paulo copiosae conclusionemque at.
+							Facer inermis ius in, ad brute nominati referrentur vis. Dicat
+							erant sit ex. Phaedrum imperdiet scribentur vix no, ad latine
+							similique forensibus vel.</p>
+						<p>Dolore populo vivendum vis eu, mei quaestio liberavisse ex.
+							Electram necessitatibus ut vel, quo at probatus oportere,
+							molestie conclusionemque pri cu. Brute augue tincidunt vim id, ne
+							munere fierent rationibus mei. Ut pro volutpat praesent
+							qualisque, an iisque scripta intellegebat eam.</p>
+						<p>Mea ea nonumy labores lobortis, duo quaestio antiopam
+							inimicus et. Ea natum solet iisque quo, prodesset mnesarchum ne
+							vim. Sonet detraxit temporibus no has. Omnium blandit in vim, mea
+							at omnium oblique.</p>
+						<p>Eum ea quidam oportere imperdiet, facer oportere
+							vituperatoribus eu vix, mea ei iisque legendos hendrerit. Blandit
+							comprehensam eu his, ad eros veniam ridens eum. Id odio lobortis
+							elaboraret pro. Vix te fabulas partiendo.</p>
+						<p>Natum oportere et qui, vis graeco tincidunt instructior an,
+							autem elitr noster per et. Mea eu mundi qualisque. Quo nemore
+							nusquam vituperata et, mea ut abhorreant deseruisse, cu nostrud
+							postulant dissentias qui. Postea tincidunt vel eu.</p>
+						<p>Ad eos alia inermis nominavi, eum nibh docendi definitionem
+							no. Ius eu stet mucius nonumes, no mea facilis philosophia
+							necessitatibus. Te eam vidit iisque legendos, vero meliore
+							deserunt ius ea. An qui inimicus inciderint.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-xs-6 col-xs-offset-3">
+					<div class="checkbox">
+						<label> <input type="checkbox" name="agree" value="agree" />
+							Agree with the terms and conditions
+						</label>
+					</div>
+				</div>
+			</div>
+
 			<div class="row items">
 				<div>
-					<strong>Move In Date: </strong> <input id="date" type="date">
-					<br> <input type="checkbox" name="checkbox" value="check"
-						id="agree" /> I have read and agree to the Terms and Conditions
-					of the residence life. <br>
-					<button type="button" class="btn btn-lg btn-info">Submit</button>
+					<strong>Move In Date: </strong> 
+					<form:input path="checkInDate" class="form-control" type="date"/>
+					<br><br>
+					<button type="submit" class="btn btn-lg btn-info">Submit</button>
 				</div>
 			</div>
 		</form:form>

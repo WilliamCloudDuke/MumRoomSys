@@ -5,10 +5,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class RoomItem {
@@ -17,6 +19,7 @@ public class RoomItem {
 	@GeneratedValue
 	private int id;
 
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(length = 50, nullable = false)
 	private ItemStatus walls;
@@ -62,7 +65,7 @@ public class RoomItem {
 	private ItemStatus thermostat;
 
 	@JoinColumn(name = "room_id", nullable = false)
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Room room;
 
 	public RoomItem() {
