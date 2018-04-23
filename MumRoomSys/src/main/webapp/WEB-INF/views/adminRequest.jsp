@@ -23,37 +23,46 @@
 			<div class="col" id="header">
 				<req:import url="header.jsp" />
 			</div>
-		</div>	 
-		<div class="row">
-		<div  id="requestform">
-		  <c:url var="post_url" value="/request/creatrequest" />
-		<form:form  modelAttribute="request" action="${post_url}" method="post">
-		   RequestType:<br> <form:select path="type" name="type">
-  							<form:option value="MAINTENANCE">Maintenance</form:option>
-  							<form:option value="CHANGING_ROOM">Changing Room</form:option>
-  							<form:option value="LEAVING_ROOM">Leaving Room</form:option>
- 						    
-					</form:select>
-					<div>
-		  Request Description:<br> <form:input path="description" type="text" name="description" /> </div>
-		   <input type="submit" value="Submit"/><br> <br>
-		   </form:form>       
-		
-		</div>
-		
-		</div>	
-		
+		</div>	 	
 		<table class="tablerequest">
 		<tr><th>studentname</th><th>Request type</th><th>Request Description</th></tr>
 	 <c:forEach var="request" items="${requests.getContent()}">
 			<tr >
 				<td >${request.student.name}</td>
 				<td>${request.type}</td>	
-				<td>${request.description}</td>		
+				<td>${request.description}</td>	
+				<td><button>edit</button></td>
+				<td><button>delete</button>	</td>
 			</tr>								
 	</c:forEach> 	
-</table>		 
-					
+</table>	
+<br>
+</br>
+</br>
+
+<table class="table table-hover table-striped">
+	<thead class="thead-dark">
+		<c:url var="post_url" value="/request/selectRequest/0" />
+		<form:form class="form-inline my-2 my-lg-0" 
+			modelAttribute="request" action="${post_url}" method="post">
+			<div class="form-row">
+			 	<div class="form-group col-md-4">
+				 	<form:select path="description" class="form-control">
+						<form:option value="BY REQUEST TYPE">Request Type</form:option>				 	
+						<form:option value="BY BUILDING">By building</form:option>
+						<form:option value="BY STUDENT">By student Id</form:option>
+					</form:select>
+			 	
+			 	
+					<form:button  type="submit">list out </form:button>			 	
+			 	</div>
+			</div>
+		</form:form>	
+	</thead>
+</table>
+
+
+
 		
 		<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
