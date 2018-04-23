@@ -72,6 +72,7 @@ public class CheckinController {
 		if (null == bookItem) {
 			bookItem = new BookItem();
 		}
+		bookItem.setCheckInDate(booking.getMoveInDate());
 		model.addAttribute("bookingItem", bookItem);
 		return "student_index";
 	}
@@ -88,6 +89,7 @@ public class CheckinController {
 		if (null == bookItem) {
 			bookItem = new BookItem();
 		}
+		bookItem.setCheckInDate(booking.getMoveInDate());
 		model.addAttribute("bookingItem", bookItem);
 		return "student_index";
 	}
