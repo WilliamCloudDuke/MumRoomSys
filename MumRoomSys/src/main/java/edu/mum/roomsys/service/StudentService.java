@@ -1,7 +1,5 @@
 package edu.mum.roomsys.service;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
