@@ -84,6 +84,15 @@ public class BookItem {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date checkInDate;
 
+	@Transient
+	private String successMessage;
+
+	@Transient
+	private String errorMessage;
+
+	@Transient
+	private boolean disabled;
+
 	@JoinColumn(name = "booking_id", nullable = false)
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Booking booking;
@@ -218,6 +227,30 @@ public class BookItem {
 
 	public void setCheckInDate(Date checkInDate) {
 		this.checkInDate = checkInDate;
+	}
+
+	public boolean isDisabled() {
+		return disabled;
+	}
+
+	public void setDisabled(boolean disabled) {
+		this.disabled = disabled;
+	}
+
+	public String getSuccessMessage() {
+		return successMessage;
+	}
+
+	public void setSuccessMessage(String successMessage) {
+		this.successMessage = successMessage;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 
 }

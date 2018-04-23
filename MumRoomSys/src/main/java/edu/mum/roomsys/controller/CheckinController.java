@@ -40,6 +40,15 @@ public class CheckinController {
 	public String getBookingNew(Model model) {
 		model.addAttribute("mainPage", "studentCheckin.jsp");
 		Booking booking = checkinService.findByStatusNewLike(getStudentId());
+		if (null == booking) {
+			Booking bookingEmpty = new Booking();
+			BookItem bookItem = new BookItem();
+			bookItem.setErrorMessage("You cannot do a Checkin operation!");
+			bookItem.setDisabled(true);
+			model.addAttribute("booking", bookingEmpty);
+			model.addAttribute("bookingItem", bookItem);
+			return "student_index";
+		}
 		BookItem bookItem = booking.getCheckinRecord();
 		if (null == bookItem) {
 			bookItem = new BookItem();
@@ -56,6 +65,8 @@ public class CheckinController {
 		Booking booking = checkinService.findById(id);
 		model.addAttribute("booking", booking);
 		BookItem bookItem = booking.getCheckinRecord();
+		bookItem.setSuccessMessage("Your Check in was successful");
+		bookItem.setDisabled(true);
 		if (null == bookItem) {
 			bookItem = new BookItem();
 		}
