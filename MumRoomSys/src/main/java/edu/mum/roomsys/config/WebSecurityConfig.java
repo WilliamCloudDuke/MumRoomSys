@@ -35,11 +35,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.anyRequest().authenticated()
 			.antMatchers("/admin/**").hasAuthority("DIRECTOR").and()			
 			.formLogin()
-				//.loginPage("/login")
-				.failureUrl("/login?error=true")
+				.loginPage("/loginpage").failureUrl("/loginfailed").permitAll()
 				.defaultSuccessUrl("/index", true)
-				.usernameParameter("username").passwordParameter("password").permitAll().and()
-			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").permitAll();
+				.loginProcessingUrl("/j_spring_security_check").and()
+			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index").permitAll();
 		
 		http.csrf()
 			.ignoringAntMatchers("/api/**");
