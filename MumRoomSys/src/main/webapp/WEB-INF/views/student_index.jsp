@@ -24,16 +24,12 @@
 			</div>
 		</div>	
 	    <div class="row d-flex d-md-block flex-nowrap wrapper">
-	    	<sec:authorize access="hasAuthority('STUDENT')">
-	   			<div class="col-md-2 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
-		        	<div class="list-group border-0 card text-center text-md-left">
-		                
-		                <a href="/student/checkin" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Check In</span></a>
-		                
-		                <a href="Request.jsp" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Facility Request</span></a>                	                
-		            </div>
-		        </div>	    	
-	    	</sec:authorize>   
+			<sec:authorize access="hasAnyAuthority('DIRECTOR')">
+				<c:import url="admin_nav.jsp" />
+			</sec:authorize>
+			<sec:authorize access="hasAnyAuthority('STUDENT')">
+				<c:import url="student_nav.jsp" />
+			</sec:authorize>			
 	        <main class="col-md-10 float-left col px-5 pl-md-2 pt-2 main">
 	            <div class="row">
 	                <div class="col-lg-6">
