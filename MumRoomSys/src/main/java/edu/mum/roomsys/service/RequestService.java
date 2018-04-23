@@ -35,6 +35,11 @@ public class RequestService {
 
 	@Autowired
 	private AccountDao accountDao;
+	
+	public Iterable<Request> findAll() {
+		return requestDao.findAll();
+	}	
+	
 
 	public Account findByUsername(String userName) {
 		return accountDao.findByUsername(userName);
