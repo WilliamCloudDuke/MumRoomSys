@@ -1,6 +1,7 @@
 package edu.mum.roomsys.config;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,9 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import edu.mum.roomsys.domain.Account;
+import edu.mum.roomsys.dto.AccountDto;
 
 @Configuration
 @ImportResource({ "classpath:webFlowConfig.xml" })
@@ -27,7 +31,18 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	
 	@Bean
 	public ModelMapper modelMapper() {
-	    return new ModelMapper();
+		ModelMapper mapper = new ModelMapper();
+		
+		mapper.createTypeMap(AccountDto.class,  Account.class).addMappings(new PropertyMap<AccountDto, Account>() {
+
+			@Override
+			protected void configure() {
+				map().setRole(null);
+				map().setStudent(null);
+			}
+		});
+		
+		return mapper;
 	}	
 
 }
