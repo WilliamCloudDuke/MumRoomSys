@@ -24,6 +24,15 @@
 			</form:form>
 		</c:if>
 
+
+		<c:if test="${not empty bookingItem.warningMessage}">
+			<form:form class="form-inline my-2 my-lg-0">
+				<div class="alert alert-warning" role="alert">
+					<strong style="font-size: 15">${bookingItem.warningMessage}</strong>
+				</div>
+			</form:form>
+		</c:if>
+
 		<form:form class="form-inline my-2 my-lg-0" modelAttribute="booking"
 			action="${post_url}" method="post">
 

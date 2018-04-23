@@ -44,7 +44,7 @@ public class CheckinController {
 		if (null == booking) {
 			Booking bookingEmpty = new Booking();
 			BookItem bookItem = new BookItem();
-			bookItem.setErrorMessage("You cannot do a Checkin operation again, contact your Resident Advisor/ Director!");
+			bookItem.setErrorMessage("You cannot do a Checkin operation again, contact your Resident Advisor/Director");
 			bookItem.setDisabled(true);
 			model.addAttribute("booking", bookingEmpty);
 			model.addAttribute("bookingItem", bookItem);
@@ -67,6 +67,22 @@ public class CheckinController {
 		Booking booking = checkinService.findById(id);
 		model.addAttribute("booking", booking);
 		BookItem bookItem = booking.getCheckinRecord();
+		bookItem.setWarningMessage("Check in for read only mode");
+		bookItem.setDisabled(true);
+		if (null == bookItem) {
+			bookItem = new BookItem();
+		}
+		model.addAttribute("bookingItem", bookItem);
+		return "student_index";
+	}
+
+	@SuppressWarnings("unused")
+	@RequestMapping(path = { "/student/checkin/read/{id}" }, method = { RequestMethod.GET })
+	public String getBookingForReadOnly(@PathVariable("id") int id, Model model) {
+		model.addAttribute("mainPage", "studentCheckin.jsp");
+		Booking booking = checkinService.findById(id);
+		model.addAttribute("booking", booking);
+		BookItem bookItem = booking.getCheckinRecord();
 		bookItem.setSuccessMessage("Your Check in was successful");
 		bookItem.setDisabled(true);
 		if (null == bookItem) {
@@ -82,7 +98,7 @@ public class CheckinController {
 		bookingService.updateStatusCkeckInAndMoveInDate(bookingToBeUpdated, bookItemToBeAdded.getCheckInDate());
 		bookItemService.createBookItemMovedIn(bookItemToBeAdded, bookingToBeUpdated);
 		roomService.updateStatusOccupied(bookingToBeUpdated.getRoom());
-		return "redirect:/student/checkin/" + bookingToBeUpdated.getId();
+		return "redirect:/student/checkin/read/" + bookingToBeUpdated.getId();
 	}
 
 	private int getStudentId() {
