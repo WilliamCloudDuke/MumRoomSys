@@ -127,4 +127,8 @@ public class StudentService {
 		}
 		return student;
 	}
+
+	public Student createStudentProfile(Student student) {
+		return studentDao.save(student);
+	}
 }
