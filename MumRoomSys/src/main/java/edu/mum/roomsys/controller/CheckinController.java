@@ -17,12 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.mum.roomsys.domain.Account;
 import edu.mum.roomsys.domain.BookItem;
 import edu.mum.roomsys.domain.Booking;
-import edu.mum.roomsys.domain.BookingItemType;
-import edu.mum.roomsys.domain.BookingStatus;
 import edu.mum.roomsys.service.AccountService;
 import edu.mum.roomsys.service.BookItemService;
 import edu.mum.roomsys.service.BookingService;
 import edu.mum.roomsys.service.CheckinService;
+import edu.mum.roomsys.service.RoomService;
 
 @Controller
 public class CheckinController {
@@ -35,15 +34,17 @@ public class CheckinController {
 	private BookingService bookingService;
 	@Autowired
 	private BookItemService bookItemService;
+	@Autowired
+	private RoomService roomService;
 
 	@GetMapping({ "/student/checkin" })
-	public String getBookingNew(Model model) {
+	public String getBookingByStatusNew(Model model) {
 		model.addAttribute("mainPage", "studentCheckin.jsp");
-		Booking booking = checkinService.findByStatusNewLike(getStudentId());
+		Booking booking = checkinService.findBookinByStatusNew(getStudentId());
 		if (null == booking) {
 			Booking bookingEmpty = new Booking();
 			BookItem bookItem = new BookItem();
-			bookItem.setErrorMessage("You cannot do a Checkin operation!");
+			bookItem.setErrorMessage("You cannot do a Checkin operation again, contact your Resident Advisor/Director");
 			bookItem.setDisabled(true);
 			model.addAttribute("booking", bookingEmpty);
 			model.addAttribute("bookingItem", bookItem);
@@ -59,8 +60,26 @@ public class CheckinController {
 		return "student_index";
 	}
 
+	@SuppressWarnings("unused")
 	@RequestMapping(path = { "/student/checkin/{id}" }, method = { RequestMethod.GET })
 	public String getBookingForEdit(@PathVariable("id") int id, Model model) {
+		model.addAttribute("mainPage", "studentCheckin.jsp");
+		Booking booking = checkinService.findById(id);
+		model.addAttribute("booking", booking);
+		BookItem bookItem = booking.getCheckinRecord();
+		bookItem.setWarningMessage("Check in for read only mode");
+		bookItem.setDisabled(true);
+		if (null == bookItem) {
+			bookItem = new BookItem();
+		}
+		bookItem.setCheckInDate(booking.getMoveInDate());
+		model.addAttribute("bookingItem", bookItem);
+		return "student_index";
+	}
+
+	@SuppressWarnings("unused")
+	@RequestMapping(path = { "/student/checkin/read/{id}" }, method = { RequestMethod.GET })
+	public String getBookingForReadOnly(@PathVariable("id") int id, Model model) {
 		model.addAttribute("mainPage", "studentCheckin.jsp");
 		Booking booking = checkinService.findById(id);
 		model.addAttribute("booking", booking);
@@ -70,20 +89,18 @@ public class CheckinController {
 		if (null == bookItem) {
 			bookItem = new BookItem();
 		}
+		bookItem.setCheckInDate(booking.getMoveInDate());
 		model.addAttribute("bookingItem", bookItem);
 		return "student_index";
 	}
 
 	@RequestMapping(path = { "/student/checkin/add" }, method = { RequestMethod.POST })
 	private String createCheckIn(@Valid BookItem bookItemToBeAdded, Model model) {
-		Booking bookingToBeUpdated = checkinService.findByStatusNewLike(getStudentId());
-		bookingToBeUpdated.setStatus(BookingStatus.CHECKED_IN);
-		bookingToBeUpdated.setMoveInDate(bookItemToBeAdded.getCheckInDate());
-		bookingService.setStatusAndMoveInDate(bookingToBeUpdated);
-		bookItemToBeAdded.setBooking(bookingToBeUpdated);
-		bookItemToBeAdded.setItemType(BookingItemType.MOVED_IN);
-		bookItemService.createBookitem(bookItemToBeAdded);
-		return "redirect:/student/checkin/" + bookingToBeUpdated.getId();
+		Booking bookingToBeUpdated = checkinService.findBookinByStatusNew(getStudentId());
+		bookingService.updateStatusCkeckInAndMoveInDate(bookingToBeUpdated, bookItemToBeAdded.getCheckInDate());
+		bookItemService.createBookItemMovedIn(bookItemToBeAdded, bookingToBeUpdated);
+		roomService.updateStatusOccupied(bookingToBeUpdated.getRoom());
+		return "redirect:/student/checkin/read/" + bookingToBeUpdated.getId();
 	}
 
 	private int getStudentId() {

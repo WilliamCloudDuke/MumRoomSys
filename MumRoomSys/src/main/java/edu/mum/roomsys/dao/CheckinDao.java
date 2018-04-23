@@ -11,7 +11,7 @@ import edu.mum.roomsys.domain.Booking;
 public abstract interface CheckinDao extends PagingAndSortingRepository<Booking, Integer> {
 
 	@Query("select b from Booking b join b.student s where s.id = :studentId and b.status like 'NEW' ")
-	public Page<Booking> findByStatusNewLike(@Param("studentId") int studentId, Pageable pageable);
+	public Page<Booking> findBookinByStatusNew(@Param("studentId") int studentId, Pageable pageable);
 
 	public Booking findById(@Param("id") int id);
 

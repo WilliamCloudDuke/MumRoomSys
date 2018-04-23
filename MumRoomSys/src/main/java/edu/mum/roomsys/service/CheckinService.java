@@ -16,9 +16,9 @@ public class CheckinService {
 	@Autowired
 	private CheckinDao checkinDao;
 
-	public Booking findByStatusNewLike(int studentId) {
+	public Booking findBookinByStatusNew(int studentId) {
 		PageRequest pr = new PageRequest(0, 1, new Sort(Direction.DESC, "moveInDate"));
-		Page<Booking> pageBooking = checkinDao.findByStatusNewLike(studentId, pr);
+		Page<Booking> pageBooking = checkinDao.findBookinByStatusNew(studentId, pr);
 		if (pageBooking.hasContent()) {
 			return pageBooking.getContent().get(0);
 		}

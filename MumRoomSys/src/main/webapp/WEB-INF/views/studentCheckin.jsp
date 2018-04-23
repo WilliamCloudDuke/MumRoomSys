@@ -24,6 +24,15 @@
 			</form:form>
 		</c:if>
 
+
+		<c:if test="${not empty bookingItem.warningMessage}">
+			<form:form class="form-inline my-2 my-lg-0">
+				<div class="alert alert-warning" role="alert">
+					<strong style="font-size: 15">${bookingItem.warningMessage}</strong>
+				</div>
+			</form:form>
+		</c:if>
+
 		<form:form class="form-inline my-2 my-lg-0" modelAttribute="booking"
 			action="${post_url}" method="post">
 
@@ -98,12 +107,22 @@
 				<div class="form-group col-md-4">
 					<strong>Windows</strong>
 					<div class="form-check">
-						<form:select path="windows" class="form-control">
-							<form:option value="GOOD">GOOD</form:option>
-							<form:option value="FIX_IT">FIX IT</form:option>
-							<form:option value="MISSING">MISSING</form:option>
-							<form:option value="REPLACE">REPLACE</form:option>
-						</form:select>
+						<c:if test="${bookingItem.disabled == true}">
+							<form:select path="windows" class="form-control" disabled="true">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
+						<c:if test="${bookingItem.disabled == false}">
+							<form:select path="windows" class="form-control">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
 					</div>
 				</div>
 
@@ -111,12 +130,22 @@
 				<div class="form-group col-md-4">
 					<strong>Screens</strong>
 					<div class="form-check">
-						<form:select path="screens" class="form-control">
-							<form:option value="GOOD">GOOD</form:option>
-							<form:option value="FIX_IT">FIX IT</form:option>
-							<form:option value="MISSING">MISSING</form:option>
-							<form:option value="REPLACE">REPLACE</form:option>
-						</form:select>
+						<c:if test="${bookingItem.disabled == true}">
+							<form:select path="screens" class="form-control" disabled="true">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
+						<c:if test="${bookingItem.disabled == false}">
+							<form:select path="screens" class="form-control">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
 					</div>
 				</div>
 
@@ -124,13 +153,22 @@
 				<div class="form-group col-md-4">
 					<strong>Blinds</strong>
 					<div class="form-check">
-
-						<form:select path="blinds" class="form-control">
-							<form:option value="GOOD">GOOD</form:option>
-							<form:option value="FIX_IT">FIX IT</form:option>
-							<form:option value="MISSING">MISSING</form:option>
-							<form:option value="REPLACE">REPLACE</form:option>
-						</form:select>
+						<c:if test="${bookingItem.disabled == true}">
+							<form:select path="blinds" class="form-control" disabled="true">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
+						<c:if test="${bookingItem.disabled == false}">
+							<form:select path="blinds" class="form-control">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
 					</div>
 				</div>
 
@@ -138,52 +176,88 @@
 				<div class="form-group col-md-4">
 					<strong>Sink</strong>
 					<div class="form-check">
-
-						<form:select path="sink" class="form-control">
-							<form:option value="GOOD">GOOD</form:option>
-							<form:option value="FIX_IT">FIX IT</form:option>
-							<form:option value="MISSING">MISSING</form:option>
-							<form:option value="REPLACE">REPLACE</form:option>
-						</form:select>
+						<c:if test="${bookingItem.disabled == true}">
+							<form:select path="sink" class="form-control" disabled="true">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
+						<c:if test="${bookingItem.disabled == false}">
+							<form:select path="sink" class="form-control">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
 					</div>
 				</div>
 
 				<div class="form-group col-md-4">
 					<strong>Counter</strong>
 					<div class="form-check">
-
-						<form:select path="counter" class="form-control">
-							<form:option value="GOOD">GOOD</form:option>
-							<form:option value="FIX_IT">FIX IT</form:option>
-							<form:option value="MISSING">MISSING</form:option>
-							<form:option value="REPLACE">REPLACE</form:option>
-						</form:select>
+						<c:if test="${bookingItem.disabled == true}">
+							<form:select path="counter" class="form-control" disabled="true">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
+						<c:if test="${bookingItem.disabled == false}">
+							<form:select path="counter" class="form-control">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
 					</div>
 				</div>
 
 				<div class="form-group col-md-4">
 					<strong>Mirror</strong>
 					<div class="form-check">
-
-						<form:select path="mirror" class="form-control">
-							<form:option value="GOOD">GOOD</form:option>
-							<form:option value="FIX_IT">FIX IT</form:option>
-							<form:option value="MISSING">MISSING</form:option>
-							<form:option value="REPLACE">REPLACE</form:option>
-						</form:select>
+						<c:if test="${bookingItem.disabled == true}">
+							<form:select path="mirror" class="form-control" disabled="true">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
+						<c:if test="${bookingItem.disabled == false}">
+							<form:select path="mirror" class="form-control">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
 					</div>
 				</div>
 
 				<div class="form-group col-md-4">
 					<strong>Floor</strong>
 					<div class="form-check">
-
-						<form:select path="floor" class="form-control">
-							<form:option value="GOOD">GOOD</form:option>
-							<form:option value="FIX_IT">FIX IT</form:option>
-							<form:option value="MISSING">MISSING</form:option>
-							<form:option value="REPLACE">REPLACE</form:option>
-						</form:select>
+						<c:if test="${bookingItem.disabled == true}">
+							<form:select path="floor" class="form-control" disabled="true">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
+						<c:if test="${bookingItem.disabled == false}">
+							<form:select path="floor" class="form-control">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
 					</div>
 				</div>
 
@@ -191,13 +265,22 @@
 				<div class="form-group col-md-4">
 					<strong>Closet</strong>
 					<div class="form-check">
-
-						<form:select path="closet" class="form-control">
-							<form:option value="GOOD">GOOD</form:option>
-							<form:option value="FIX_IT">FIX IT</form:option>
-							<form:option value="MISSING">MISSING</form:option>
-							<form:option value="REPLACE">REPLACE</form:option>
-						</form:select>
+						<c:if test="${bookingItem.disabled == true}">
+							<form:select path="closet" class="form-control" disabled="true">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
+						<c:if test="${bookingItem.disabled == false}">
+							<form:select path="closet" class="form-control" disabled="false">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
 					</div>
 				</div>
 
@@ -205,36 +288,67 @@
 				<div class="form-group col-md-4">
 					<strong>Towel</strong>
 					<div class="form-check">
-						<form:select path="towel" class="form-control">
-							<form:option value="GOOD">GOOD</form:option>
-							<form:option value="FIX_IT">FIX IT</form:option>
-							<form:option value="MISSING">MISSING</form:option>
-							<form:option value="REPLACE">REPLACE</form:option>
-						</form:select>
+						<c:if test="${bookingItem.disabled == true}">
+							<form:select path="towel" class="form-control" disabled="true">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
+						<c:if test="${bookingItem.disabled == false}">
+							<form:select path="towel" class="form-control">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
 					</div>
 				</div>
 
 				<div class="form-group col-md-4">
 					<strong>Shower</strong>
 					<div class="form-check">
-						<form:select path="shower" class="form-control">
-							<form:option value="GOOD">GOOD</form:option>
-							<form:option value="FIX_IT">FIX IT</form:option>
-							<form:option value="MISSING">MISSING</form:option>
-							<form:option value="REPLACE">REPLACE</form:option>
-						</form:select>
+						<c:if test="${bookingItem.disabled == true}">
+							<form:select path="shower" class="form-control" disabled="true">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
+						<c:if test="${bookingItem.disabled == false}">
+							<form:select path="shower" class="form-control">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
 					</div>
 				</div>
 
 				<div class="form-group col-md-4">
 					<strong>Thermostat</strong>
 					<div class="form-check">
-						<form:select path="thermostat" class="form-control">
-							<form:option value="GOOD">GOOD</form:option>
-							<form:option value="FIX_IT">FIX IT</form:option>
-							<form:option value="MISSING">MISSING</form:option>
-							<form:option value="REPLACE">REPLACE</form:option>
-						</form:select>
+						<c:if test="${bookingItem.disabled == true}">
+							<form:select path="thermostat" class="form-control"
+								disabled="true">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
+						<c:if test="${bookingItem.disabled == false}">
+							<form:select path="thermostat" class="form-control">
+								<form:option value="GOOD">GOOD</form:option>
+								<form:option value="FIX_IT">FIX IT</form:option>
+								<form:option value="MISSING">MISSING</form:option>
+								<form:option value="REPLACE">REPLACE</form:option>
+							</form:select>
+						</c:if>
 					</div>
 				</div>
 
@@ -292,7 +406,9 @@
 					<strong>Move In Date: </strong>
 					<form:input path="checkInDate" class="form-control" type="date" />
 					<br> <br>
-					<button type="submit" class="btn btn-lg btn-info">Submit</button>
+					<c:if test="${bookingItem.disabled == false}">
+						<button type="submit" class="btn btn-lg btn-info">Submit</button>
+					</c:if>
 				</div>
 			</div>
 		</form:form>

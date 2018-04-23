@@ -91,6 +91,9 @@ public class BookItem {
 	private String errorMessage;
 
 	@Transient
+	private String warningMessage;
+
+	@Transient
 	private boolean disabled;
 
 	@JoinColumn(name = "booking_id", nullable = false)
@@ -251,6 +254,14 @@ public class BookItem {
 
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
+	}
+
+	public String getWarningMessage() {
+		return warningMessage;
+	}
+
+	public void setWarningMessage(String warningMessage) {
+		this.warningMessage = warningMessage;
 	}
 
 }
