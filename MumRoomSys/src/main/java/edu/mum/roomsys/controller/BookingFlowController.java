@@ -130,7 +130,7 @@ public class BookingFlowController {
 	@RequestMapping(path = "/bookings/confirm", method = {RequestMethod.POST})
 	public String selectRoom(@Valid Booking booking, BindingResult bindingResult, ModelMap map, SessionStatus sessionStatus) {
 		if (bindingResult.hasErrors()) {	
-			map.addAttribute("booking", booking);
+			map.addAttribute("booking", map.get("currentBooking"));
 			map.addAttribute("mainPage", "bookingConfirmation.jsp");
 			return "index";
 		}

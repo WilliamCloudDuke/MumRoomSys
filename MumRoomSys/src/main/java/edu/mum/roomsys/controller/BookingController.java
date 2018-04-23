@@ -98,7 +98,6 @@ public class BookingController {
 		return "index";
 	}			
 	
-	
 	@ModelAttribute
 	public void addCommonAttributes(Model model) {
 		model.addAttribute("searchCriteria", new SearchCriteria());		

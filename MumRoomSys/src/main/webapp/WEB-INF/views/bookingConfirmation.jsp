@@ -30,11 +30,11 @@
 			<form:input disabled="true" type="text" path="room.buildNumber" id="buildingNo" class="form-control"/>
 		</div>				
 		<div class="form-group">
-			<label for="roomNo">Building</label> 
+			<label for="roomNo">Room</label> 
 			<form:input disabled="true" type="text" path="room.number" id="roomNo" class="form-control"/>
 		</div>						
 	</fieldset>
 	<fieldset>
-		<form:button type="submit" class="btn btn-primary" value="submit">    Submit   </form:button>
+		<form:button type="submit" class="btn btn-primary" value="submit">Submit</form:button>
 	</fieldset>
 </form:form>

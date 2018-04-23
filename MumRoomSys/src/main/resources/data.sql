@@ -25,6 +25,15 @@ insert into account(id, role_id, student_id, username, email, password, enabled)
 insert into account(id, role_id, student_id, username, email, password, enabled) values(7, 2, 13, 'student2', 'student2@mum.edu', '$2a$10$R1kmVEHTHJ90GcejrpmTdOirALp9ZJ7ugMkPSDRKlOhTc1j92WClW', 1);
 insert into account(id, role_id, student_id, username, email, password, enabled) values(8, 2, 14, 'student3', 'student3@mum.edu', '$2a$10$R1kmVEHTHJ90GcejrpmTdOirALp9ZJ7ugMkPSDRKlOhTc1j92WClW', 1);
 
+insert into account(id, role_id, student_id, username, email, password, enabled) values(60, 2, 50, 'student4', 'student4@mum.edu', '$2a$10$R1kmVEHTHJ90GcejrpmTdOirALp9ZJ7ugMkPSDRKlOhTc1j92WClW', 1);
+insert into account(id, role_id, student_id, username, email, password, enabled) values(61, 2, 51, 'student5', 'student5@mum.edu', '$2a$10$R1kmVEHTHJ90GcejrpmTdOirALp9ZJ7ugMkPSDRKlOhTc1j92WClW', 1);
+insert into account(id, role_id, student_id, username, email, password, enabled) values(62, 2, 52, 'student6', 'student6@mum.edu', '$2a$10$R1kmVEHTHJ90GcejrpmTdOirALp9ZJ7ugMkPSDRKlOhTc1j92WClW', 1);
+insert into account(id, role_id, student_id, username, email, password, enabled) values(63, 2, 53, 'student7', 'student7@mum.edu', '$2a$10$R1kmVEHTHJ90GcejrpmTdOirALp9ZJ7ugMkPSDRKlOhTc1j92WClW', 1);
+insert into account(id, role_id, student_id, username, email, password, enabled) values(64, 2, 54, 'student8', 'student8@mum.edu', '$2a$10$R1kmVEHTHJ90GcejrpmTdOirALp9ZJ7ugMkPSDRKlOhTc1j92WClW', 1);
+insert into account(id, role_id, student_id, username, email, password, enabled) values(65, 2, 55, 'student9', 'student9@mum.edu', '$2a$10$R1kmVEHTHJ90GcejrpmTdOirALp9ZJ7ugMkPSDRKlOhTc1j92WClW', 1);
+insert into account(id, role_id, student_id, username, email, password, enabled) values(66, 2, 56, 'student10', 'student10@mum.edu', '$2a$10$R1kmVEHTHJ90GcejrpmTdOirALp9ZJ7ugMkPSDRKlOhTc1j92WClW', 1);
+
+
 insert into room(id, build_number, number, status) values(15, 140, 1, 'READY');
 insert into room(id, build_number, number, status) values(16, 140, 2, 'READY');
 insert into room(id, build_number, number, status) values(17, 140, 3, 'READY');
