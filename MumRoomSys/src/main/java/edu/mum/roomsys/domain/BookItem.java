@@ -65,8 +65,13 @@ public class BookItem {
 
 	@Column(length = 50, nullable = false)
 	@Enumerated(EnumType.STRING)
-	private ItemStatus thermostat;
+	private ItemStatus shower;
 
+	@Column(length = 50, nullable = false)
+	@Enumerated(EnumType.STRING)
+	private ItemStatus thermostat;
+	
+	
 	@JoinColumn(name = "booking_id")
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Booking booking;
@@ -186,4 +191,14 @@ public class BookItem {
 	public void setItemType(BookingItemType itemType) {
 		this.itemType = itemType;
 	}
+
+	public ItemStatus getShower() {
+		return shower;
+	}
+
+	public void setShower(ItemStatus shower) {
+		this.shower = shower;
+	}
+	
+	
 }

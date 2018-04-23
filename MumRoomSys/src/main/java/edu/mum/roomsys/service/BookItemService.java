@@ -1,8 +1,8 @@
 package edu.mum.roomsys.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import edu.mum.roomsys.dao.BookItemDao;
@@ -14,7 +14,12 @@ public class BookItemService {
 	@Autowired
 	private BookItemDao bookItemDao;
 
-	public List<BookItem> findByBookingAndBookingItemTypeLikeNew(int studentId, int bookingId) {
-		return bookItemDao.findByBookingAndBookingItemTypeLikeNew(studentId, bookingId);
+	public BookItem findByBookingAndBookingItemTypeLikeNew(int studentId, int bookingId) {
+		PageRequest pr = new PageRequest(0, 1);
+		Page<BookItem> pageBookItem = bookItemDao.findByBookingAndBookingItemTypeLikeNew(studentId, bookingId, pr);
+		if (pageBookItem.hasContent()) {
+			return pageBookItem.getContent().get(0);
+		}
+		return null;
 	}
 }

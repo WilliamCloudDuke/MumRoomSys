@@ -33,10 +33,14 @@ insert into room(id, build_number, number, status) values(22, 142, 2, 'READY');
 insert into room(id, build_number, number, status) values(23, 142, 3, 'MAINTENANCE');
 
 insert into booking(id,room_id,student_id,move_in_date,status) values(30,15,12,'2018-04-25','NEW');
+insert into booking(id,room_id,student_id,move_in_date,status) values(33,15,12,'2018-04-21','NEW');
+
 insert into booking(id,room_id,student_id,move_in_date,status) values(31,16,13,'2018-04-27','NEW');
 insert into booking(id,room_id,student_id,move_in_date,status) values(32,17,14,'2018-04-28','NEW');
 
 insert into request(id,student_id,type,description) values(40,12,'MAINTENANCE','Test Request 1');
 insert into request(id,student_id,type,description) values(41,13,'CHANGING_ROOM','Test Request 2');
+
+INSERT INTO book_item (id, blinds, closet, counter, floor, item_type, mirror, screens, sink, shower, thermostat, towel, walls, windows, booking_id) VALUES ('1', 'GOOD', 'MISSING', 'REPLACE', 'GOOD', 'MOVED_IN', 'MISSING', 'REPLACE', 'GOOD', 'REPLACE', 'MISSING', 'GOOD', 'REPLACE', 'REPLACE', '30');
 
 

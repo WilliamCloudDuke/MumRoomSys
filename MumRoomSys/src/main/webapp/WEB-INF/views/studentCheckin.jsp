@@ -1,208 +1,230 @@
-<div class="container">
-	<h1 class="well">Check in Form</h1>
-	<div class="col-lg-12 well">
-		<div class="row">
-			<form>
-				<div class="col-sm-12">
-					<div class="row">
-						<div class="col-sm-6 form-group">
-							<label>User name</label> <input type="text"
-								placeholder="Enter First Name Here.." class="form-control"
-								value="${bookingNew.student.name}" readonly="readonly">
-						</div>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+
+<table class="table table-hover table-striped">
+	<thead class="thead-dark">
+		<h1 class="well">Check in Form</h1>
+		<c:url var="post_url" value="/student/checkin/0" />
+		<form:form class="form-inline my-2 my-lg-0"
+			modelAttribute="bookingNew" action="${post_url}" method="post">
+
+
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<strong>Student Name</strong>
+					<form:input path="student.name" class="form-control" type="text"
+						placeholder="Student name" readonly="true" />
+				</div>
+				<div class="form-group col-md-4">
+					<strong>Building number</strong>
+					<form:input path="room.buildNumber" class="form-control"
+						type="text" placeholder="Building number" readonly="true" />
+				</div>
+			</div>
+
+
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<strong>Room Number</strong>
+					<form:input path="room.number" class="form-control" type="text"
+						placeholder="Room number" readonly="true" />
+				</div>
+				<div class="form-group col-md-4">
+					<strong>Phone number</strong>
+					<form:input path="student.phone" class="form-control" type="text"
+						placeholder="Phone number" readonly="true" />
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<strong>Email Address</strong>
+					<form:input path="student.email" class="form-control" type="text"
+						placeholder="Email Address" readonly="true" />
+				</div>
+			</div>
+		</form:form>
+	</thead>
+</table>
+
+
+<table class="table table-hover table-striped">
+	<thead class="thead-dark">
+		<h3 class="items">FURNITURE ITEMS</h3>
+		<!-- ROOM ITEMS -->
+		<form:form modelAttribute="bookingItemNew" action="${post_url}"
+			method="post" class="form-inline my-2 my-lg-0">
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<strong>Walls</strong>
+					<div class="form-check">
+						<form:select path="walls" class="form-control">
+							<form:option value="GOOD">GOOD</form:option>
+							<form:option value="FIX_IT">FIX IT</form:option>
+							<form:option value="MISSING">MISSING</form:option>
+							<form:option value="REPLACE">REPLACE</form:option>
+						</form:select>
 					</div>
+				</div>
 
-					<div class="row">
-						<div class="col-sm-4 form-group">
-							<label>Building</label> <input type="text"
-								value="${bookingNew.room.buildNumber}" placeholder="Building.." class="form-control" readonly="readonly">
-						</div>
-						<div class="col-sm-4 form-group">
-							<label>Room Number</label> <input type="text"
-								value="${bookingNew.room.number}" placeholder="Room Number.." class="form-control" readonly="readonly">
-						</div>
-
+				<div class="form-group col-md-4">
+					<strong>Windows</strong>abel>
+					<div class="form-check">
+						<form:select path="windows" class="form-control">
+							<form:option value="GOOD">GOOD</form:option>
+							<form:option value="FIX_IT">FIX IT</form:option>
+							<form:option value="MISSING">MISSING</form:option>
+							<form:option value="REPLACE">REPLACE</form:option>
+						</form:select>
 					</div>
-					<div class="form-group">
-						<label>Phone Number</label> <input type="text"
-							value="${bookingNew.student.phone}" placeholder="Phone Number.." class="form-control" readonly="readonly">
+				</div>
+
+
+				<div class="form-group col-md-4">
+					<strong>Screens</strong>
+					<div class="form-check">
+						<form:select path="screens" class="form-control">
+							<form:option value="GOOD">GOOD</form:option>
+							<form:option value="FIX_IT">FIX IT</form:option>
+							<form:option value="MISSING">MISSING</form:option>
+							<form:option value="REPLACE">REPLACE</form:option>
+						</form:select>
 					</div>
-					<div class="form-group">
-						<label>Email Address</label> <input type="text"
-							value="${bookingNew.student.email}"  placeholder="Email.." class="form-control" readonly="readonly">
+				</div>
+
+
+				<div class="form-group col-md-4">
+					<strong>Blinds</strong>
+					<div class="form-check">
+					
+						<form:select path="blinds" class="form-control">
+							<form:option value="GOOD">GOOD</form:option>
+							<form:option value="FIX_IT">FIX IT</form:option>
+							<form:option value="MISSING">MISSING</form:option>
+							<form:option value="REPLACE">REPLACE</form:option>
+						</form:select>
 					</div>
-					<div class="row items">
-						<h3 class="items">FURNITURE ITEMS</h3>
-						<div class="col-sm-4 form-group">
-							<label>Blinds</label>
-							<div class="form-check">
-								<div>
-									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios1" value="good"
-										checked> <label class="form-check-label"
-										for="exampleRadios"> Good </label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios2" value="fixit">
-									<label class="form-check-label" for="exampleRadios2">
-										Fix it </label>
-								</div>
-								<div class="form-check disabled">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios3" value="missing">
-									<label class="form-check-label" for="exampleRadios3">
-										Missing </label>
-								</div>
-								<div class="form-check disabled">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios4" value="replace">
-									<label class="form-check-label" for="exampleRadios4">
-										Replace </label>
-								</div>
-							</div>
+				</div>
 
-						</div>
-						<div class="col-sm-4 form-group">
-							<label>Closet</label>
-							<div class="form-check">
-								<div>
-									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios1" value="good"
-										checked> <label class="form-check-label"
-										for="exampleRadios"> Good </label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios2" value="fixit">
-									<label class="form-check-label" for="exampleRadios2">
-										Fix it </label>
-								</div>
-								<div class="form-check disabled">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios3" value="missing">
-									<label class="form-check-label" for="exampleRadios3">
-										Missing </label>
-								</div>
-								<div class="form-check disabled">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios4" value="replace">
-									<label class="form-check-label" for="exampleRadios4">
-										Replace </label>
-								</div>
-							</div>
 
-						</div>
-						<div class="col-sm-4 form-group">
-							<label>Book Shelf</label>
-							<div class="form-check">
-								<div>
-									<input class="form-check-input" type="radio"
-										name="exampleRadios2" id="exampleRadios1" value="option1"
-										checked> <label class="form-check-label"
-										for="exampleRadios"> Good </label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios2" id="exampleRadios2" value="option2">
-									<label class="form-check-label" for="exampleRadios">
-										Bad </label>
-								</div>
-								<div class="form-check disabled">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios2" id="exampleRadios3" value="option3">
-									<label class="form-check-label" for="exampleRadios">
-										Absent </label>
-								</div>
-							</div>
-
-						</div>
-
+				<div class="form-group col-md-4">
+					<strong>Sink</strong>
+					<div class="form-check">
+					
+						<form:select path="sink" class="form-control">
+							<form:option value="GOOD">GOOD</form:option>
+							<form:option value="FIX_IT">FIX IT</form:option>
+							<form:option value="MISSING">MISSING</form:option>
+							<form:option value="REPLACE">REPLACE</form:option>
+						</form:select>
 					</div>
-					<div class="row items">
-						<h3 class="items">ROOM</h3>
-						<div class="col-sm-4 form-group">
-							<label>Windows</label>
-							<div class="form-check">
-								<div>
-									<input class="form-check-input" type="radio"
-										name="exampleRadios3" id="exampleRadios1" value="option1"
-										checked> <label class="form-check-label"
-										for="exampleRadios1"> Good </label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios3" id="exampleRadios2" value="option2">
-									<label class="form-check-label" for="exampleRadios2">
-										Bad </label>
-								</div>
-								<div class="form-check disabled">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios3" id="exampleRadios3" value="option3">
-									<label class="form-check-label" for="exampleRadios3">
-										Absent </label>
-								</div>
-							</div>
+				</div>
 
-						</div>
-						<div class="col-sm-4 form-group">
-							<label>Blinds</label>
-							<div class="form-check">
-								<div>
-									<input class="form-check-input" type="radio"
-										name="exampleRadios4" id="exampleRadios1" value="option1"
-										checked> <label class="form-check-label"
-										for="exampleRadios"> Good </label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios4" id="exampleRadios2" value="option2">
-									<label class="form-check-label" for="exampleRadios">
-										Bad </label>
-								</div>
-								<div class="form-check disabled">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios4" id="exampleRadios3" value="option3">
-									<label class="form-check-label" for="exampleRadios">
-										Absent </label>
-								</div>
-							</div>
-
-						</div>
-						<div class="col-sm-4 form-group">
-							<label>Floors</label>
-							<div class="form-check">
-								<div>
-									<input class="form-check-input" type="radio"
-										name="exampleRadios2" id="exampleRadios1" value="option1"
-										checked> <label class="form-check-label"
-										for="exampleRadios"> Carpet </label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios2" id="exampleRadios2" value="option2">
-									<label class="form-check-label" for="exampleRadios">
-										Tile </label>
-								</div>
-								<div class="form-check disabled">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios2" id="exampleRadios3" value="option3">
-									<label class="form-check-label" for="exampleRadios">
-										None </label>
-								</div>
-							</div>
-
-						</div>
-
+				<div class="form-group col-md-4">
+					<strong>Counter</strong>
+					<div class="form-check">
+					
+						<form:select path="counter" class="form-control">
+							<form:option value="GOOD">GOOD</form:option>
+							<form:option value="FIX_IT">FIX IT</form:option>
+							<form:option value="MISSING">MISSING</form:option>
+							<form:option value="REPLACE">REPLACE</form:option>
+						</form:select>
 					</div>
+				</div>
 
+				<div class="form-group col-md-4">
+					<strong>Mirror</strong>
+					<div class="form-check">
+					
+						<form:select path="mirror" class="form-control">
+							<form:option value="GOOD">GOOD</form:option>
+							<form:option value="FIX_IT">FIX IT</form:option>
+							<form:option value="MISSING">MISSING</form:option>
+							<form:option value="REPLACE">REPLACE</form:option>
+						</form:select>
+					</div>
+				</div>
+
+				<div class="form-group col-md-4">
+					<strong>Floor</strong>
+					<div class="form-check">
+					
+						<form:select path="floor" class="form-control">
+							<form:option value="GOOD">GOOD</form:option>
+							<form:option value="FIX_IT">FIX IT</form:option>
+							<form:option value="MISSING">MISSING</form:option>
+							<form:option value="REPLACE">REPLACE</form:option>
+						</form:select>
+					</div>
+				</div>
+
+
+				<div class="form-group col-md-4">
+					<strong>Closet</strong>
+					<div class="form-check">
+					
+						<form:select path="closet" class="form-control">
+							<form:option value="GOOD">GOOD</form:option>
+							<form:option value="FIX_IT">FIX IT</form:option>
+							<form:option value="MISSING">MISSING</form:option>
+							<form:option value="REPLACE">REPLACE</form:option>
+						</form:select>
+					</div>
+				</div>
+				
+				
+				<div class="form-group col-md-4">
+					<strong>Towel</strong>
+					<div class="form-check">
+						<form:select path="towel" class="form-control">
+							<form:option value="GOOD">GOOD</form:option>
+							<form:option value="FIX_IT">FIX IT</form:option>
+							<form:option value="MISSING">MISSING</form:option>
+							<form:option value="REPLACE">REPLACE</form:option>
+						</form:select>
+					</div>
+				</div>
+
+				<div class="form-group col-md-4">
+					<strong>Shower</strong>
+					<div class="form-check">
+						<form:select path="shower" class="form-control">
+							<form:option value="GOOD">GOOD</form:option>
+							<form:option value="FIX_IT">FIX IT</form:option>
+							<form:option value="MISSING">MISSING</form:option>
+							<form:option value="REPLACE">REPLACE</form:option>
+						</form:select>
+					</div>
+				</div>
+
+				<div class="form-group col-md-4">
+					<strong>Thermostat</strong>
+					<div class="form-check">
+						<form:select path="thermostat" class="form-control">
+							<form:option value="GOOD">GOOD</form:option>
+							<form:option value="FIX_IT">FIX IT</form:option>
+							<form:option value="MISSING">MISSING</form:option>
+							<form:option value="REPLACE">REPLACE</form:option>
+						</form:select>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row items">
+				<div>
 					<strong>Move In Date: </strong> <input id="date" type="date">
 					<br> <input type="checkbox" name="checkbox" value="check"
 						id="agree" /> I have read and agree to the Terms and Conditions
 					of the residence life. <br>
 					<button type="button" class="btn btn-lg btn-info">Submit</button>
 				</div>
-			</form>
-		</div>
-	</div>
-</div>
+			</div>
+		</form:form>
+	</thead>
+</table>
+
