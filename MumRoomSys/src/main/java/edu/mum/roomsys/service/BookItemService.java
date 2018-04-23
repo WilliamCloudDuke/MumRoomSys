@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import edu.mum.roomsys.dao.BookItemDao;
 import edu.mum.roomsys.domain.BookItem;
+import edu.mum.roomsys.domain.Booking;
 import edu.mum.roomsys.domain.BookingItemType;
 
 @Service
@@ -28,7 +29,8 @@ public class BookItemService {
 	}
 
 	@Transactional(value = TxType.REQUIRED)
-	public void createBookitem(BookItem bookItem) {
+	public void createBookItemMovedIn(BookItem bookItem, Booking bookingToBeUpdated) {
+		bookItem.setBooking(bookingToBeUpdated);
 		bookItem.setItemType(BookingItemType.MOVED_IN);
 		bookItemDao.save(bookItem);
 	}

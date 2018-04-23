@@ -1,5 +1,7 @@
 package edu.mum.roomsys.service;
 
+import java.util.Date;
+
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
@@ -171,8 +173,10 @@ public class BookingService {
 		bookingDao.delete(b);
 	}
 
-	public void setStatusAndMoveInDate(Booking booking) {
-		bookingDao.setStatusAndMoveInDate(booking.getStatus(), booking.getMoveInDate(), booking.getId());
+	@Transactional(value = TxType.REQUIRED)
+	public void updateStatusCkeckInAndMoveInDate(Booking booking, Date checkInDate) {
+		booking.setStatus(BookingStatus.CHECKED_IN);
+		bookingDao.updateStatusAndMoveInDate(booking.getStatus(), checkInDate, booking.getId());
 	}
 
 }
