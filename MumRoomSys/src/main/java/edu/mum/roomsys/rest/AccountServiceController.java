@@ -28,6 +28,12 @@ public class AccountServiceController {
 	@Autowired
 	private ModelMapper modelMapper;
 	
+	@RequestMapping(value = { "/api/accounts" }, method = { RequestMethod.GET })
+	@ResponseBody
+	public Iterable<Account> getAllAccount() {
+		return accountService.findAll();
+	}
+	
 	@RequestMapping(value = { "/api/accounts" }, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody

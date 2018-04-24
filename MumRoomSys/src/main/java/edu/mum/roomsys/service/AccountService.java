@@ -22,6 +22,10 @@ public class AccountService {
 	@Autowired
 	private RoleDao roleDao;
 	
+	public Iterable<Account> findAll() {
+		return accountDao.findAll();
+	}
+	
 	public Account findByUsername(String name) {
 		return accountDao.findByUsername(name);
 	}
