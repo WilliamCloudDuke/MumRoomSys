@@ -48,6 +48,7 @@
 		</fieldset>
 	</form:form>
 	<h5>Enable/Disable Student</h5>
+	<h6>(Lock/unlock Student access)</h6>			
 	<hr/>
 	<form:form modelAttribute="student" action="/student/enable/${student.id}" method="post">
 		<fieldset>
@@ -66,7 +67,8 @@
 		</fieldset>
 	</form:form>
 	<c:if var="canDelete" test="${student.isCanDelete()}">
-		<h5>Enable/Disable Student</h5>
+		<h5>Delete Student</h5>
+		<h6>(Student without room assignment)</h6>		
 		<hr/>
 		<form:form modelAttribute="student" action="/student/delete/${student.id}" method="post">
 			<fieldset>
