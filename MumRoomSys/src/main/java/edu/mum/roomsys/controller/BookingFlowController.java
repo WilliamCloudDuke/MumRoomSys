@@ -142,7 +142,7 @@ public class BookingFlowController {
 		currentBooking.setMoveInDate(booking.getMoveInDate());
 		currentBooking.setMoveOutDate(booking.getMoveOutDate());
 		
-		bookingService.save(currentBooking);
+		bookingService.createBookingRecord(currentBooking);
 		
 		sessionStatus.setComplete();
 		

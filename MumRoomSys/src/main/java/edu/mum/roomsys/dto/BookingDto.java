@@ -10,10 +10,13 @@ public class BookingDto {
 	private int id;
 	
 	@NotNull
-	private int studentId;
+	private String studentEmail;
 	
 	@NotNull
-	private int roomId;
+	private int buildingNumber;
+	
+	@NotNull
+	private int roomNumber;
 	
 	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -21,36 +24,52 @@ public class BookingDto {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date moveOutDate;
-	
-	public int getStudentId() {
-		return studentId;
-	}
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
-	}
-	public int getRoomId() {
-		return roomId;
-	}
-	public void setRoomId(int roomId) {
-		this.roomId = roomId;
-	}
-	public Date getMoveInDate() {
-		return moveInDate;
-	}
-	public void setMoveInDate(Date moveInDate) {
-		this.moveInDate = moveInDate;
-	}
-	public Date getMoveOutDate() {
-		return moveOutDate;
-	}
-	public void setMoveOutDate(Date moveOutDate) {
-		this.moveOutDate = moveOutDate;
-	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	public int getBuildingNumber() {
+		return buildingNumber;
+	}
+
+	public void setBuildingNumber(int buildingNumber) {
+		this.buildingNumber = buildingNumber;
+	}
+
+	public int getRoomNumber() {
+		return roomNumber;
+	}
+
+	public void setRoomNumber(int roomNumber) {
+		this.roomNumber = roomNumber;
+	}
+
+	public Date getMoveInDate() {
+		return moveInDate;
+	}
+
+	public void setMoveInDate(Date moveInDate) {
+		this.moveInDate = moveInDate;
+	}
+
+	public Date getMoveOutDate() {
+		return moveOutDate;
+	}
+
+	public void setMoveOutDate(Date moveOutDate) {
+		this.moveOutDate = moveOutDate;
+	}
+
+	public String getStudentEmail() {
+		return studentEmail;
+	}
+
+	public void setStudentEmail(String studentEmail) {
+		this.studentEmail = studentEmail;
+	}
 }

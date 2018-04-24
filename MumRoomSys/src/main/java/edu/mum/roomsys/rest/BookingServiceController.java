@@ -35,10 +35,11 @@ public class BookingServiceController {
     @ResponseBody
     public BookingDto createBooking(@RequestBody BookingDto bookingDto) throws ParseException {
         Booking booking = modelMapper.map(bookingDto, Booking.class);
-        booking.setStudent(bookingService.findStudentById(bookingDto.getStudentId()));
-        booking.setRoom(bookingService.findRoomById(bookingDto.getRoomId()));
+        booking.setStudent(bookingService.findStudentByEmail(bookingDto.getStudentEmail()));
+        booking.setRoom(bookingService.findReadyRoomByBuildingAndRoom(
+        		bookingDto.getBuildingNumber(), bookingDto.getRoomNumber()));
         
-        Booking bookingCreated = bookingService.save(booking);
+        Booking bookingCreated = bookingService.createBookingRecord(booking);
         
         return modelMapper.map(bookingCreated, BookingDto.class);
     }

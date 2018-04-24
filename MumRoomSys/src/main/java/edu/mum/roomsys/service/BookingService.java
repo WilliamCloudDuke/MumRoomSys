@@ -148,9 +148,17 @@ public class BookingService {
 	public Student findStudentById(int id) {
 		return studentDao.findOne(id);
 	}
+	
+	public Student findStudentByEmail(String email) {
+		return studentDao.findByEmail(email);
+	}
 
 	public Room findRoomById(int id) {
 		return roomDao.findOne(id);
+	}
+	
+	public Room findReadyRoomByBuildingAndRoom(int buildNumber, int number) {
+		return roomDao.findByBuildNumberAndNumberAndStatus(buildNumber, number, RoomStatus.READY);
 	}
 
 	public Booking createBooking(Student student, Room room) {
@@ -162,20 +170,29 @@ public class BookingService {
 	}
 	
 	@Transactional(value = TxType.REQUIRED)
-	public Booking save(Booking booking) {
-		if (booking.getRoom() == null || studentDao.findOne(booking.getStudent().getId()) == null) {
-			throw new RestGenericException("Invalid parameter: student");
+	public Booking createBookingRecord(Booking booking) {
+		if (booking.getStudent() == null) {
+			throw new RestGenericException("Invalid parameter: student is null");
+		}
+		
+		Student student = studentDao.findOne(booking.getStudent().getId());
+		if (student == null) {
+			throw new RestGenericException("Invalid parameter: room is not found");
 		}
 		
 		if (booking.getRoom() == null) {
-			throw new RestGenericException("Invalid parameter: room");
+			throw new RestGenericException("Invalid parameter: room is null");
 		}
+		
 		Room room = roomDao.findOne(booking.getRoom().getId());
 		if (room == null) {
-			throw new RestGenericException("Invalid parameter: room");
+			throw new RestGenericException("Invalid parameter: room is not found");
 		}
+		
 		room.setStatus(RoomStatus.RESERVED);
 		roomDao.save(room);
+		
+		booking.setStudent(student);
 		booking.setStatus(BookingStatus.NEW);
 		return bookingDao.save(booking);
 	}
@@ -188,6 +205,9 @@ public class BookingService {
 		}
 
 		if (b != null) {
+			Room room = roomDao.findOne(b.getRoom().getId());
+			room.setStatus(RoomStatus.READY);
+			roomDao.save(room);
 			bookingDao.delete(b);			
 		}
 	}

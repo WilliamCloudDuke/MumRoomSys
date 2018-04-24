@@ -18,6 +18,8 @@ public interface RoomDao extends PagingAndSortingRepository<Room, Integer> {
 	public Page<Room> findByBuildNumber(int buildNumber, Pageable pageable);
 
 	public Page<Room> findByNumber(int number, Pageable pageable);
+	
+	public Room findByBuildNumberAndNumberAndStatus(int buildNumber, int number, RoomStatus roomStatus);
 
 	@Modifying
 	@Query("update Room r set r.status = :status where r.id = :id")

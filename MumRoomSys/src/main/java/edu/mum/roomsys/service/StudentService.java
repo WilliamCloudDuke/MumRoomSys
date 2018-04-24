@@ -74,6 +74,10 @@ public class StudentService {
 
 	@Transactional(value = TxType.REQUIRED)
 	public void createStudent(Student student) {
+		if (student.getEmail() == null || studentDao.findByEmail(student.getEmail()) != null) {
+			throw new RestGenericException("Invalid parameter: email");
+		}
+		
 		Role role = student.getRole().equals(RoleType.DIRECTOR.toString())
 				? roleDao.findByName(RoleType.DIRECTOR.toString())
 				: roleDao.findByName(RoleType.STUDENT.toString());
@@ -160,6 +164,9 @@ public class StudentService {
 	
 	@Transactional(value = TxType.REQUIRED)	
 	public Student createStudentLogin(Student student) {
+		if (student.getEmail() == null || studentDao.findByEmail(student.getEmail()) != null) {
+			throw new RestGenericException("Invalid parameter: email");
+		}		
 		return studentDao.save(student);
 	}	
 	

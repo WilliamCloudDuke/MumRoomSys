@@ -55,7 +55,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 				}
 			});
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			//ex.printStackTrace();
+			System.out.println(ex.getMessage());
 		}
 	
 		

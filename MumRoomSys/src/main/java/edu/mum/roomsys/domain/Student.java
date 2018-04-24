@@ -29,6 +29,7 @@ public class Student {
 	private String name;
 
 	@Email
+	@NotNull
 	private String email;
 
 	private String phone;
