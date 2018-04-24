@@ -24,6 +24,7 @@ import edu.mum.roomsys.domain.Student;
 import edu.mum.roomsys.dto.PageDto;
 import edu.mum.roomsys.dto.RoomSearchCriteria;
 import edu.mum.roomsys.dto.SearchCriteria;
+import edu.mum.roomsys.rest.RestGenericException;
 import edu.mum.roomsys.util.PagingHelper;
 
 @Service
@@ -38,6 +39,10 @@ public class BookingService {
 
 	@Autowired
 	private StudentDao studentDao;
+	
+	public Iterable<Booking> findAllBookings() {
+		return bookingDao.findAll();
+	}
 
 	public Page<Booking> findAll(int page, int size) {
 		PageRequest pReqest = new PageRequest(page, size, new Sort(Direction.ASC, "moveInDate"));
@@ -155,23 +160,36 @@ public class BookingService {
 		booking.setRoom(room);
 		return booking;
 	}
-
+	
 	@Transactional(value = TxType.REQUIRED)
-	public void save(Booking booking) {
+	public Booking save(Booking booking) {
+		if (booking.getRoom() == null || studentDao.findOne(booking.getStudent().getId()) == null) {
+			throw new RestGenericException("Invalid parameter: student");
+		}
+		
+		if (booking.getRoom() == null) {
+			throw new RestGenericException("Invalid parameter: room");
+		}
 		Room room = roomDao.findOne(booking.getRoom().getId());
+		if (room == null) {
+			throw new RestGenericException("Invalid parameter: room");
+		}
 		room.setStatus(RoomStatus.RESERVED);
 		roomDao.save(room);
-		bookingDao.save(booking);
+		booking.setStatus(BookingStatus.NEW);
+		return bookingDao.save(booking);
 	}
 
 	@Transactional(value = TxType.REQUIRED)
-	public void delete(int id) throws Exception {
+	public void delete(int id) {
 		Booking b = bookingDao.findOne(id);
-		if (b != null && b.getStatus() != BookingStatus.NEW) {
-			throw new Exception("Cannot delete booking");
+		if (b != null && (b.getStatus() != BookingStatus.NEW || b.getBookItems().size() != 0)) {
+			throw new RestGenericException("Cannot delete booking");
 		}
 
-		bookingDao.delete(b);
+		if (b != null) {
+			bookingDao.delete(b);			
+		}
 	}
 
 	@Transactional(value = TxType.REQUIRED)

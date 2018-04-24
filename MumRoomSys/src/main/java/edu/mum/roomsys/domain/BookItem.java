@@ -19,6 +19,8 @@ import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "book_item")
 public class BookItem {
@@ -111,6 +113,7 @@ public class BookItem {
 	@Transient
 	private int studentId;
 
+	@JsonIgnore
 	@JoinColumn(name = "booking_id", nullable = false)
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Booking booking;

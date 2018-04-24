@@ -9,18 +9,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import edu.mum.roomsys.domain.Booking;
 import edu.mum.roomsys.domain.Room;
 import edu.mum.roomsys.domain.Student;
 import edu.mum.roomsys.dto.RoomSearchCriteria;
 import edu.mum.roomsys.dto.SearchCriteria;
+import edu.mum.roomsys.rest.RestGenericException;
 import edu.mum.roomsys.service.BookingService;
 
 @Controller
@@ -150,10 +153,19 @@ public class BookingFlowController {
 	public String deleteBooking(@PathVariable("id") int id) {
 		try {
 			bookingService.delete(id);
-		} catch (Exception e) {
+		} catch (RestGenericException e) {
 			e.printStackTrace();
+			throw e;
 		}
 		return "redirect:/bookings/search/status/0?bookingStatus=NEW";
 	}		
 	
+	
+	@ExceptionHandler(value= {RestGenericException.class})
+	public ModelAndView handleException(Exception e) {
+		ModelAndView mv = new ModelAndView();
+		mv.getModel().put("e", e);
+		mv.setViewName("genericException");
+		return mv;
+	}
 }

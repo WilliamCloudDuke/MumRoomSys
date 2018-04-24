@@ -12,7 +12,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import edu.mum.roomsys.domain.Account;
+import edu.mum.roomsys.domain.Booking;
 import edu.mum.roomsys.dto.AccountDto;
+import edu.mum.roomsys.dto.BookingDto;
 
 @Configuration
 @ImportResource({ "classpath:webFlowConfig.xml" })
@@ -41,6 +43,14 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 				@Override
 				protected void configure() {
 					map().setRole(null);
+					map().setStudent(null);
+				}
+			});
+			
+			mapper.createTypeMap(BookingDto.class,  Booking.class).addMappings(new PropertyMap<BookingDto, Booking>() {
+				@Override
+				protected void configure() {
+					map().setRoom(null);
 					map().setStudent(null);
 				}
 			});

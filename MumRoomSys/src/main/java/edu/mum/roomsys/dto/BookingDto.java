@@ -1,15 +1,26 @@
 package edu.mum.roomsys.dto;
 
-import java.io.Serializable;
+import java.sql.Date;
 
-public class BookingDto implements Serializable {
-	private static final long serialVersionUID = 1L;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+public class BookingDto {
+	private int id;
+	
+	@NotNull
 	private int studentId;
+	
+	@NotNull
 	private int roomId;
-	private String studentName;
-	private String studentEmail;
-	private String buildingNumner;
-	private String roomNumber;
+	
+	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date moveInDate;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date moveOutDate;
 	
 	public int getStudentId() {
 		return studentId;
@@ -23,29 +34,23 @@ public class BookingDto implements Serializable {
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
-	public String getStudentName() {
-		return studentName;
+	public Date getMoveInDate() {
+		return moveInDate;
 	}
-	public void setStudentName(String studentName) {
-		this.studentName = studentName;
+	public void setMoveInDate(Date moveInDate) {
+		this.moveInDate = moveInDate;
 	}
-	public String getStudentEmail() {
-		return studentEmail;
+	public Date getMoveOutDate() {
+		return moveOutDate;
 	}
-	public void setStudentEmail(String studentEmail) {
-		this.studentEmail = studentEmail;
+	public void setMoveOutDate(Date moveOutDate) {
+		this.moveOutDate = moveOutDate;
 	}
-	public String getBuildingNumner() {
-		return buildingNumner;
+	public int getId() {
+		return id;
 	}
-	public void setBuildingNumner(String buildingNumner) {
-		this.buildingNumner = buildingNumner;
-	}
-	public String getRoomNumber() {
-		return roomNumber;
-	}
-	public void setRoomNumber(String roomNumber) {
-		this.roomNumber = roomNumber;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Room {
 	@Id
@@ -32,10 +35,10 @@ public class Room {
 	@OneToOne(mappedBy = "room", fetch = FetchType.EAGER)
 	private RoomItem item;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "room")
 	private List<Booking> bookings;
 
-	
 	public Room() {
 		super();
 		bookings = new ArrayList<>();
