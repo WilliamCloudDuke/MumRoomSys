@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -32,6 +31,7 @@ public class Room {
 	@Column(length = 100, nullable = false)
 	private RoomStatus status;
 
+	@JsonIgnore
 	@OneToOne(mappedBy = "room", fetch = FetchType.EAGER)
 	private RoomItem item;
 

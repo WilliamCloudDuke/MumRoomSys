@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class RoomItem {
 
@@ -64,6 +66,7 @@ public class RoomItem {
 	@Column(length = 50, nullable = false)
 	private ItemStatus thermostat;
 
+	@JsonIgnore
 	@JoinColumn(name = "room_id", nullable = false)
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Room room;

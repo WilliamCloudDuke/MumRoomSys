@@ -1,5 +1,7 @@
 package edu.mum.roomsys.dao;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
@@ -11,6 +13,10 @@ import edu.mum.roomsys.domain.Room;
 import edu.mum.roomsys.domain.RoomStatus;
 
 public interface RoomDao extends PagingAndSortingRepository<Room, Integer> {
+	public List<Room> findByStatus(RoomStatus status);
+	
+	public List<Room> findByStatusIsNotIn(List<RoomStatus> status);
+	
 	public Page<Room> findByStatus(RoomStatus status, Pageable pageable);
 
 	public Page<Room> findByBuildNumberAndNumber(int buildNumber, int number, Pageable pageable);

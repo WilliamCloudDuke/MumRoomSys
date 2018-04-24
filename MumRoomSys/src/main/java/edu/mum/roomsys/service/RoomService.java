@@ -1,5 +1,7 @@
 package edu.mum.roomsys.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
@@ -9,6 +11,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+
+import com.google.common.collect.Lists;
 
 import edu.mum.roomsys.dao.RoomDao;
 import edu.mum.roomsys.domain.Room;
@@ -25,6 +29,11 @@ public class RoomService {
 		return roomDao.findAll(pReqest);
 	}
 
+	public List<Room> findAvailableRoom() {
+		List<RoomStatus> status = Lists.newArrayList(RoomStatus.OCCUPIED, RoomStatus.RESERVED);
+		return roomDao.findByStatusIsNotIn(status);
+	}
+	
 	@Transactional(value = TxType.REQUIRED)
 	public void updateStatusOccupied(Room room) {
 		room.setStatus(RoomStatus.OCCUPIED);
