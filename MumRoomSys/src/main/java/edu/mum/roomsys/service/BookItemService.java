@@ -35,6 +35,13 @@ public class BookItemService {
 		bookItemDao.save(bookItem);
 	}
 
+	@Transactional(value = TxType.REQUIRED)
+	public void createBookItemMovedOut(BookItem bookItem, Booking bookingToBeUpdated) {
+		bookItem.setBooking(bookingToBeUpdated);
+		bookItem.setItemType(BookingItemType.MOVED_OUT);
+		bookItemDao.save(bookItem);
+	}
+	
 	public BookItem findById(int id) {
 		return bookItemDao.findOne(id);
 	}

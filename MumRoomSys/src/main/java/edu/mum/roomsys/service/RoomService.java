@@ -31,4 +31,10 @@ public class RoomService {
 		roomDao.updateStatus(room.getStatus(), room.getId());
 	}
 
+	@Transactional(value = TxType.REQUIRED)
+	public void updateStatus(Room room, RoomStatus roomStatus) {
+		room.setStatus(roomStatus);
+		roomDao.updateStatus(room.getStatus(), room.getId());
+	}
+
 }

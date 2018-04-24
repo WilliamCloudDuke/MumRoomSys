@@ -6,7 +6,7 @@
 
 <table class="table table-hover table-striped">
 	<thead class="thead-dark">
-		<h1 class="well">Check in Form</h1>
+		<h1 class="well">Check out Form</h1>
 
 		<c:if test="${not empty bookingItem.successMessage}">
 			<form:form class="form-inline my-2 my-lg-0">
@@ -79,7 +79,7 @@
 	<thead class="thead-dark">
 		<h3 class="items">FURNITURE ITEMS</h3>
 		<!-- ROOM ITEMS -->
-		<form:form modelAttribute="bookingItem" action="/student/checkin/add"
+		<form:form modelAttribute="bookingItem" action="/student/checkout/add"
 			method="post" class="form-inline my-2 my-lg-0">
 			<div class="form-row">
 				<div class="form-group col-md-4">
@@ -355,6 +355,48 @@
 			</div>
 
 			<div class="form-group">
+				<div class="form-group col-md-6">
+					<strong>Please Note Any Needed Repairs</strong>
+					<c:if test="${bookingItem.disabled == false}">
+						<form:textarea path="comment" rows="10" cols="30"
+							class="form-control z-depth-1"
+							placeholder="Write something here..." />
+					</c:if>
+					<c:if test="${bookingItem.disabled == true}">
+						<form:textarea path="comment" rows="10" cols="30"
+							class="form-control z-depth-1"
+							placeholder="Write something here..." readonly="true" />
+					</c:if>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="form-group col-md-6">
+					<strong>Room Status</strong>
+					<c:if test="${bookingItem.disabled == false}">
+						<form:select path="roomStatus" class="form-control">
+							<form:option value="READY">READY</form:option>
+							<form:option value="OCCUPIED">OCCUPIED</form:option>
+							<form:option value="MAINTENANCE">MAINTENANCE</form:option>
+							<form:option value="NEEDS_CLEANING">NEEDS CLEANING</form:option>
+							<form:option value="RESERVED">RESERVED</form:option>
+						</form:select>
+					</c:if>
+					<c:if test="${bookingItem.disabled == true}">
+						<form:select path="roomStatus" class="form-control"
+							disabled="true">
+							<form:option value="READY">READY</form:option>
+							<form:option value="OCCUPIED">OCCUPIED</form:option>
+							<form:option value="MAINTENANCE">MAINTENANCE</form:option>
+							<form:option value="NEEDS_CLEANING">NEEDS CLEANING</form:option>
+							<form:option value="RESERVED">RESERVED</form:option>
+						</form:select>
+					</c:if>
+
+				</div>
+			</div>
+
+			<div class="form-group">
 				<strong><label class="col-xs-3 control-label">Terms
 						of use</label></strong>
 				<div class="col-xs-9">
@@ -408,8 +450,9 @@
 
 			<div class="row items">
 				<div>
-					<strong>Move In Date: </strong>
-					<form:input path="checkInDate" class="form-control" type="date" />
+					<strong>Move out Date: </strong>
+					<form:input path="checkOutDate" class="form-control" type="date" />
+					<form:hidden path="studentId" value="${bookingItem.studentId}" />
 					<br> <br>
 					<c:if test="${bookingItem.disabled == false}">
 						<button type="submit" class="btn btn-lg btn-info">Submit</button>

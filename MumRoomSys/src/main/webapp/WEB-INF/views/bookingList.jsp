@@ -81,7 +81,8 @@
 			<th scope="col" class="col-4">Moved out Date</th>	
 			<th scope="col" class="col">Status</th>		
 			<th scope="col" class="col-4">Check in Details</th>	
-			<th scope="col" class="col-4">Check out Details</th>			
+			<th scope="col" class="col-4">Check out Details</th>
+			<th scope="col" class="col-4">Create Check out</th>			
 			<th scope="col" class="col-4">Remove</th>										
 		</tr>	
 	</thead>
@@ -98,7 +99,7 @@
 					<td>${booking.room.buildNumber}</td>			
 					<td>${booking.room.number}</td>									
 					<td>${booking.moveInDate}</td>
-					<td>${booking.moveOutDate}</td>		
+					<td>${booking.moveOutDate}</td>
 					<td>${booking.status}</td>								
 					<td>
 						<c:set var="checkinRecord" value="${booking.getCheckinRecord()}"/>
@@ -110,6 +111,12 @@
 						<c:set var="checkoutRecord" value="${booking.getCheckoutRecord()}"/>
 						<c:if test="${checkoutRecord != null}">
 							<a href='<c:url value="/student/checkout/${booking.id}"/>'>Details</a>
+						</c:if>						
+					</td>	
+					<td>
+						<c:set var="checkinRecord" value="${booking.getCheckinRecord()}"/>
+						<c:if test="${checkinRecord != null}">
+							<a href='<c:url value="/student/checkout/create/${booking.id}"/>'>Check out</a>
 						</c:if>						
 					</td>	
 					<td>

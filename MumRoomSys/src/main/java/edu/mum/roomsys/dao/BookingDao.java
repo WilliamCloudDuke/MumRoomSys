@@ -33,4 +33,9 @@ public interface BookingDao extends PagingAndSortingRepository<Booking, Integer>
 	public int updateStatusAndMoveInDate(@Param("status") BookingStatus status, @Param("moveInDate") Date moveInDate,
 			@Param("id") int id);
 
+	@Modifying
+	@Query("update Booking b set b.status = :status, b.moveOutDate = :moveOutDate, b.comment = :comment where b.id = :id")
+	public int updateStatusMoveOutDateAndComment(@Param("status") BookingStatus status, @Param("moveOutDate") Date moveOutDate, @Param("comment") String comment,
+			@Param("id") int id);
+
 }
