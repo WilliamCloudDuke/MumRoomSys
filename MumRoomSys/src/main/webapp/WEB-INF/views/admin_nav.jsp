@@ -23,7 +23,7 @@
 	           
 				<a href="#report" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Report </span></a>       
 	           <div class="collapse" id="report" data-parent="#sidebar">
-	               <a href="#" class="list-group-item" data-parent="#report">Available Room</a>
+	               <a href="/rooms/available" class="list-group-item" data-parent="#report">Available Rooms</a>
 	               <a href="#" class="list-group-item" data-parent="#report">Booking History</a>
 	           </div>	 	                
 	       </div>

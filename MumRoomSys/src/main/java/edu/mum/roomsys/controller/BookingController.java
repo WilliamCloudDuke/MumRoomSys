@@ -33,7 +33,7 @@ public class BookingController {
 		Page<Booking> currentPage = bookingService.findAll(pageNo, pageSize);
 		model.addAttribute("bookings", currentPage);
 		model.addAttribute("page", bookingService.getPage(currentPage, pageNo));
-		 return "index";
+		return "index";
 	}
 	
 	@RequestMapping(path = "/bookings/search/{page}", method = {RequestMethod.POST})

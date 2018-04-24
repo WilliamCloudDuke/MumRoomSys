@@ -31,7 +31,7 @@ public class RoomService {
 
 	public List<Room> findAvailableRoom() {
 		List<RoomStatus> status = Lists.newArrayList(RoomStatus.OCCUPIED, RoomStatus.RESERVED);
-		return roomDao.findByStatusIsNotIn(status);
+		return roomDao.findByStatusIsNotInOrderByBuildNumberAscNumberAsc(status);
 	}
 	
 	@Transactional(value = TxType.REQUIRED)
