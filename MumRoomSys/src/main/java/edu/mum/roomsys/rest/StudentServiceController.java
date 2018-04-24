@@ -41,6 +41,21 @@ public class StudentServiceController {
         return convertToDto(studentCreated);
     }
 
+	@RequestMapping(value = { "/api/students" }, method = RequestMethod.PUT)
+    @ResponseBody
+    public StudentDto updateStudent(@RequestBody StudentDto studentDto) throws ParseException {
+        Student student = convertToEntity(studentDto);
+        Student studentUpdate = studentService.updateStudentProfile(student);
+        return convertToDto(studentUpdate);
+    }
+	
+	@RequestMapping(value = { "/api/students" }, method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteStudent(@RequestBody StudentDto studentDto) throws ParseException {
+        Student student = convertToEntity(studentDto);
+        studentService.deleteStudentProfile(student);
+    }	
+	
 	private StudentDto convertToDto(Student student) {
 		return modelMapper.map(student, StudentDto.class);
 	}	

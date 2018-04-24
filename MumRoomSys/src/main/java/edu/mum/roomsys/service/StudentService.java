@@ -21,6 +21,8 @@ import edu.mum.roomsys.domain.RoleType;
 import edu.mum.roomsys.domain.Student;
 import edu.mum.roomsys.dto.PageDto;
 import edu.mum.roomsys.dto.SearchCriteria;
+import edu.mum.roomsys.rest.RestGenericException;
+import edu.mum.roomsys.rest.RestGenericExceptionAdvice;
 import edu.mum.roomsys.util.PagingHelper;
 
 @Service
@@ -130,10 +132,33 @@ public class StudentService {
 		return student;
 	}
 
+	@Transactional(value = TxType.REQUIRED)	
 	public Student createStudentProfile(Student student) {
 		return studentDao.save(student);
 	}
 	
+	@Transactional(value = TxType.REQUIRED)	
+	public Student updateStudentProfile(Student student) {
+		Student current = studentDao.findOne(student.getId());
+		if (current != null && student.getEmail().equals(current.getEmail())) {
+			current.setName(student.getName());
+			current.setPhone(student.getPhone());
+			return studentDao.save(current);
+		}
+		throw new RestGenericException("Invalid parameters: Student id and email");
+	}	
+	
+	@Transactional(value = TxType.REQUIRED)	
+	public void deleteStudentProfile(Student student) {
+		Student current = studentDao.findOne(student.getId());
+		if (current != null && student.getBookings().size() == 0) {
+			studentDao.delete(current);
+			return;
+		}
+		throw new RestGenericException("Invalid parameters: Student not found or having booking data");
+	}		
+	
+	@Transactional(value = TxType.REQUIRED)	
 	public Student createStudentLogin(Student student) {
 		return studentDao.save(student);
 	}	

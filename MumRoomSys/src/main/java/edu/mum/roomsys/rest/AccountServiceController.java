@@ -42,6 +42,13 @@ public class AccountServiceController {
         Account accountCreated = accountService.createAccount(account);
         return convertToDto(accountCreated);
     }
+	
+	@RequestMapping(value = { "/api/resetpassword" }, method = RequestMethod.POST)
+    @ResponseBody
+    public void resetPassword(@RequestBody AccountDto accountDto) throws ParseException {
+        Account account = convertToEntity(accountDto);
+        accountService.resetPassword(account);
+    }	
 
 	private AccountDto convertToDto(Account account) {
 		AccountDto acctDto = modelMapper.map(account, AccountDto.class);
