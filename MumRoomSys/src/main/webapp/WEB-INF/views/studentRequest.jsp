@@ -44,7 +44,17 @@
 		</div>
 		
 		</div>	
-		
+			<table class="tablerequest">
+		<tr><th>studentname</th><th>Request type</th><th>Request Description</th></tr>
+	 <c:forEach var="request" items="${requests.getContent()}">
+			<tr >
+				<td >${request.student.name}</td>
+				<td>${request.type}</td>	
+				<td>${request.description}</td>	
+				
+			</tr>								
+	</c:forEach> 	
+</table>	
 		
 					
 		

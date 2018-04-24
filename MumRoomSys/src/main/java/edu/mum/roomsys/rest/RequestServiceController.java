@@ -17,12 +17,7 @@ package edu.mum.roomsys.rest;
 		@Autowired
 		private RequestService requestService;
 		
-		@RequestMapping(value= {"/rest/requests"}, method = {RequestMethod.GET})
-		public @ResponseBody Iterable<Request> getRequest() {
-			return requestService.findAll(0, 1);
-		}
-
-		@RequestMapping(value= {"/rest/requestsType"}, method = {RequestMethod.GET})
+		@RequestMapping(value= {"/api/requests"}, method = {RequestMethod.GET})
 		public @ResponseBody Iterable<Request> getRequestType() {
 			return requestService.findAll();
 		}

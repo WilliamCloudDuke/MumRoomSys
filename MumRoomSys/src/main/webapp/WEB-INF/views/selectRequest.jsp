@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p> want to select></p>
+${ListDisplay}
 </body>
 </html>

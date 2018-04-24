@@ -23,6 +23,7 @@ import edu.mum.roomsys.dto.PageDto;
 import edu.mum.roomsys.dto.RequestSearchCriteria;
 import edu.mum.roomsys.dto.RoomSearchCriteria;
 import edu.mum.roomsys.dto.SearchCriteria;
+import edu.mum.roomsys.rest.AccountServiceController;
 import edu.mum.roomsys.util.PagingHelper;
 
 
@@ -30,23 +31,16 @@ import edu.mum.roomsys.util.PagingHelper;
 public class RequestService {
 	@Autowired
 	private RequestDao requestDao;
-	
+	@Autowired
+	private AccountDao accntfinder;
 	private Request newRequest;
 
-	@Autowired
-	private AccountDao accountDao;
 	
 	public Iterable<Request> findAll() {
 		return requestDao.findAll();
 	}	
 	
 
-	public Account findByUsername(String userName) {
-		return accountDao.findByUsername(userName);
-	}
-
-	
-	
 	public Request createRequest(RequestType req,String disc,Student std) {
 		newRequest=new Request();
 		newRequest.setDescription(disc);
@@ -54,12 +48,7 @@ public class RequestService {
 		newRequest.setStudent(std);
 		//newRequest.getStudent().setId(id);
 				
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		
-		
-		
-		
-		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();		
 		return requestDao.save(newRequest);
 	}
 	
@@ -68,9 +57,12 @@ public class RequestService {
 		return requestDao.findAll(pReqest);
 	}
 	
-	public Page<Request> findByStudent(int studentId, int page, int size) {
+	
+	
+	
+	public Page<Request> findByStudent(Student student, int page, int size) {
 		PageRequest pReqest = new PageRequest(page, size, new Sort(Direction.ASC, "type"));
-		return requestDao.findByStudentId(studentId, pReqest);
+		return requestDao.findByStudent(student, pReqest);
 	}
 
 	public PageDto getPage(Page<Request> page, int current) {
@@ -78,7 +70,13 @@ public class RequestService {
 		return new PageDto(paging.getCurrentPage(), paging.getNextPage(), paging.getPreviousPage(), paging.getTotalPage());
 	}
 
-	public Page<Request> searchByType(RequestType requestType, int pageNo, int pageSize) {
+
+	public Account findByUsername(String name) {
+	 
+		return accntfinder.findByUsername(name);
+	}
+
+	/*public Page<Request> searchByType(RequestType requestType, int pageNo, int pageSize) {
 					
 		RequestType searchStatus = requestType;
 		PageRequest pReqest = new PageRequest(pageNo, pageSize, new Sort(Direction.ASC, "type"));
@@ -91,7 +89,9 @@ public class RequestService {
 		PageRequest pReqest = new PageRequest(pageNo, pageSize, new Sort(Direction.ASC, "type"));
 		return requestDao.findByStudentId(searchStatus, pReqest);
 	}
+*/
 
+	
 	
 	
 	

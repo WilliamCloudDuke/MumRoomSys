@@ -1,6 +1,7 @@
 package edu.mum.roomsys.domain;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -36,10 +37,10 @@ public class Request {
 	@JoinColumn(name = "student_id", nullable = false)
 	private Student student;
 
-	/*@Column(length = 100, nullable = true)
-	@CreationTimestamp
-	private LocalDateTime createDateTime;*/
-	
+	/*@Temporal(TemporalType.DATE)
+    @Column(name = "RequestDate" ,nullable = true)
+    public LocalDate requestDate= LocalDate.now() ;*/
+    	
 	
 	public Request() {
 		super();
