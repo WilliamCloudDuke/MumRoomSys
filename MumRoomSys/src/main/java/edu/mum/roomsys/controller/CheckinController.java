@@ -74,7 +74,7 @@ public class CheckinController {
 		}
 		bookItem.setCheckInDate(booking.getMoveInDate());
 		model.addAttribute("bookingItem", bookItem);
-		return "student_index";
+		return "index";
 	}
 
 	@SuppressWarnings("unused")
@@ -95,9 +95,9 @@ public class CheckinController {
 	}
 
 	@RequestMapping(path = { "/student/checkin/add" }, method = { RequestMethod.POST })
-	private String createCheckIn(@Valid BookItem bookItemToBeAdded, Model model) {
+	public String createCheckIn(@Valid BookItem bookItemToBeAdded, Model model) {
 		Booking bookingToBeUpdated = checkinService.findBookinByStatusNew(getStudentId());
-		bookingService.updateStatusCkeckInAndMoveInDate(bookingToBeUpdated, bookItemToBeAdded.getCheckInDate());
+		bookingService.updateStatusCkeckinAndMoveInDate(bookingToBeUpdated, bookItemToBeAdded.getCheckInDate());
 		bookItemService.createBookItemMovedIn(bookItemToBeAdded, bookingToBeUpdated);
 		roomService.updateStatusOccupied(bookingToBeUpdated.getRoom());
 		return "redirect:/student/checkin/read/" + bookingToBeUpdated.getId();

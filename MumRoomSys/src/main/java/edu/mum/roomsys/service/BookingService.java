@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import edu.mum.roomsys.dao.BookingDao;
 import edu.mum.roomsys.dao.RoomDao;
 import edu.mum.roomsys.dao.StudentDao;
+import edu.mum.roomsys.domain.BookItem;
 import edu.mum.roomsys.domain.Booking;
 import edu.mum.roomsys.domain.BookingStatus;
 import edu.mum.roomsys.domain.Room;
@@ -174,9 +175,15 @@ public class BookingService {
 	}
 
 	@Transactional(value = TxType.REQUIRED)
-	public void updateStatusCkeckInAndMoveInDate(Booking booking, Date checkInDate) {
+	public void updateStatusCkeckinAndMoveInDate(Booking booking, Date checkInDate) {
 		booking.setStatus(BookingStatus.CHECKED_IN);
 		bookingDao.updateStatusAndMoveInDate(booking.getStatus(), checkInDate, booking.getId());
+	}
+
+	@Transactional(value = TxType.REQUIRED)
+	public void updateStatusMoveOutDateAndComment(Booking booking, BookItem bookItem) {
+		booking.setStatus(BookingStatus.CHECKED_OUT);
+		bookingDao.updateStatusMoveOutDateAndComment(booking.getStatus(), bookItem.getCheckOutDate(), bookItem.getComment(), booking.getId());
 	}
 
 }

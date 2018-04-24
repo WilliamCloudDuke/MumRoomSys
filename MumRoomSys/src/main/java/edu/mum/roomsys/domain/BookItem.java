@@ -85,6 +85,18 @@ public class BookItem {
 	private Date checkInDate;
 
 	@Transient
+	private String comment;
+
+	@Transient
+	@Enumerated(EnumType.STRING)
+	private RoomStatus roomStatus;
+
+	@Transient
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date checkOutDate;
+
+	@Transient
 	private String successMessage;
 
 	@Transient
@@ -95,6 +107,9 @@ public class BookItem {
 
 	@Transient
 	private boolean disabled;
+
+	@Transient
+	private int studentId;
 
 	@JoinColumn(name = "booking_id", nullable = false)
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -262,6 +277,38 @@ public class BookItem {
 
 	public void setWarningMessage(String warningMessage) {
 		this.warningMessage = warningMessage;
+	}
+
+	public Date getCheckOutDate() {
+		return checkOutDate;
+	}
+
+	public void setCheckOutDate(Date checkOutDate) {
+		this.checkOutDate = checkOutDate;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public RoomStatus getRoomStatus() {
+		return roomStatus;
+	}
+
+	public void setRoomStatus(RoomStatus roomStatus) {
+		this.roomStatus = roomStatus;
+	}
+
+	public int getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
 
 }

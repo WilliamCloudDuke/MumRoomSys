@@ -81,16 +81,19 @@
 			<th scope="col" class="col-4">Moved out Date</th>	
 			<th scope="col" class="col">Status</th>		
 			<th scope="col" class="col-4">Check in Details</th>	
-			<th scope="col" class="col-4">Check out Details</th>			
+			<th scope="col" class="col-4">Check out Details</th>
+			<th scope="col" class="col-4">Create Check out</th>			
 			<th scope="col" class="col-4">Remove</th>										
 		</tr>	
 	</thead>
 	<tbody>		
 		<c:if test="${!bookings.hasContent()}">
-			<tr><td colspan="10">No records found<td></tr>
+			<tr><td colspan="11">No records found<td></tr>
 		</c:if>			
 		<c:if test="${bookings.hasContent()}">
 			<c:forEach var="booking" items="${bookings.getContent()}">
+				<c:set var="checkoutRecord" value="${booking.getCheckoutRecord()}"/>
+				<c:set var="checkinRecord" value="${booking.getCheckinRecord()}"/>
 				<tr>
 					<td>${booking.student.name}</td>
 					<td>${booking.student.email}</td>	
@@ -98,18 +101,21 @@
 					<td>${booking.room.buildNumber}</td>			
 					<td>${booking.room.number}</td>									
 					<td>${booking.moveInDate}</td>
-					<td>${booking.moveOutDate}</td>		
+					<td>${booking.moveOutDate}</td>
 					<td>${booking.status}</td>								
-					<td>
-						<c:set var="checkinRecord" value="${booking.getCheckinRecord()}"/>
+					<td>				
 						<c:if test="${checkinRecord != null}">
 							<a href='<c:url value="/student/checkin/${booking.id}"/>'>Details</a>
 						</c:if>						
 					</td>
 					<td>
-						<c:set var="checkoutRecord" value="${booking.getCheckoutRecord()}"/>
 						<c:if test="${checkoutRecord != null}">
 							<a href='<c:url value="/student/checkout/${booking.id}"/>'>Details</a>
+						</c:if>						
+					</td>	
+					<td>
+						<c:if test="${checkinRecord != null && checkoutRecord == null}">
+							<a href='<c:url value="/student/checkout/create/${booking.id}"/>'>Check out</a>
 						</c:if>						
 					</td>	
 					<td>
@@ -123,7 +129,7 @@
 		</c:if>
 		<c:if test="${bookings.hasContent()}">
 			<tr>
-				<td colspan="11">Pages: 	
+				<td colspan="12">Pages: 	
 					<c:forEach var="no" begin="0" end="${page.getTotalPage() - 1}">
 						<c:if test="${searchType == 'student'}">
 							<a href="/bookings/search/${no}?searchBy=${searchCriteria.searchBy}&criteria=${searchCriteria.criteria}">${no + 1} </a>

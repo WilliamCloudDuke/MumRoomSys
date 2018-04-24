@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -30,21 +31,24 @@ public class Booking {
 
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yyyy-MM-dd")	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date moveInDate;
 
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yyyy-MM-dd")	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date moveOutDate;
 
 	@Enumerated(EnumType.STRING)
 	private BookingStatus status;
 
+	@Column(length = 255)
+	private String comment;
+
 	@JoinColumn(name = "room_id")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Room room;
 
-	@OneToMany(mappedBy = "booking", cascade = {CascadeType.REMOVE})
+	@OneToMany(mappedBy = "booking", cascade = { CascadeType.REMOVE })
 	private List<BookItem> bookItems = new ArrayList<>();
 
 	@JoinColumn(name = "student_id")
@@ -57,21 +61,23 @@ public class Booking {
 	}
 
 	public BookItem getCheckinRecord() {
-		Optional<BookItem> item = bookItems.stream().filter(i -> i.getItemType() == BookingItemType.MOVED_IN).findFirst();
+		Optional<BookItem> item = bookItems.stream().filter(i -> i.getItemType() == BookingItemType.MOVED_IN)
+				.findFirst();
 		if (item.isPresent()) {
 			return item.get();
 		}
 		return null;
 	}
-	
+
 	public BookItem getCheckoutRecord() {
-		Optional<BookItem> item = bookItems.stream().filter(i -> i.getItemType() == BookingItemType.MOVED_OUT).findFirst();
+		Optional<BookItem> item = bookItems.stream().filter(i -> i.getItemType() == BookingItemType.MOVED_OUT)
+				.findFirst();
 		if (item.isPresent()) {
 			return item.get();
 		}
 		return null;
-	}	
-	
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -126,6 +132,14 @@ public class Booking {
 
 	public void setStudent(Student student) {
 		this.student = student;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 }

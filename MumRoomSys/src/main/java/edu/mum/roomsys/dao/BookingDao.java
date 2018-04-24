@@ -14,10 +14,10 @@ import edu.mum.roomsys.domain.BookingStatus;
 
 public interface BookingDao extends PagingAndSortingRepository<Booking, Integer> {
 
-	@Query("select b from Booking b join b.student s join b.room r left join b.bookItems i where s.name like %:name%")
+	@Query("select distinct b from Booking b join b.student s join b.room r left join b.bookItems i where s.name like %:name%")
 	public Page<Booking> findByStudentNameLike(@Param("name") String name, Pageable pageable);
 
-	@Query("select b from Booking b join b.student s join b.room r left join b.bookItems i where s.email like :email%")
+	@Query("select distinct b from Booking b join b.student s join b.room r left join b.bookItems i where s.email like :email%")
 	public Page<Booking> findByStudentEmailLike(@Param("email") String email, Pageable pageable);
 
 	public Page<Booking> findByStatus(BookingStatus status, Pageable pageable);
@@ -31,6 +31,11 @@ public interface BookingDao extends PagingAndSortingRepository<Booking, Integer>
 	@Modifying
 	@Query("update Booking b set b.status = :status, b.moveInDate = :moveInDate where b.id = :id")
 	public int updateStatusAndMoveInDate(@Param("status") BookingStatus status, @Param("moveInDate") Date moveInDate,
+			@Param("id") int id);
+
+	@Modifying
+	@Query("update Booking b set b.status = :status, b.moveOutDate = :moveOutDate, b.comment = :comment where b.id = :id")
+	public int updateStatusMoveOutDateAndComment(@Param("status") BookingStatus status, @Param("moveOutDate") Date moveOutDate, @Param("comment") String comment,
 			@Param("id") int id);
 
 }
