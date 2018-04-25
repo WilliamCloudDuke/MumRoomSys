@@ -6,7 +6,7 @@ insert into role(id, name) values (2, 'STUDENT');
 insert into student(id, name, email, phone) values(9, 'admin140', 'admin140@mum.edu', '+15152034404');
 insert into student(id, name, email) values(10, 'admin141', 'admin141@mum.edu');
 insert into student(id, name, email) values(11, 'admin142', 'admin142@mum.edu');
-insert into student(id, name, email) values(12, 'student1', 'student1@mum.edu');
+insert into student(id, name, email, phone) values(12, 'student1', 'student1@mum.edu','+17088873465');
 insert into student(id, name, email) values(13, 'student2', 'student2@mum.edu');
 insert into student(id, name, email) values(14, 'student3', 'student3@mum.edu');
 insert into student(id, name, email) values(50, 'student4', 'student4@mum.edu');

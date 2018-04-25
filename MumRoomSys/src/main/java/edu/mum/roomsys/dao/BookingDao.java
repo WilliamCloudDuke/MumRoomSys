@@ -1,6 +1,8 @@
 package edu.mum.roomsys.dao;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,7 +37,11 @@ public interface BookingDao extends PagingAndSortingRepository<Booking, Integer>
 
 	@Modifying
 	@Query("update Booking b set b.status = :status, b.moveOutDate = :moveOutDate, b.comment = :comment where b.id = :id")
-	public int updateStatusMoveOutDateAndComment(@Param("status") BookingStatus status, @Param("moveOutDate") Date moveOutDate, @Param("comment") String comment,
-			@Param("id") int id);
+	public int updateStatusMoveOutDateAndComment(@Param("status") BookingStatus status,
+			@Param("moveOutDate") Date moveOutDate, @Param("comment") String comment, @Param("id") int id);
+
+	public List<Booking> findByStatusIsNotInOrderByMoveInDateAsc(Collection<BookingStatus> status);
+
+	public List<Booking> findByStatusIsNotInOrderByMoveOutDateAsc(Collection<BookingStatus> status);
 
 }

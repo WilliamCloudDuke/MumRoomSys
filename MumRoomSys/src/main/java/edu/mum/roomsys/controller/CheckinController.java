@@ -104,6 +104,7 @@ public class CheckinController {
 		bookItemService.createBookItemMovedIn(bookItemToBeAdded, bookingToBeUpdated);
 		roomService.updateStatusOccupied(bookingToBeUpdated.getRoom());
 		Account adminAccount = accountService.findAdminByBuildingNumber(bookingToBeUpdated.getRoom().getBuildNumber());
+		//SEND SMS MESSAGE TO BUILDING ADMIN 
 		//smsService.sendSMS(adminAccount.getStudent().getPhone(), "Mum Room System Notification - The student "
 		//		+ bookItemToBeAdded.getBooking().getStudent().getName() + " has done a check in");
 		return "redirect:/student/checkin/read/" + bookingToBeUpdated.getId();

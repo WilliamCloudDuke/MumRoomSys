@@ -17,6 +17,7 @@ import edu.mum.roomsys.service.BookItemService;
 import edu.mum.roomsys.service.BookingService;
 import edu.mum.roomsys.service.CheckoutService;
 import edu.mum.roomsys.service.RoomService;
+import edu.mum.roomsys.service.SmsService;
 
 @Controller
 public class CheckoutController {
@@ -29,6 +30,8 @@ public class CheckoutController {
 	private BookItemService bookItemService;
 	@Autowired
 	private RoomService roomService;
+	@Autowired
+	private SmsService smsService;
 
 	@RequestMapping(path = { "/student/checkout/create/{id}" }, method = { RequestMethod.GET })
 	public String getBookinByStatusCheckedin(@PathVariable("id") int id, Model model) {
@@ -93,6 +96,9 @@ public class CheckoutController {
 		bookingService.updateStatusMoveOutDateAndComment(bookingToBeUpdated, bookItemToBeAdded);
 		bookItemService.createBookItemMovedOut(bookItemToBeAdded, bookingToBeUpdated);
 		roomService.updateStatus(bookingToBeUpdated.getRoom(), bookItemToBeAdded.getRoomStatus());
+		// SEND SMS MESSAGE TO STUDENT
+//		smsService.sendSMS(bookingToBeUpdated.getStudent().getPhone(), "Mum Room System Notification - You "
+//				+ bookItemToBeAdded.getBooking().getStudent().getName() + " have checked out of MUM ");
 		return "redirect:/student/checkout/read/" + bookingToBeUpdated.getId();
 	}
 
