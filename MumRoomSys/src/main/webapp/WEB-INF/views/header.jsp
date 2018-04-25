@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarToggler" aria-controls="navbarToggler"
 		aria-expanded="false" aria-label="Toggle navigation">
@@ -15,7 +15,7 @@
 		Management System</a>
 
 	<div class="collapse navbar-collapse" id="navbarToggler">
-		<ul class="navbar-nav mr-auto">
+		<ul class="navbar-nav ml-auto">
 			<sec:authorize access="isAuthenticated()">
 				<c:url var="post_url" value="/logout" />
 				<form:form class="form-inline my-2 my-lg-0"

@@ -23,22 +23,24 @@
 			<div class="col" id="header">
 				<c:import url="header.jsp" />
 			</div>
-		</div>	
-			<sec:authorize access="hasAnyAuthority('DIRECTOR')">
-				<c:import url="admin_nav.jsp" />
-			</sec:authorize>
-			<sec:authorize access="hasAnyAuthority('STUDENT')">
-				<c:import url="student_nav.jsp" />
-			</sec:authorize>
-	        <main class="col-md-10 float-left col px-5 pl-md-2 pt-2 main">
-	            <div class="row">
-	                <div class="col-lg-6">
-	                   <c:import url="${mainPage}" />
-	                </div>
-	            </div>
-	        </main>
-	    </div>
-	</div>
+		</div>
+		
+		<sec:authorize access="hasAnyAuthority('DIRECTOR')">
+			<c:import url="admin_nav.jsp" />
+		</sec:authorize>
+		<sec:authorize access="hasAnyAuthority('STUDENT')">
+			<c:import url="student_nav.jsp" />
+		</sec:authorize>				
+
+        <div class="col-md-10 float-left col px-5 pl-md-2 pt-2 main">
+            <div class="row">
+                <div class="col-lg-6">
+                   <c:import url="${mainPage}" />
+                </div>
+            </div>
+        </div>			
+	</div>	
+
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
