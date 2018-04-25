@@ -98,7 +98,7 @@ public class CheckinController {
 	}
 
 	@RequestMapping(path = { "/student/checkin/add" }, method = { RequestMethod.POST })
-	public String createCheckIn(@Valid BookItem bookItemToBeAdded, Model model) {
+	public String createCheckin(@Valid BookItem bookItemToBeAdded, Model model) {
 		Booking bookingToBeUpdated = checkinService.findBookinByStatusNew(getStudentId());
 		bookingService.updateStatusCkeckinAndMoveInDate(bookingToBeUpdated, bookItemToBeAdded.getCheckInDate());
 		bookItemService.createBookItemMovedIn(bookItemToBeAdded, bookingToBeUpdated);
