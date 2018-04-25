@@ -38,6 +38,10 @@ public class Booking {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date moveOutDate;
 
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date expirationDate;
+
 	@Enumerated(EnumType.STRING)
 	private BookingStatus status;
 
@@ -140,6 +144,14 @@ public class Booking {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public Date getExpirationDate() {
+		return expirationDate;
+	}
+
+	public void setExpirationDate(Date expirationDate) {
+		this.expirationDate = expirationDate;
 	}
 
 }

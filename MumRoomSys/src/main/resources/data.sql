@@ -3,7 +3,7 @@ insert into role(id, name) values (2, 'STUDENT');
 
 /* all users have the same password = password */
 
-insert into student(id, name, email) values(9, 'admin140', 'admin140@mum.edu');
+insert into student(id, name, email, phone) values(9, 'admin140', 'admin140@mum.edu', '+15152034404');
 insert into student(id, name, email) values(10, 'admin141', 'admin141@mum.edu');
 insert into student(id, name, email) values(11, 'admin142', 'admin142@mum.edu');
 insert into student(id, name, email) values(12, 'student1', 'student1@mum.edu');

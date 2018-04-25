@@ -22,6 +22,7 @@ import edu.mum.roomsys.service.BookItemService;
 import edu.mum.roomsys.service.BookingService;
 import edu.mum.roomsys.service.CheckinService;
 import edu.mum.roomsys.service.RoomService;
+import edu.mum.roomsys.service.SmsService;
 
 @Controller
 public class CheckinController {
@@ -36,6 +37,8 @@ public class CheckinController {
 	private BookItemService bookItemService;
 	@Autowired
 	private RoomService roomService;
+	@Autowired
+	private SmsService smsService;
 
 	@GetMapping({ "/student/checkin" })
 	public String getBookingByStatusNew(Model model) {
@@ -100,6 +103,9 @@ public class CheckinController {
 		bookingService.updateStatusCkeckinAndMoveInDate(bookingToBeUpdated, bookItemToBeAdded.getCheckInDate());
 		bookItemService.createBookItemMovedIn(bookItemToBeAdded, bookingToBeUpdated);
 		roomService.updateStatusOccupied(bookingToBeUpdated.getRoom());
+		Account adminAccount = accountService.findAdminByBuildingNumber(bookingToBeUpdated.getRoom().getBuildNumber());
+		//smsService.sendSMS(adminAccount.getStudent().getPhone(), "Mum Room System Notification - The student "
+		//		+ bookItemToBeAdded.getBooking().getStudent().getName() + " has done a check in");
 		return "redirect:/student/checkin/read/" + bookingToBeUpdated.getId();
 	}
 
