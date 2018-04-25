@@ -6,6 +6,7 @@
 <table class="table table-hover table-striped">
 	<thead class="thead-dark">
 		<tr>
+			<th scope="col">#</th>		
 			<th scope="col">Building No</th>
 			<th scope="col">Room No</th>
 			<th scope="col">Status</th>
@@ -15,8 +16,9 @@
 		<c:if test="${rooms.isEmpty()}">
 			<tr><td colspan="3">No records found<td></tr>
 		</c:if>			
-		<c:forEach var="room" items="${rooms}">
+		<c:forEach var="room" items="${rooms}" varStatus="loop">
 			<tr>
+				<td>${loop.index + 1}</td>					
 				<td>${room.buildNumber}</td>
 				<td>${room.number}</td>	
 				<td>${room.status}</td>
