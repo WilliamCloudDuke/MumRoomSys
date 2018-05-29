@@ -41,7 +41,7 @@ public class CheckinController {
 	private SmsService smsService;
 
 	@GetMapping({ "/student/checkin" })
-	public String getBookingByStatusNew(Model model) {
+	public String getBookingByStatusNew(Model model) {  
 		model.addAttribute("mainPage", "studentCheckin.jsp");
 		Booking booking = checkinService.findBookinByStatusNew(getStudentId());
 		if (null == booking) {

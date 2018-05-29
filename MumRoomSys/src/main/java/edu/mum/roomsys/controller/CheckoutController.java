@@ -96,7 +96,7 @@ public class CheckoutController {
 		bookingService.updateStatusMoveOutDateAndComment(bookingToBeUpdated, bookItemToBeAdded);
 		bookItemService.createBookItemMovedOut(bookItemToBeAdded, bookingToBeUpdated);
 		roomService.updateStatus(bookingToBeUpdated.getRoom(), bookItemToBeAdded.getRoomStatus());
-		// SEND SMS MESSAGE TO STUDENT
+		// SEND SMS MESSAGE TO STUDENT ONCE IS CHECKED OUT
 		smsService.sendSMS(bookingToBeUpdated.getStudent().getPhone(), "Mum Room System Notification - You "
 				+ bookItemToBeAdded.getBooking().getStudent().getName() + " have checked out of MUM ");
 		return "redirect:/student/checkout/read/" + bookingToBeUpdated.getId();
